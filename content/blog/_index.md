@@ -1,7 +1,9 @@
 ---
-title: Blog
+title: 📖 Blog
 cascade:
   type: blog
 ---
 
-Artigos técnicos, tutoriais e reflexões sobre desenvolvimento de software.
+</br></br>
+
+# 2026

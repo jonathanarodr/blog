@@ -27,13 +27,13 @@ hugo new content/blog/nome-do-post.md
 ```yaml
 ---
 title: "Título do Post"
-date: 2026-01-29
+date: 2026-01-21
 draft: false  # true para rascunho, false para publicar
 tags: ["categoria", "tecnologia", "tópico"]
 authors:
   - name: Jonathan Rodrigues
-    link: https://github.com/jonathan-rodrigues
-    image: https://github.com/jonathan-rodrigues.png
+    link: https://github.com/jonathanarodr
+    image: https://avatars.githubusercontent.com/u/10449607?v=4
 ---
 ```
 

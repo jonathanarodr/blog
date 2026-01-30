@@ -1,5 +1,5 @@
 ---
-title: "Meu Primeiro Post"
+title: "Initial commit"
 date: 2026-01-29
 draft: false
 tags: ["geral", "blog"]
@@ -7,29 +7,26 @@ authors:
   - name: Jonathan Rodrigues
 ---
 
-Bem-vindo ao meu blog pessoal! Este é o primeiro post e estou animado para compartilhar conhecimento, projetos e reflexões sobre desenvolvimento de software.
+Bem-vindo(a) ao meu blog pessoal! Este é o primeiro post e estou animado para compartilhar conhecimento, projetos e reflexões sobre desenvolvimento de software e outros temas aleatórios.
 
 <!--more-->
 
-## Sobre Este Blog
+## Inspiração
 
-Este blog foi criado para documentar minha jornada como desenvolvedor e compartilhar aprendizados com a comunidade. Aqui você encontrará:
+Criei este blog pela vontade de ter um espaço próprio para escrever com liberdade, construir meu portfólio, compartilhar aprendizados e retribuir à comunidade que foi tão importante no início da minha carreira, além de servir como um diário digital para mim mesmo.
 
-- **Tutoriais técnicos**: Guias práticos sobre tecnologias e ferramentas
-- **Projetos pessoais**: Showcase dos meus projetos e experimentos
-- **Reflexões**: Pensamentos sobre desenvolvimento, arquitetura e melhores práticas
+## Você vai encontrar por aqui
 
-## O Que Esperar
+Este blog foi criado para documentar minha jornada como desenvolvedor e compartilhar aprendizados com a comunidade.
 
-Pretendo publicar regularmente sobre temas como:
+Aqui você encontrará coisas como:
 
-- Desenvolvimento Web
-- Arquitetura de Software
-- Ferramentas e Produtividade
-- Open Source
+- **Tutoriais técnicos**: Guias práticos sobre tecnologias e ferramentas que estou estudando.
+- **Projetos pessoais**: Showcase dos meus projetos e experimentos.
+- **Reflexões**: Pensamentos sobre desenvolvimento de software e sobre a vida 😅.
 
-## Vamos Conectar
+## Vamos conectar
 
-Se você tem interesse em trocar ideias ou colaborar em projetos, sinta-se à vontade para me contatar através do [GitHub](https://github.com/jonathanarodr) ou [LinkedIn](https://linkedin.com/in/jonathanarodr).
+Se você tem interesse em trocar ideias, sinta-se à vontade para me contatar através do [GitHub](https://github.com/jonathanarodr) ou [LinkedIn](https://linkedin.com/in/jonathanarodr).
 
-Obrigado por visitar e até o próximo post!
+Obrigado por visitar e até o próximo post 👋!
