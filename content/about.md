@@ -22,4 +22,4 @@ Sou um desenvolvedor de software apaixonado por construir soluções elegantes p
 
 ## Entre em Contato
 
-Sinta-se à vontade para me contatar no [GitHub](https://github.com/jonathan-rodrigues) ou [LinkedIn](https://linkedin.com/in/jonathan-rodrigues).
+Sinta-se à vontade para me contatar no [GitHub](https://github.com/jonathanarodr) ou [LinkedIn](https://linkedin.com/in/jonathanarodr).

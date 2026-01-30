@@ -21,7 +21,7 @@ Blog pessoal em português construído com Hugo e o tema Hextra.
 
 ```bash
 # Clonar repositório
-git clone https://github.com/jonathan-rodrigues/blog.git
+git clone https://github.com/jonathanarodr/blog.git
 cd blog
 
 # Instalar dependências
@@ -55,7 +55,7 @@ draft: false
 tags: ["tag1", "tag2"]
 authors:
   - name: Jonathan Rodrigues
-    link: https://github.com/jonathan-rodrigues
+    link: https://github.com/jonathanarodr
 ---
 ```
 

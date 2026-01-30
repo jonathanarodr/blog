@@ -43,12 +43,12 @@ menu:
         type: search
     - name: GitHub
       weight: 5
-      url: "https://github.com/jonathan-rodrigues"
+      url: "https://github.com/jonathanarodr"
       params:
         icon: github
     - name: LinkedIn
       weight: 6
-      url: "https://linkedin.com/in/jonathan-rodrigues"
+      url: "https://linkedin.com/in/jonathanarodr"
       params:
         icon: linkedin
     - name: Tema

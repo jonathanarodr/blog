@@ -42,8 +42,8 @@ Este blog pessoal foi construído com Hugo e o tema Hextra para compartilhar art
 
 ## Links
 
-- [Ver Site](https://jonathan-rodrigues.github.io/blog/)
-- [Código Fonte](https://github.com/jonathan-rodrigues/blog)
+- [Ver Site](https://jonathanarodr.github.io/)
+- [Código Fonte](https://github.com/jonathanarodr/blog)
 
 ## Aprendizados
 

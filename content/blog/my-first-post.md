@@ -30,6 +30,6 @@ Pretendo publicar regularmente sobre temas como:
 
 ## Vamos Conectar
 
-Se você tem interesse em trocar ideias ou colaborar em projetos, sinta-se à vontade para me contatar através do [GitHub](https://github.com/jonathan-rodrigues) ou [LinkedIn](https://linkedin.com/in/jonathan-rodrigues).
+Se você tem interesse em trocar ideias ou colaborar em projetos, sinta-se à vontade para me contatar através do [GitHub](https://github.com/jonathanarodr) ou [LinkedIn](https://linkedin.com/in/jonathanarodr).
 
 Obrigado por visitar e até o próximo post!

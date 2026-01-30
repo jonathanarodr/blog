@@ -5,7 +5,7 @@ draft: false
 tags: ["hugo", "desenvolvimento-web", "tutorial"]
 authors:
   - name: Jonathan Rodrigues
-    link: https://github.com/jonathan-rodrigues
+    link: https://github.com/jonathanarodr
 ---
 
 Hugo é um gerador de sites estáticos fantástico que torna a construção de sites rápidos incrivelmente fácil. Neste post, vou compartilhar minha experiência configurando este blog com o tema Hextra.
