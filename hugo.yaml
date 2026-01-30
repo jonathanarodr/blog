@@ -1,5 +1,5 @@
 # Hugo configuration file
-baseURL: https://jonathan-rodrigues.github.io/blog/
+baseURL: https://jonathan-rodrigues.github.io/
 title: Jonathan Rodrigues
 languageCode: pt-br
 defaultContentLanguage: pt
