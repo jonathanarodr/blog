@@ -3,7 +3,6 @@ title: "Começando com Hugo e Hextra"
 date: 2026-01-29
 draft: false
 tags: ["hugo", "desenvolvimento-web", "tutorial"]
-# image: /images/blog/hugo-hextra.jpg  # Descomente e adicione uma imagem personalizada
 authors:
   - name: Jonathan Rodrigues
     link: https://github.com/jonathanarodr

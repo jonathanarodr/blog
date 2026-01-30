@@ -3,7 +3,6 @@ title: "Meu Primeiro Post"
 date: 2026-01-29
 draft: false
 tags: ["geral", "blog"]
-# image: /images/blog/first-post.jpg  # Descomente e adicione uma imagem personalizada
 authors:
   - name: Jonathan Rodrigues
 ---
