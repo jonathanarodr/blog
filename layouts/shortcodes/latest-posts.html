@@ -1,0 +1,5 @@
+{{/* layouts/shortcodes/latest-posts.html */}}
+{{ $limit := .Get "limit" | default 3 }}
+{{ $cols := .Get "cols" | default 3 }}
+
+{{ partial "latest-posts.html" (dict "limit" $limit "cols" $cols "context" .) }}
