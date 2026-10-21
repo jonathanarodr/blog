@@ -7,10 +7,11 @@ defaultContentLanguage: pt
 # Enable Git info for last modified dates
 enableGitInfo: true
 
-# Tags drive the blog hub filter, so no standalone taxonomy pages
+# Tags drive the blog hub filter, so no standalone taxonomy pages; no RSS feeds
 disableKinds:
   - taxonomy
   - term
+  - rss
 
 markup:
   # Allow raw HTML

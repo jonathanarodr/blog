@@ -18,9 +18,6 @@
         <input type="search" placeholder="Buscar…" aria-label="Buscar posts" data-search-input />
         <kbd>/</kbd>
       </label>
-      <a class="button" href="{{ with .OutputFormats.Get "rss" }}{{ .RelPermalink }}{{ end }}">
-        {{- partial "jr/icon.html" "rss" }} Assinar
-      </a>
     </div>
   </header>
 
