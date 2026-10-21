@@ -6,7 +6,7 @@ Blog pessoal em português construído com Hugo e um tema próprio.
 
 - **Hugo** - Gerador de sites estáticos
 - **Tema próprio** - Layouts em `layouts/`, estilos em `assets/css/` e scripts em `assets/js/`
-- **Fontes** - Momo Trust Display (texto) e JetBrains Mono (código), via Google Fonts
+- **Fontes** - Momo Trust Display (títulos), Inter (texto) e JetBrains Mono (código), via Google Fonts
 - **GitHub Pages** - Hospedagem
 - **GitHub Actions** - Deploy automatizado
 
