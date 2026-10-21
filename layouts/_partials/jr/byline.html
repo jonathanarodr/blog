@@ -1,0 +1,15 @@
+{{- /* Author avatars, names and date. Context: page. */ -}}
+{{- $authors := .Params.authors | default (slice (dict "name" site.Params.author.name)) }}
+<div class="byline">
+  <span class="byline__avatars">
+    {{- range $authors }}
+      {{- $image := .image | default site.Params.author.image }}
+      {{- with $image }}<img src="{{ . | relURL }}" alt="" width="20" height="20" loading="lazy" />{{ end }}
+    {{- end }}
+  </span>
+  <span class="byline__names">
+    {{- range $i, $a := $authors }}{{ if $i }}, {{ end }}{{ $a.name }}{{ end -}}
+  </span>
+  <span class="byline__sep" aria-hidden="true">·</span>
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+</div>

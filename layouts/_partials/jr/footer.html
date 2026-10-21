@@ -1,0 +1,6 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <span>{{ T "copyright" | default (printf "© %d %s" now.Year site.Title) }}</span>
+    <a href="{{ "blog/index.xml" | relLangURL }}">RSS</a>
+  </div>
+</footer>

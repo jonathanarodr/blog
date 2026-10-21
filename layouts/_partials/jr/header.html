@@ -1,0 +1,24 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="{{ "/" | relLangURL }}">{{ site.Title }}</a>
+    <nav class="site-header__nav" aria-label="Principal">
+      {{- range site.Menus.main }}
+        {{- $type := .Params.type }}
+        {{- $icon := .Params.icon }}
+        {{- if or (eq $type "search") (eq $type "theme-toggle") }}{{ continue }}{{ end }}
+        {{- if $icon }}
+          <a class="site-header__icon" href="{{ .URL }}" target="_blank" rel="noopener" aria-label="{{ .Name }}">
+            {{- partial "jr/icon.html" $icon -}}
+          </a>
+        {{- else }}
+          {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+          <a class="site-header__link{{ if $active }} is-active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+        {{- end }}
+      {{- end }}
+      <button class="site-header__icon" type="button" data-theme-toggle aria-label="Alternar tema">
+        {{- partial "jr/icon.html" "sun" -}}
+        {{- partial "jr/icon.html" "moon" -}}
+      </button>
+    </nav>
+  </div>
+</header>

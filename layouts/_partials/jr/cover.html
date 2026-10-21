@@ -1,0 +1,13 @@
+{{- /* Post cover: uses front matter `image` when present, otherwise a typographic cover tinted per post. Context: page. */ -}}
+{{- $vt := printf "cover-%s" (.File.ContentBaseName | anchorize) }}
+{{- with .Params.image }}
+  <div class="cover" style="view-transition-name: {{ $vt }}">
+    <img src="{{ . | relURL }}" alt="" loading="lazy" decoding="async" />
+  </div>
+{{- else }}
+  {{- $hue := mod (hash.FNV32a .Title) 360 }}
+  <div class="cover cover--generated" style="--hue: {{ $hue }}; view-transition-name: {{ $vt }}" aria-hidden="true">
+    <span class="cover__badge">JR</span>
+    <span class="cover__title">{{ .Title }}</span>
+  </div>
+{{- end }}

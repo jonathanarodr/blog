@@ -58,6 +58,12 @@ menu:
 
 # Site parameters
 params:
+  # Author shown on blog posts
+  author:
+    name: Jonathan Rodrigues
+    image: https://github.com/jonathanarodr.png
+    bio: Mobile software engineer no PicPay. Escrevo sobre Android, Kotlin e carreira.
+
   # Navbar configuration
   navbar:
     displayTitle: true
@@ -88,3 +94,14 @@ params:
   # Edit URL disabled
   editURL:
     enable: false
+
+# Related posts ("Continue lendo") ranked by shared tags
+related:
+  includeNewer: true
+  threshold: 0
+  toLower: true
+  indices:
+    - name: tags
+      weight: 100
+    - name: date
+      weight: 10

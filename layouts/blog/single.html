@@ -1,0 +1,77 @@
+{{ define "main" }}
+{{- $slug := .File.ContentBaseName | anchorize }}
+{{- $url := .Permalink }}
+<article class="post">
+  <div class="container container--narrow">
+    <a class="back-link" href="{{ .Parent.RelPermalink }}">{{ partial "jr/icon.html" "arrow-left" }} Todos os posts</a>
+
+    <header class="post__header">
+      <time class="post__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+      <h1 class="display post__title" style="view-transition-name: title-{{ $slug }}">{{ .Title }}</h1>
+      {{- with .Description }}<p class="post__lead">{{ . }}</p>{{ end }}
+
+      <div class="post__meta">
+        {{- partial "jr/byline.html" . }}
+        <span class="byline__sep" aria-hidden="true">·</span>
+        <span>{{ .ReadingTime }} min de leitura</span>
+      </div>
+
+      {{- with .Params.tags }}
+      <ul class="post__tags" aria-label="Tags">
+        {{- range . }}
+          <li><a class="pill pill--small" href="{{ $.Parent.RelPermalink }}?tag={{ urlize . }}">{{ . }}</a></li>
+        {{- end }}
+      </ul>
+      {{- end }}
+    </header>
+  </div>
+
+  {{- if .Params.image }}
+  <div class="container post__cover">{{ partial "jr/cover.html" . }}</div>
+  {{- end }}
+
+  <div class="container container--narrow">
+    <div class="prose">
+      {{ .Content }}
+    </div>
+
+    <footer class="post__footer">
+      <div class="share">
+        <span class="share__label">Compartilhar</span>
+        <a class="share__button" href="https://x.com/intent/post?text={{ .Title | urlquery }}&url={{ $url | urlquery }}" target="_blank" rel="noopener" aria-label="Compartilhar no X">{{ partial "jr/icon.html" "x" }}</a>
+        <a class="share__button" href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url | urlquery }}" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn">{{ partial "jr/icon.html" "linkedin" }}</a>
+        <button class="share__button" type="button" data-copy-link="{{ $url }}" aria-label="Copiar link">
+          {{- partial "jr/icon.html" "link" }}{{ partial "jr/icon.html" "check" -}}
+        </button>
+      </div>
+
+      {{- with site.Params.author }}
+      <div class="author-card">
+        {{- with .image }}<img src="{{ . | relURL }}" alt="" width="48" height="48" loading="lazy" />{{ end }}
+        <div>
+          <p class="author-card__name">{{ .name }}</p>
+          {{- with .bio }}<p class="author-card__bio">{{ . }}</p>{{ end }}
+        </div>
+        <div class="author-card__links">
+          {{- range $entry := site.Menus.main }}
+            {{- with $entry.Params.icon }}
+              <a class="share__button" href="{{ $entry.URL }}" target="_blank" rel="noopener" aria-label="{{ $entry.Name }}">{{ partial "jr/icon.html" . }}</a>
+            {{- end }}
+          {{- end }}
+        </div>
+      </div>
+      {{- end }}
+    </footer>
+  </div>
+
+  {{- $related := where (.Site.RegularPages.Related .) "Section" "blog" | first 3 }}
+  {{- with $related }}
+  <section class="container related">
+    <h2 class="hub__section-title">Continue lendo</h2>
+    <div class="hub__grid">
+      {{- range . }}{{ partial "jr/post-card.html" (dict "page" .) }}{{ end }}
+    </div>
+  </section>
+  {{- end }}
+</article>
+{{ end }}

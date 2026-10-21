@@ -2,6 +2,7 @@
 title: "Initial commit"
 date: 2026-01-29
 draft: false
+description: "Por que criei este blog e o que você vai encontrar por aqui."
 tags: ["geral", "blog"]
 authors:
   - name: Jonathan Rodrigues

@@ -1,0 +1,55 @@
+{{ define "main" }}
+{{- $posts := .RegularPagesRecursive.ByDate.Reverse }}
+{{- $featured := first 2 $posts }}
+{{- $rest := after 2 $posts }}
+{{- $tags := slice }}
+{{- range $posts }}{{ range .Params.tags }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
+{{- $tags = $tags | uniq | sort }}
+
+<div class="container hub" data-hub>
+  <header class="hub__header">
+    <div>
+      <h1 class="display">{{ .Title }}</h1>
+      {{- with .Description }}<p class="hub__lead">{{ . }}</p>{{ end }}
+    </div>
+    <div class="hub__actions">
+      <label class="search">
+        {{- partial "jr/icon.html" "search" }}
+        <input type="search" placeholder="Buscar…" aria-label="Buscar posts" data-search-input />
+        <kbd>/</kbd>
+      </label>
+      <a class="button" href="{{ with .OutputFormats.Get "rss" }}{{ .RelPermalink }}{{ end }}">
+        {{- partial "jr/icon.html" "rss" }} Assinar
+      </a>
+    </div>
+  </header>
+
+  {{- if $tags }}
+  <div class="pills" role="toolbar" aria-label="Filtrar por tag">
+    <button class="pill is-active" type="button" data-tag="">Todos</button>
+    {{- range $tags }}
+      <button class="pill" type="button" data-tag="{{ urlize . }}">{{ . }}</button>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  <section class="hub__featured" data-group>
+    {{- range $featured }}
+      {{- partial "jr/post-card.html" (dict "page" . "featured" true) }}
+    {{- end }}
+  </section>
+
+  {{- with $rest }}
+  <section data-group>
+    <h2 class="hub__section-title">Posts recentes</h2>
+    <div class="hub__grid">
+      {{- range . }}
+        {{- partial "jr/post-card.html" (dict "page" .) }}
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  <p class="hub__empty" data-empty hidden>Nenhum post encontrado.</p>
+</div>
+{{ end }}
