@@ -22,8 +22,8 @@
   --surface-hover: rgba(255, 255, 255, 0.08);
   --border: rgba(255, 255, 255, 0.1);
   --border-strong: rgba(255, 255, 255, 0.18);
-  --text: #ededed;
-  --text-muted: #a1a1a6;
+  --text: #e4e4e7;
+  --text-muted: #9a9aa1;
   --text-subtle: #6e6e73;
   --accent: #fff;
   --accent-contrast: #000;
@@ -37,8 +37,8 @@
   --surface-hover: rgba(0, 0, 0, 0.06);
   --border: rgba(0, 0, 0, 0.09);
   --border-strong: rgba(0, 0, 0, 0.16);
-  --text: #111;
-  --text-muted: #5b5b60;
+  --text: #1f1f22;
+  --text-muted: #63636a;
   --text-subtle: #8a8a90;
   --accent: #111;
   --accent-contrast: #fff;
@@ -64,7 +64,11 @@ body {
   background: var(--bg);
   color: var(--text);
   font: 400 16px/1.6 var(--font-sans);
+  /* Momo Trust Display ships a single weight: never fake bold */
+  font-synthesis-weight: none;
+  letter-spacing: 0.005em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 
