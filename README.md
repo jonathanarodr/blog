@@ -1,11 +1,12 @@
 # Jonathan Rodrigues - Blog Pessoal
 
-Blog pessoal em português construído com Hugo e o tema Hextra.
+Blog pessoal em português construído com Hugo e um tema próprio.
 
 ## Stack Tecnológico
 
 - **Hugo** - Gerador de sites estáticos
-- **Hextra Theme** - Tema moderno Hugo com Tailwind CSS
+- **Tema próprio** - Layouts em `layouts/`, estilos em `assets/css/` e scripts em `assets/js/`
+- **Fontes** - Momo Trust Display (texto) e JetBrains Mono (código), via Google Fonts
 - **GitHub Pages** - Hospedagem
 - **GitHub Actions** - Deploy automatizado
 
@@ -14,7 +15,6 @@ Blog pessoal em português construído com Hugo e o tema Hextra.
 ### Pré-requisitos
 
 - Hugo (versão extended) 0.147.9+
-- Go 1.24+
 - Git
 
 ### Desenvolvimento Local
@@ -23,9 +23,6 @@ Blog pessoal em português construído com Hugo e o tema Hextra.
 # Clonar repositório
 git clone https://github.com/jonathanarodr/blog.git
 cd blog
-
-# Instalar dependências
-hugo mod tidy
 
 # Iniciar servidor de desenvolvimento
 hugo server --buildDrafts --disableFastRender -p 1313
@@ -102,7 +99,6 @@ Deploy automático para GitHub Pages ocorre a cada push para a branch `main` via
 ├── static/
 │   └── images/             # Imagens e assets
 ├── hugo.yaml               # Configuração do Hugo
-├── go.mod                  # Dependências Go
 └── README.md
 ```
 
@@ -114,10 +110,6 @@ hugo server --buildDrafts -p 1313
 
 # Build de produção
 hugo --gc --minify
-
-# Atualizar tema Hextra
-hugo mod get -u github.com/imfing/hextra
-hugo mod tidy
 
 # Verificar versão do Hugo
 hugo version

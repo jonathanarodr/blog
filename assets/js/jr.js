@@ -1,4 +1,4 @@
-// Theme toggle. Shares the "color-theme" key with the Hextra pages.
+// Theme toggle, persisted under "color-theme".
 document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
   button.addEventListener("click", () => {
     const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";

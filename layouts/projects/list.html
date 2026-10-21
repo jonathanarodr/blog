@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="container hub">
+  <header class="hub__header">
+    <div>
+      <h1 class="display">{{ .Title }}</h1>
+      {{- with .Description }}<p class="hub__lead">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+
+  {{- with .Content }}<div class="prose hub__intro">{{ . }}</div>{{ end }}
+
+  <div class="hub__grid">
+    {{- range .RegularPages.ByWeight }}{{ partial "jr/project-card.html" . }}{{ end }}
+  </div>
+</div>
+{{ end }}

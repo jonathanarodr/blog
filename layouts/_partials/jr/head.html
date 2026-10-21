@@ -1,6 +1,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-{{- $title := cond .IsHome site.Title (printf "%s · %s" .Title site.Title) }}
+{{- $pageTitle := cond (eq .Kind "404") "Página não encontrada" .Title }}
+{{- $title := cond .IsHome site.Title (printf "%s · %s" $pageTitle site.Title) }}
 <title>{{ $title }}</title>
 {{- $description := .Description | default (.Summary | plainify | strings.TrimSpace | truncate 160) | default site.Params.description }}
 <meta name="description" content="{{ $description }}" />
@@ -9,9 +10,11 @@
 <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}" />
 {{- end }}
 {{- partial "opengraph.html" . }}
+{{- partial "twitter_cards.html" . }}
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml" />
 <meta name="color-scheme" content="dark light" />
 
-{{- /* Apply the saved theme before first paint. Shares the key used by the Hextra pages. */}}
+{{- /* Apply the saved theme before first paint. */}}
 <script>
   (function () {
     var saved = null;
@@ -24,7 +27,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 {{- $css := slice (resources.Get "css/jr.css") (resources.Get "css/jr-chroma.css") | resources.Concat "css/jr.bundle.css" }}
 {{- if hugo.IsProduction }}{{ $css = $css | minify }}{{ end }}

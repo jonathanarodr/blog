@@ -32,26 +32,6 @@ hugo new content/projects/meu-projeto.md
 hugo new content/pagina.md
 ```
 
-## Gerenciamento de Módulos
-
-```bash
-# Instalar/atualizar dependências
-hugo mod tidy
-
-# Atualizar tema Hextra
-hugo mod get -u github.com/imfing/hextra
-hugo mod tidy
-
-# Verificar módulos
-hugo mod verify
-
-# Grafo de dependências
-hugo mod graph
-
-# Limpar cache de módulos
-hugo mod clean
-```
-
 ## Informações do Sistema
 
 ```bash
@@ -96,11 +76,6 @@ hugo --gc
 # Limpar diretórios gerados
 rm -rf public/ resources/ .hugo_build.lock
 
-# Limpar cache do Hugo
-hugo mod clean
-
-# Limpar tudo
-rm -rf public/ resources/ .hugo_build.lock && hugo mod clean
 ```
 
 ## Git Workflow
@@ -149,13 +124,7 @@ hugo --gc --minify --templateMetrics --templateMetricsHints
 ```bash
 # Limpar tudo e reconstruir
 rm -rf public/ resources/ .hugo_build.lock
-hugo mod clean
-hugo mod tidy
 hugo server
-
-# Verificar módulos
-hugo mod verify
-hugo mod graph
 
 # Debug de templates
 hugo server --debug

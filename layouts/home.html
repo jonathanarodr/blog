@@ -1,0 +1,45 @@
+{{ define "main" }}
+{{- $blog := site.GetPage "/blog" }}
+{{- $posts := first 3 (where site.RegularPages "Section" "blog").ByDate.Reverse }}
+{{- $projects := (where site.RegularPages "Section" "projects").ByWeight }}
+
+<div class="container home">
+  <section class="hero">
+    {{- with site.Params.author.image }}
+      <img class="hero__avatar" src="{{ . | relURL }}" alt="" width="72" height="72" />
+    {{- end }}
+    <h1 class="display hero__title">{{ .Params.heading | default .Title }}</h1>
+    <div class="prose hero__intro">
+      {{ .Content }}
+    </div>
+    <div class="hero__actions">
+      {{- with $blog }}<a class="button button--primary" href="{{ .RelPermalink }}">Ler o blog</a>{{ end }}
+      {{- with site.GetPage "/about" }}<a class="button" href="{{ .RelPermalink }}">Sobre mim</a>{{ end }}
+    </div>
+  </section>
+
+  {{- with $posts }}
+  <section class="home__section">
+    <div class="section-heading">
+      <h2 class="hub__section-title">Últimos posts</h2>
+      {{- with $blog }}<a class="section-heading__link" href="{{ .RelPermalink }}">Ver todos</a>{{ end }}
+    </div>
+    <div class="hub__grid">
+      {{- range . }}{{ partial "jr/post-card.html" (dict "page" .) }}{{ end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- with $projects }}
+  <section class="home__section">
+    <div class="section-heading">
+      <h2 class="hub__section-title">Projetos</h2>
+      {{- with site.GetPage "/projects" }}<a class="section-heading__link" href="{{ .RelPermalink }}">Ver todos</a>{{ end }}
+    </div>
+    <div class="hub__grid">
+      {{- range . }}{{ partial "jr/project-card.html" . }}{{ end }}
+    </div>
+  </section>
+  {{- end }}
+</div>
+{{ end }}

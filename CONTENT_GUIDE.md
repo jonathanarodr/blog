@@ -167,14 +167,14 @@ def hello():
 > Isto é uma citação
 ```
 
-## Shortcodes do Hextra
+## Shortcodes
 
 ### Cards
 
 ```markdown
 {{< cards >}}
-  {{< card link="/docs" title="Docs" icon="document-text" >}}
-  {{< card link="/blog" title="Blog" icon="newspaper" >}}
+  {{< card link="/projects" title="Projetos" subtitle="Opcional" >}}
+  {{< card link="/blog" title="Blog" >}}
 {{< /cards >}}
 ```
 
@@ -188,22 +188,19 @@ Informação importante aqui.
 
 Tipos: `info`, `warning`, `error`, `success`
 
+Também funciona com alertas do GitHub:
+
+```markdown
+> [!WARNING]
+> Cuidado com isso.
+```
+
 ### Detalhes (Accordion)
 
 ```markdown
 {{< details "Clique para expandir" >}}
 Conteúdo oculto aqui.
 {{< /details >}}
-```
-
-### Tabs
-
-```markdown
-{{< tabs items="Tab 1,Tab 2,Tab 3" >}}
-  {{< tab >}}Conteúdo da Tab 1{{< /tab >}}
-  {{< tab >}}Conteúdo da Tab 2{{< /tab >}}
-  {{< tab >}}Conteúdo da Tab 3{{< /tab >}}
-{{< /tabs >}}
 ```
 
 ## Gestão de Imagens

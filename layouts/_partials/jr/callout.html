@@ -1,0 +1,6 @@
+{{- /* Context: dict "type" "content". */ -}}
+{{- $type := lower .type }}
+{{- $type = index (dict "note" "info" "tip" "success" "important" "info" "caution" "error" "danger" "error") $type | default $type }}
+<div class="callout callout--{{ $type }}" role="note">
+  {{ .content }}
+</div>

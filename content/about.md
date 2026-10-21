@@ -1,9 +1,8 @@
 ---
 title: Sobre mim
-type: about
 ---
 
-# Quem eu sou
+## Quem eu sou
 
 // TODO
 

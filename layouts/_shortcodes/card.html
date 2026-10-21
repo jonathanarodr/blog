@@ -1,0 +1,7 @@
+{{- $link := .Get "link" }}
+{{- $external := strings.HasPrefix $link "http" }}
+<a class="link-card" href="{{ cond $external $link ($link | relLangURL) }}"{{ if $external }} target="_blank" rel="noopener"{{ end }}>
+  <span class="link-card__title">{{ .Get "title" }}</span>
+  {{- with .Get "subtitle" }}<span class="link-card__subtitle">{{ . | markdownify }}</span>{{ end }}
+  <span class="link-card__arrow" aria-hidden="true">→</span>
+</a>
