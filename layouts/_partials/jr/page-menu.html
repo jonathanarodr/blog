@@ -1,15 +1,31 @@
-{{- /* Page share dropdown: copy the page link, or copy/open its Markdown version. Only on pages with a Markdown output. Context: page. */ -}}
-{{- with .OutputFormats.Get "markdown" }}
+{{- /* Page share menu: copy the page link, or copy/open its Markdown version.
+  Context: dict
+    "page"        the page (must have a Markdown output, otherwise nothing renders)
+    "variant"     "inline" (header-style dropdown above the sidebar table of contents) or
+                  "floating" (round button at the bottom corner that opens a bottom sheet)
+    "hideDesktop" for "floating": hide it on wide screens, where the inline one shows
+*/ -}}
+{{- $page := .page }}
+{{- $variant := .variant | default "inline" }}
+{{- with $page.OutputFormats.Get "markdown" }}
 {{- $md := . }}
-<div class="dropdown" data-dropdown>
-  <button class="site-header__icon site-header__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="page-menu" aria-label="{{ T "pageMenu" }}" data-dropdown-toggle>
+{{- $id := printf "page-menu-%s" $variant }}
+<div class="dropdown page-menu page-menu--{{ $variant }}{{ if $.hideDesktop }} page-menu--hide-desktop{{ end }}" data-dropdown>
+  {{- if eq $variant "floating" }}
+  <button class="page-menu__fab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="{{ $id }}" aria-label="{{ T "pageMenu" }}" data-dropdown-toggle>
+    {{- partial "jr/icon.html" "share" -}}
+  </button>
+  <div class="page-menu__backdrop" data-dropdown-close></div>
+  {{- else }}
+  <button class="site-header__icon site-header__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="{{ $id }}" aria-label="{{ T "pageMenu" }}" data-dropdown-toggle>
     {{- partial "jr/icon.html" "copy" -}}
     {{- partial "jr/icon.html" "chevron-down" -}}
   </button>
-  <ul class="dropdown__list dropdown__list--actions" id="page-menu" role="menu" aria-label="{{ T "pageMenu" }}">
+  {{- end }}
+  <ul class="dropdown__list dropdown__list--actions" id="{{ $id }}" role="menu" aria-label="{{ T "pageMenu" }}">
     <li class="dropdown__label" role="presentation">{{ T "linkToPage" }}</li>
     <li role="none">
-      <button class="dropdown__item" type="button" role="menuitem" data-copy-text="{{ $.Permalink }}" data-copied-label="{{ T "copied" }}">
+      <button class="dropdown__item" type="button" role="menuitem" data-copy-text="{{ $page.Permalink }}" data-copied-label="{{ T "copied" }}">
         {{- partial "jr/icon.html" "link" }}<span>{{ T "copyPageLink" }}</span>
       </button>
     </li>

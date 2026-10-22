@@ -72,6 +72,7 @@
   </div>
 
   {{- partial "jr/back-to-top.html" . }}
+  {{- partial "jr/page-menu.html" (dict "page" . "variant" "floating" "hideDesktop" $toc) }}
 
   {{- $related := where (.Site.RegularPages.Related .) "Section" "blog" | first 3 }}
   {{- with $related }}

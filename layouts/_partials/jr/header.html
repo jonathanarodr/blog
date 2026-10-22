@@ -16,7 +16,6 @@
           <a class="site-header__link{{ if $active }} is-active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
         {{- end }}
       {{- end }}
-      {{- partial "jr/page-menu.html" . }}
       {{- partial "jr/language-menu.html" . }}
       <button class="site-header__icon" type="button" data-theme-toggle data-label-light="{{ T "themeToLight" }}" data-label-dark="{{ T "themeToDark" }}" aria-label="{{ T "themeToLight" }}">
         {{- partial "jr/icon.html" "sun" -}}

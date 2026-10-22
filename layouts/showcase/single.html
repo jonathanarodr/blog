@@ -28,5 +28,7 @@
       {{ .Content }}
     </div>
   </div>
+
+  {{- partial "jr/page-menu.html" (dict "page" . "variant" "floating") }}
 </article>
 {{ end }}

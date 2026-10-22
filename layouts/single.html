@@ -18,5 +18,6 @@
   </div>
 
   {{- if $toc }}{{ partial "jr/back-to-top.html" . }}{{ end }}
+  {{- partial "jr/page-menu.html" (dict "page" . "variant" "floating" "hideDesktop" $toc) }}
 </article>
 {{ end }}

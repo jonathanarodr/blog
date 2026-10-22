@@ -246,6 +246,7 @@ dropdowns.forEach((menu) => {
   });
 
   menu.close = () => setOpen(false);
+  menu.querySelectorAll("[data-dropdown-close]").forEach((el) => el.addEventListener("click", menu.close));
 
   document.addEventListener("click", (e) => {
     if (!menu.contains(e.target)) setOpen(false);
