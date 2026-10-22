@@ -6,6 +6,9 @@
 {{- $description := .Description | default (.Summary | plainify | strings.TrimSpace | truncate 160) | default site.Params.description }}
 <meta name="description" content="{{ $description }}" />
 <link rel="canonical" href="{{ .Permalink }}" />
+{{- with .OutputFormats.Get "markdown" }}
+<link rel="alternate" type="text/markdown" href="{{ .Permalink }}" title="Markdown" />
+{{- end }}
 {{- range .AllTranslations }}
 <link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}" />
 {{- end }}

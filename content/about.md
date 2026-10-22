@@ -41,3 +41,5 @@ Projetos que mantenho fora do trabalho estão no [Showcase](/showcase/), como o 
 Sinta-se à vontade para entrar em contato:
 
 {{< contact >}}
+
+Este currículo também está disponível em [Markdown](/about.md).

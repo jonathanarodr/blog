@@ -10,6 +10,10 @@ Todo o conteúdo fica no diretório `content/`, organizado por seções:
 - `content/showcase/` - Showcase (projetos)
 - `content/about.md` - Página sobre
 
+## Versão em Markdown
+
+Toda página (posts, Sobre, Showcase) também é publicada em Markdown ao lado do HTML, trocando a barra final por `.md`: `/about.md`, `/blog/meu-post.md`, `/en/about.md`. Os templates ficam em `layouts/single.md` e `layouts/blog/single.md`; shortcodes usados nas páginas precisam de uma versão `.md` em `layouts/_shortcodes/` (ex.: `callout.md`).
+
 ## Idiomas
 
 O site é bilíngue: português na raiz (`/`) e inglês em `/en/`. A tradução de uma página fica no mesmo diretório com o sufixo `.en.md`:

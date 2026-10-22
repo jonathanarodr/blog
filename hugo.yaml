@@ -66,6 +66,15 @@ languages:
 # Enable Git info for last modified dates
 enableGitInfo: true
 
+# Every page also ships a Markdown version next to it (e.g. /about.md,
+# /blog/my-first-post.md), rendered by layouts/single.md
+outputs:
+  page: [html, markdown]
+
+outputFormats:
+  markdown:
+    ugly: true
+
 # Tags drive the blog hub filter, so no standalone taxonomy pages; no RSS feeds
 disableKinds:
   - taxonomy
