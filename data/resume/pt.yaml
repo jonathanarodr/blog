@@ -12,7 +12,7 @@ experience:
         start: 2024-12
         summary: Como Staff Software Engineer especializado em Android, faço parte do time de Tech Core com foco no Design System. Atuo na evolução estratégica da base de código Android, liderando iniciativas de modernização em larga escala, como a migração de XML para Jetpack Compose, e impulsionando melhorias de observabilidade para aumentar a confiabilidade da plataforma e a experiência de quem usa o app.
         highlights:
-          - Liderei a evolução e modernização do Design System Android, sendo responsável pela estratégia de migração de XML para Jetpack Compose de ponta a ponta — design docs, diretrizes de arquitetura e boas práticas de escalabilidade, performance e consistência visual. O novo Design System reduziu em ~65% o tamanho da base de código da biblioteca, melhorando eficiência, velocidade de entrega e manutenibilidade.
+          - Liderei a evolução e modernização do Design System Android, sendo responsável pela estratégia de migração de XML para Jetpack Compose de ponta a ponta, incluindo design docs, diretrizes de arquitetura e boas práticas de escalabilidade, performance e consistência visual. O novo Design System reduziu em ~65% o tamanho da base de código da biblioteca, melhorando eficiência, velocidade de entrega e manutenibilidade.
           - Projetei e implementei um Image Loader próprio com camada de abstração para um ambiente multi-módulo complexo, permitindo atualizações de versão major sem mudanças manuais nos módulos dependentes. Integrei o Dynatrace para observabilidade de falhas HTTP, adicionei cache no cliente e melhorei a visibilidade de incidentes em produção.
         skills: [Kotlin, Android, Jetpack Compose, Design System, Dynatrace, Modularização]
 
@@ -23,7 +23,7 @@ experience:
       - title: Senior Software Engineer
         start: 2022-12
         end: 2024-12
-        summary: Como Senior Software Engineer especializado em Android, contribuí em projetos estratégicos como cartões de crédito, One Itaú e Íon Investimentos, atuando em squads de Mobile Release Engineering, Arquitetura Mobile e Foundation — entrega dos apps, automação com GitHub Actions e evolução arquitetural.
+        summary: Como Senior Software Engineer especializado em Android, contribuí em projetos estratégicos como cartões de crédito, One Itaú e Íon Investimentos, atuando em squads de Mobile Release Engineering, Arquitetura Mobile e Foundation, cuidando da entrega dos apps, da automação com GitHub Actions e da evolução arquitetural.
         highlights:
           - Criei uma automação em GitHub Actions para promover correções via cherry-pick, reduzindo em cerca de 80% o processo manual de entrega de 18 apps e aumentando a confiabilidade dos deploys.
           - Automatizei a extração de indicadores de performance com GitHub Actions e Gradle Profiler, e migrei pipelines legados de CI/CD para GitHub Actions.
@@ -39,7 +39,7 @@ experience:
       - title: Senior Software Engineer
         start: 2021-08
         end: 2022-12
-        summary: Engenheiro Android atuando nas mecânicas promocionais de todo o app de delivery — campanhas de lojas, carteira de cupons e fidelidade —, além de participar de entrevistas e mentorar novos foodlovers.
+        summary: Engenheiro Android atuando nas mecânicas promocionais de todo o app de delivery (campanhas de lojas, carteira de cupons e fidelidade), além de participar de entrevistas e mentorar novos foodlovers.
         highlights:
           - Redesenhei a carteira de cupons.
           - Conduzi melhorias arquiteturais nas mecânicas promocionais.

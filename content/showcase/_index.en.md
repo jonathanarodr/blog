@@ -2,5 +2,5 @@
 aliases:
   - /projects/
 title: Showcase
-description: A showcase of my personal projects, open source contributions and experiments — ideas I put into practice to learn, grow and explore new technologies.
+description: Personal projects, open source contributions and experiments I build to learn and try out new technologies.
 ---
