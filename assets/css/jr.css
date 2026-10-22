@@ -470,7 +470,7 @@ img {
 /* Card thumbnails are shorter (2:1), like developer.android.com/blog; the post page keeps 16:9 */
 .post-card .cover {
   aspect-ratio: 2 / 1;
-  transition: transform 0.5s var(--ease), border-color 0.3s var(--ease);
+  transition: transform 0.5s var(--ease);
 }
 
 .post-card .cover--generated {
@@ -497,7 +497,7 @@ img {
   position: absolute;
   inset: 0;
   z-index: 2;
-  padding: 1.5px;
+  padding: 1px;
   border-radius: inherit;
   background: conic-gradient(
     from var(--sweep),
@@ -530,7 +530,6 @@ img {
 
 .post-card__link:hover .cover {
   transform: translateY(-4px);
-  border-color: var(--border-strong);
 }
 
 .post-card__link:hover .cover--generated .cover__title {
@@ -543,7 +542,10 @@ img {
   position: relative;
   aspect-ratio: 16 / 9;
   border-radius: var(--radius);
-  border: 1px solid var(--border);
+  /* Flat neutral edge drawn on top, so the cover colors never tint it
+     and the hover sweep runs exactly along it */
+  outline: 1px solid var(--border);
+  outline-offset: -1px;
   overflow: hidden;
   background: var(--bg-elevated);
 }
