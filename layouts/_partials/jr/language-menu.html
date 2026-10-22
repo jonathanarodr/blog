@@ -1,0 +1,25 @@
+{{- /* Language dropdown, inspired by news.airbnb.com. Links to the page's translation when it exists, otherwise to that language's home. Context: page. */ -}}
+{{- $page := . }}
+<div class="lang-menu" data-lang-menu>
+  <button class="site-header__icon site-header__lang" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu-list" aria-label="{{ T "selectLanguage" }}: {{ site.Language.LanguageName }}" data-lang-toggle>
+    {{- partial "jr/icon.html" "globe" -}}
+    {{- partial "jr/icon.html" "chevron-down" -}}
+  </button>
+  <ul class="lang-menu__list" id="lang-menu-list" role="menu" aria-label="{{ T "language" }}">
+    {{- range site.Languages }}
+      {{- $lang := .Lang }}
+      {{- $href := "" }}
+      {{- range site.Home.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $href = .RelPermalink }}{{ end }}{{ end }}
+      {{- if ne $page.Kind "404" }}
+        {{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $href = .RelPermalink }}{{ end }}{{ end }}
+      {{- end }}
+      {{- $current := eq $lang site.Language.Lang }}
+      <li role="none">
+        <a class="lang-menu__item{{ if $current }} is-current{{ end }}" role="menuitem" href="{{ $href }}" hreflang="{{ .LanguageCode }}" lang="{{ .LanguageCode }}"{{ if $current }} aria-current="true"{{ end }}>
+          {{- .LanguageName }}
+          {{- if $current }}{{ partial "jr/icon.html" "check" }}{{ end -}}
+        </a>
+      </li>
+    {{- end }}
+  </ul>
+</div>

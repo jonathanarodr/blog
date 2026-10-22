@@ -1,16 +1,85 @@
 # Hugo configuration file
 baseURL: https://www.jonathanarodr.com/
 title: Jonathan Rodrigues
-languageCode: pt-br
 defaultContentLanguage: pt
+defaultContentLanguageInSubdir: false
+
+# Portuguese at the root, English under /en/
+languages:
+  pt:
+    languageCode: pt-BR
+    languageName: Português (Brasil)
+    weight: 1
+    menus:
+      main:
+        - identifier: blog
+          name: Blog
+          pageRef: /blog
+          weight: 1
+        - identifier: showcase
+          name: Showcase
+          pageRef: /showcase
+          weight: 2
+        - identifier: about
+          name: Sobre
+          pageRef: /about
+          weight: 3
+        - name: GitHub
+          weight: 5
+          url: "https://github.com/jonathanarodr"
+          params:
+            icon: github
+        - name: LinkedIn
+          weight: 6
+          url: "https://linkedin.com/in/jonathanarodr"
+          params:
+            icon: linkedin
+  en:
+    languageCode: en-US
+    languageName: English
+    weight: 2
+    menus:
+      main:
+        - identifier: blog
+          name: Blog
+          pageRef: /blog
+          weight: 1
+        - identifier: showcase
+          name: Showcase
+          pageRef: /showcase
+          weight: 2
+        - identifier: about
+          name: About
+          pageRef: /about
+          weight: 3
+        - name: GitHub
+          weight: 5
+          url: "https://github.com/jonathanarodr"
+          params:
+            icon: github
+        - name: LinkedIn
+          weight: 6
+          url: "https://linkedin.com/in/jonathanarodr"
+          params:
+            icon: linkedin
 
 # Enable Git info for last modified dates
 enableGitInfo: true
 
-# Import Hextra as module
-module:
-  imports:
-    - path: github.com/imfing/hextra
+# Every page also ships a Markdown version next to it (e.g. /about.md,
+# /blog/my-first-post.md), rendered by layouts/single.md
+outputs:
+  page: [html, markdown]
+
+outputFormats:
+  markdown:
+    ugly: true
+
+# Tags drive the blog hub filter, so no standalone taxonomy pages; no RSS feeds
+disableKinds:
+  - taxonomy
+  - term
+  - rss
 
 markup:
   # Allow raw HTML
@@ -18,73 +87,30 @@ markup:
     renderer:
       unsafe: true
 
-  # Enable Hextra syntax highlight
+  # Table of contents on blog posts: h2 and h3 only
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false
+
+  # Syntax highlight via CSS classes (assets/css/jr-chroma.css)
   highlight:
     noClasses: false
 
-# Menu configuration
-menu:
-  main:
-    - identifier: blog
-      name: Blog
-      pageRef: /blog
-      weight: 1
-    - identifier: projects
-      name: Projetos
-      pageRef: /projects
-      weight: 2
-    - identifier: about
-      name: Sobre
-      pageRef: /about
-      weight: 3
-    - name: Buscar
-      weight: 4
-      params:
-        type: search
-    - name: GitHub
-      weight: 5
-      url: "https://github.com/jonathanarodr"
-      params:
-        icon: github
-    - name: LinkedIn
-      weight: 6
-      url: "https://linkedin.com/in/jonathanarodr"
-      params:
-        icon: linkedin
-    - name: Tema
-      weight: 7
-      params:
-        type: theme-toggle
-
 # Site parameters
 params:
-  # Navbar configuration
-  navbar:
-    displayTitle: true
-    displayLogo: false
+  # Author shown on blog posts
+  author:
+    name: Jonathan Rodrigues
+    image: https://github.com/jonathanarodr.png
 
-  # Footer configuration
-  footer:
-    displayCopyright: true
-    displayPoweredBy: true
-
-  # Theme settings
-  theme:
-    default: system
-    displayToggle: true
-
-  # Page layout
-  page:
-    width: normal
-
-  # Blog settings
-  blog:
-    list:
-      displayTags: true
-
-  # Date format
-  dateFormat: "2 de January de 2006"
-
-  # Edit URL disabled
-  editURL:
-    enable: false
+# Related posts ("Continue lendo") ranked by shared tags
+related:
+  includeNewer: true
+  threshold: 0
+  toLower: true
+  indices:
+    - name: tags
+      weight: 100
+    - name: date
+      weight: 10

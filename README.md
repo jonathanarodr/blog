@@ -1,11 +1,12 @@
 # Jonathan Rodrigues - Blog Pessoal
 
-Blog pessoal em português construído com Hugo e o tema Hextra.
+Blog pessoal em português construído com Hugo e um tema próprio.
 
 ## Stack Tecnológico
 
 - **Hugo** - Gerador de sites estáticos
-- **Hextra Theme** - Tema moderno Hugo com Tailwind CSS
+- **Tema próprio** - Layouts em `layouts/`, estilos em `assets/css/` e scripts em `assets/js/`
+- **Fontes** - Momo Trust Display (títulos), Inter (texto) e JetBrains Mono (código), via Google Fonts
 - **GitHub Pages** - Hospedagem
 - **GitHub Actions** - Deploy automatizado
 
@@ -13,8 +14,7 @@ Blog pessoal em português construído com Hugo e o tema Hextra.
 
 ### Pré-requisitos
 
-- Hugo (versão extended) 0.147.9+
-- Go 1.24+
+- Hugo (versão extended) 0.155.0+
 - Git
 
 ### Desenvolvimento Local
@@ -24,11 +24,8 @@ Blog pessoal em português construído com Hugo e o tema Hextra.
 git clone https://github.com/jonathanarodr/blog.git
 cd blog
 
-# Instalar dependências
-hugo mod tidy
-
 # Iniciar servidor de desenvolvimento
-hugo server --buildDrafts --disableFastRender -p 1313
+hugo server --buildDrafts --disableFastRender --noHTTPCache -p 1313
 
 # Build para produção
 hugo --gc --minify
@@ -63,7 +60,7 @@ authors:
 
 ```bash
 # Criar novo projeto
-hugo new content/projects/meu-projeto.md
+hugo new content/showcase/meu-projeto.md
 ```
 
 Estrutura do front matter:
@@ -98,11 +95,10 @@ Deploy automático para GitHub Pages ocorre a cada push para a branch `main` via
 │   ├── _index.md           # Página inicial
 │   ├── about.md            # Página sobre
 │   ├── blog/               # Posts do blog
-│   └── projects/           # Projetos
+│   └── showcase/           # Showcase (projetos)
 ├── static/
 │   └── images/             # Imagens e assets
 ├── hugo.yaml               # Configuração do Hugo
-├── go.mod                  # Dependências Go
 └── README.md
 ```
 
@@ -110,14 +106,10 @@ Deploy automático para GitHub Pages ocorre a cada push para a branch `main` via
 
 ```bash
 # Servidor de desenvolvimento
-hugo server --buildDrafts -p 1313
+hugo server --buildDrafts --noHTTPCache -p 1313
 
 # Build de produção
 hugo --gc --minify
-
-# Atualizar tema Hextra
-hugo mod get -u github.com/imfing/hextra
-hugo mod tidy
 
 # Verificar versão do Hugo
 hugo version

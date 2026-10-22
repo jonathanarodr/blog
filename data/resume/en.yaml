@@ -1,0 +1,153 @@
+# Résumé data for the About page (English). Rendered by the experience,
+# education, skills, languages and courses shortcodes.
+# Dates are YYYY-MM; an empty `end` means current. `logo` is optional
+# (files in static/images/brands/); without it a default icon is shown.
+
+experience:
+  - company: PicPay
+    logo: /images/brands/picpay.svg
+    url: https://picpay.com
+    roles:
+      - title: Staff Software Engineer
+        start: 2024-12
+        summary: As a Staff Software Engineer specializing in Android development, I am part of the Tech Core team with a strong focus on the Design System. I play a key role in the strategic evolution of the Android codebase, leading large-scale modernization initiatives such as the migration from XML to Jetpack Compose and driving observability improvements to enhance platform reliability and end-user experience.
+        highlights:
+          - Led the evolution and modernization of the Android Design System, owning the end-to-end migration strategy from XML to Jetpack Compose — design documents, architectural guidelines and best practices for scalability, performance and visual consistency. The new Design System reduced the library codebase size by ~65%, improving development efficiency, delivery speed and long-term maintainability.
+          - Designed and implemented a custom Image Loader with an abstraction layer for a complex multi-module environment, enabling major version upgrades without manual changes across dependent modules. Integrated Dynatrace for HTTP failure observability, introduced client-side caching and improved production incident visibility.
+        skills: [Kotlin, Android, Jetpack Compose, Design System, Dynatrace, Modularization]
+
+  - company: Itaú Unibanco
+    logo: /images/brands/itau.svg
+    url: https://www.itau.com.br
+    roles:
+      - title: Senior Software Engineer
+        start: 2022-12
+        end: 2024-12
+        summary: As a Senior Software Engineer specializing in Android development, I contributed to strategic projects such as credit cards, One Itaú and Íon Investments, working in squads focused on Mobile Release Engineering, Mobile Architecture and Foundation platforms — app delivery, automation with GitHub Actions and the architectural evolution of the apps.
+        highlights:
+          - Built GitHub Actions automation to promote cherry-pick fixes, reducing the manual delivery process for 18 apps by approximately 80% and increasing deployment reliability.
+          - Automated performance indicator extraction with GitHub Actions and Gradle Profiler, and migrated legacy CI/CD pipelines to GitHub Actions.
+          - Automated common code review tasks with Danger, Detekt and Ktlint integrated with GitHub Actions.
+          - Contributed to One Itaú by normalizing feature architecture through design patterns and modularization, enabling feature reuse across the organization's apps.
+          - Refactored the network layer by consolidating three clients into one, and implemented request monitoring in development and production with Splunk.
+        skills: [Kotlin, Android, GitHub Actions, Gradle, Detekt, Ktlint, Danger, Splunk]
+
+  - company: iFood
+    logo: /images/brands/ifood.svg
+    url: https://www.ifood.com.br
+    roles:
+      - title: Senior Software Engineer
+        start: 2021-08
+        end: 2022-12
+        summary: Android engineer working on the promotional mechanics of the whole food delivery app — merchant campaigns, coupon wallet and loyalty — while interviewing candidates and mentoring new foodlovers.
+        highlights:
+          - Redesigned the coupon wallet.
+          - Drove architectural improvements to the promotional mechanics.
+          - Contributed to chapter discussions on accessibility, architecture and modularization, and Jetpack Compose.
+        skills: [Kotlin, Android, Jetpack Compose, Accessibility, Modularization]
+
+  - company: Itaú Unibanco
+    logo: /images/brands/itau.svg
+    url: https://www.itau.com.br
+    roles:
+      - title: Senior Software Engineer
+        start: 2017-08
+        end: 2021-08
+        summary: Android engineer on Itaú Pessoa Física, Itaú Empresas and Itaú Cartões, in cross-platform squads responsible for delivery, authentication and foundation. Defined guidelines on architectural evolution, the Java to Kotlin migration, development processes, CI/CD and quality gates.
+        highlights:
+          - Redesigned the Itaú Empresas home.
+          - Redesigned the home for white label products with Server Driven UI.
+          - Built a Kotlin quality gate with SonarQube, Detekt and Ktlint.
+          - Delivered biometric authentication and a 2FA authentication engine.
+        skills: [Kotlin, Java, Android, Server Driven UI, SonarQube, Detekt, Ktlint]
+
+  - company: Cume Digital
+    roles:
+      - title: Full Stack Engineer
+        start: 2016-11
+        end: 2017-08
+        summary: Built websites, web platforms and hybrid apps for different companies, with a PHP and Laravel backend backed by MySQL, and frontends in Bootstrap, Materialize, jQuery, JavaScript, HTML5 and CSS3.
+        skills: [PHP, Laravel, MySQL, JavaScript, jQuery, HTML5, CSS3]
+
+  - company: ER2Soft
+    roles:
+      - title: Senior Systems Analyst
+        start: 2012-02
+        end: 2016-11
+        summary: Developed and maintained ERP systems for the retail and distribution segment with Object Pascal (Delphi 7) and SQL Server, analysing and building new features according to customer needs.
+        highlights:
+          - Built the new CRM and Logistics modules.
+          - Integrated with CF-e-SAT and with the VTEX e-commerce platform.
+          - Optimized SQL scripts with execution plans, SQL Profiler and Activity Monitor.
+        skills: [Delphi, Object Pascal, SQL Server, ERP]
+
+education:
+  - company: FIAP
+    url: https://www.fiap.com.br
+    roles:
+      - title: MBA, Cloud Engineering & Architecture
+        start: 2023-08
+        end: 2024-09
+  - company: University of Mogi das Cruzes (UMC)
+    url: https://www.umc.br
+    roles:
+      - title: Bachelor's degree, Information Systems
+        start: 2011-01
+        end: 2014-12
+
+skills: [Kotlin, Java, Android, Jetpack Compose, Gradle, GitHub Actions, Firebase, Git, SQL, MySQL, PHP]
+
+languages:
+  - name: Portuguese
+    level: Native
+  - name: English
+    level: Intermediate (B1)
+
+courses:
+  - name: AI in software engineering
+    issuer: Alura
+    url: https://www.alura.com.br/
+    date: 2026-08
+  - name: Leadership program
+    issuer: Escola Conquer
+    url: https://escolaconquer.com.br/
+    date: 2023-09
+  - name: Data Structures & Algorithms in Kotlin
+    issuer: Kodeco
+    url: https://www.kodeco.com/
+    date: 2022-08
+  - name: Digital Accessibility
+    issuer: AccessBoost
+    date: 2022-04
+  - name: Android Developer Nanodegree
+    issuer: Udacity
+    url: https://www.udacity.com/
+    date: 2018-05
+  - name: Advanced Android development techniques
+    issuer: Caelum
+    url: https://www.alura.com.br/
+    date: 2017-09
+  - name: "JAX-RS and Jersey: building REST web services"
+    issuer: Alura
+    url: https://www.alura.com.br/
+    date: 2016-10
+  - name: "Java and JPA: persistence with JPA 2 and Hibernate"
+    issuer: Alura
+    url: https://www.alura.com.br/
+    date: 2016-07
+  - name: "REST: building smart APIs"
+    issuer: Alura
+    url: https://www.alura.com.br/
+    date: 2016-07
+  - name: SQL Server 2008 / 2014
+    issuer: Impacta
+    url: https://www.impacta.com.br/
+    date: 2015-09
+
+contact:
+  - label: LinkedIn
+    value: linkedin.com/in/jonathanarodr
+    url: https://www.linkedin.com/in/jonathanarodr/
+  - label: Email
+    value: contato@jonathanarodr.com
+    url: mailto:contato@jonathanarodr.com

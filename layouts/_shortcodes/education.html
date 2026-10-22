@@ -1,0 +1,2 @@
+{{- /* Usage: {{< education >}} — education from data/resume/<lang>.yaml */ -}}
+{{- partial "jr/timeline.html" (dict "items" (partial "jr/resume.html" .).education "icon" "graduation-cap") -}}

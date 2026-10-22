@@ -1,0 +1,7 @@
+{{- if eq .Type "alert" -}}
+  {{- partial "jr/callout.html" (dict "type" .AlertType "content" .Text) -}}
+{{- else -}}
+<blockquote>
+  {{ .Text }}
+</blockquote>
+{{- end -}}

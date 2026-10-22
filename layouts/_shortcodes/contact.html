@@ -1,0 +1,11 @@
+{{- /* Usage: {{< contact >}} — contact links from data/resume/<lang>.yaml */ -}}
+{{- with (partial "jr/resume.html" .).contact }}
+<dl class="resume-list resume-list--contact">
+  {{- range . }}
+  <div class="resume-list__row">
+    <dt>{{ .label }}</dt>
+    <dd><a href="{{ .url }}"{{ if not (hasPrefix .url "mailto:") }} target="_blank" rel="noopener"{{ end }}>{{ .value }}</a></dd>
+  </div>
+  {{- end }}
+</dl>
+{{- end -}}

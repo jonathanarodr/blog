@@ -1,0 +1,6 @@
+{{- /* Formats "YYYY-MM" as a localized full month and year (e.g. "Fevereiro 2024"); empty means the current role. Context: string. */ -}}
+{{- with . -}}
+  {{- time.AsTime (printf "%s-01" .) | time.Format "January 2006" | strings.FirstUpper -}}
+{{- else -}}
+  {{- T "present" -}}
+{{- end -}}

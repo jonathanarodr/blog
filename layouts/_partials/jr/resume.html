@@ -1,0 +1,2 @@
+{{- /* Résumé data for the current language, from data/resume/<lang>.yaml. */ -}}
+{{- return index site.Data.resume site.Language.Lang | default dict -}}

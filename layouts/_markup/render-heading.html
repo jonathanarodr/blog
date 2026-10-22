@@ -1,0 +1,5 @@
+<h{{ .Level }} id="{{ .Anchor }}">
+  {{- .Text | safeHTML -}}
+  {{- if gt .Level 1 }}<a class="heading-anchor" href="#{{ .Anchor }}" aria-label="{{ T "sectionLink" }}">#</a>{{ end -}}
+</h{{ .Level }}>
+{{- /* Drop trailing newlines */ -}}

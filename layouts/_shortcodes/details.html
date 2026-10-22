@@ -1,0 +1,5 @@
+{{- /* Usage: {{< details "Título" >}}Conteúdo{{< /details >}} */ -}}
+<details class="details">
+  <summary>{{ .Get 0 | default (.Get "title") | default "Detalhes" }}</summary>
+  <div class="details__content">{{ .Inner | .Page.RenderString (dict "display" "block") }}</div>
+</details>

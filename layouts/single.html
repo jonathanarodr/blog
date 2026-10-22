@@ -1,0 +1,22 @@
+{{ define "main" }}
+{{- $toc := partial "jr/show-toc.html" . }}
+<article class="page">
+  <div class="container container--narrow">
+    <header class="page__header">
+      <h1 class="display page__title">{{ .Title }}</h1>
+      {{- with .Description }}<p class="post__lead">{{ . }}</p>{{ end }}
+    </header>
+  </div>
+
+  <div class="post__layout{{ if $toc }} has-toc{{ end }}">
+    <div class="post__body">
+      <div class="prose">
+        {{ .Content }}
+      </div>
+    </div>
+    {{- if $toc }}{{ partial "jr/toc.html" . }}{{ end }}
+  </div>
+
+  {{- if $toc }}{{ partial "jr/back-to-top.html" . }}{{ end }}
+</article>
+{{ end }}

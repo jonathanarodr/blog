@@ -16,24 +16,17 @@ brew install hugo
 
 ```bash
 hugo version
-# Deve mostrar: hugo v0.147.9 ou superior
+# Deve mostrar: hugo v0.155.0 ou superior
 ```
 
-## 2. Instalar Dependências
+## 2. Dependências
 
-Após instalar Hugo, execute:
-
-```bash
-cd /Users/jonathan/Documents/projects/blog
-hugo mod tidy
-```
-
-Isto irá baixar o tema Hextra e suas dependências.
+O tema é próprio (pasta `layouts/`), então não há módulos para instalar: basta ter o Hugo extended.
 
 ## 3. Testar Localmente
 
 ```bash
-hugo server --buildDrafts -p 1313
+hugo server --buildDrafts --noHTTPCache -p 1313
 ```
 
 Acesse http://localhost:1313 para ver o blog funcionando.
@@ -72,7 +65,7 @@ Também atualize os links em:
 git add .
 
 # Criar commit inicial
-git commit -m "Initial blog setup with Hextra theme"
+git commit -m "Initial blog setup"
 
 # Criar repositório no GitHub (via web ou gh CLI)
 # Nome sugerido: blog
@@ -114,7 +107,7 @@ blog/
 │   │   ├── _index.md
 │   │   ├── getting-started-with-hugo.md
 │   │   └── my-first-post.md
-│   └── projects/
+│   └── showcase/
 │       ├── _index.md
 │       └── personal-blog.md
 ├── static/
@@ -131,7 +124,7 @@ blog/
 ### Posts de Blog (2)
 
 1. **"Meu Primeiro Post"** - Post de boas-vindas
-2. **"Começando com Hugo e Hextra"** - Tutorial sobre a stack
+2. **"Começando com Hugo e um tema próprio"** - Tutorial sobre a stack
 
 ### Projetos (1)
 
@@ -148,28 +141,21 @@ hugo new content/blog/nome-do-post.md
 
 # Build de produção
 hugo --gc --minify
-
-# Atualizar tema
-hugo mod get -u github.com/imfing/hextra
-hugo mod tidy
 ```
 
 ## Recursos de Aprendizado
 
 - [Documentação do Hugo](https://gohugo.io/documentation/)
-- [Documentação do Hextra](https://imfing.github.io/hextra/)
 - [Guia de Markdown](https://www.markdownguide.org/)
 
 ## Suporte
 
 - Consulte `CONTENT_GUIDE.md` para criar novos posts e projetos
 - Consulte `COMMANDS.md` para referência rápida de comandos
-- Issues do tema Hextra: https://github.com/imfing/hextra/issues
 
 ## Checklist Final
 
 - [ ] Hugo instalado e funcionando
-- [ ] `hugo mod tidy` executado com sucesso
 - [ ] Site testado localmente (http://localhost:1313)
 - [ ] URLs personalizadas atualizadas
 - [ ] Repositório criado no GitHub

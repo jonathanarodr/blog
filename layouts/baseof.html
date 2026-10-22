@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode | default "pt-br" }}" data-theme="dark">
+  <head>
+    {{- partial "jr/head.html" . }}
+  </head>
+  <body>
+    {{- partial "jr/header.html" . }}
+    <main id="main">
+      {{- block "main" . }}{{ end }}
+    </main>
+    {{- partial "jr/footer.html" . }}
+    {{- $js := resources.Get "js/jr.js" | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+  </body>
+</html>

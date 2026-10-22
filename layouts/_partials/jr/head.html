@@ -1,0 +1,38 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{{- $pageTitle := cond (eq .Kind "404") (T "notFoundTitle") .Title }}
+{{- $title := cond .IsHome site.Title (printf "%s · %s" $pageTitle site.Title) }}
+<title>{{ $title }}</title>
+{{- $description := .Description | default (.Summary | plainify | strings.TrimSpace | truncate 160) | default site.Params.description }}
+<meta name="description" content="{{ $description }}" />
+<link rel="canonical" href="{{ .Permalink }}" />
+{{- with .OutputFormats.Get "markdown" }}
+<link rel="alternate" type="text/markdown" href="{{ .Permalink }}" title="Markdown" />
+{{- end }}
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}" />
+{{- end }}
+{{- partial "opengraph.html" . }}
+{{- partial "twitter_cards.html" . }}
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml" />
+<meta name="color-scheme" content="dark light" />
+
+{{- /* Apply the saved theme before first paint. */}}
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("color-theme"); } catch (e) {}
+    var theme = saved === "light" || saved === "dark" ? saved
+      : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.dataset.theme = theme;
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+{{- $css := slice (resources.Get "css/jr.css") (resources.Get "css/jr-chroma.css") | resources.Concat "css/jr.bundle.css" }}
+{{- if hugo.IsProduction }}{{ $css = $css | minify }}{{ end }}
+{{- $css = $css | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />

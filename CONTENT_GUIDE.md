@@ -7,8 +7,23 @@ Este guia explica como criar e gerenciar conteúdo para o blog.
 Todo o conteúdo fica no diretório `content/`, organizado por seções:
 
 - `content/blog/` - Posts do blog
-- `content/projects/` - Projetos
+- `content/showcase/` - Showcase (projetos)
 - `content/about.md` - Página sobre
+
+## Versão em Markdown
+
+Toda página (posts, Sobre, Showcase) também é publicada em Markdown ao lado do HTML, trocando a barra final por `.md`: `/about.md`, `/blog/meu-post.md`, `/en/about.md`. Os templates ficam em `layouts/single.md` e `layouts/blog/single.md`; shortcodes usados nas páginas precisam de uma versão `.md` em `layouts/_shortcodes/` (ex.: `callout.md`).
+
+## Idiomas
+
+O site é bilíngue: português na raiz (`/`) e inglês em `/en/`. A tradução de uma página fica no mesmo diretório com o sufixo `.en.md`:
+
+```
+content/blog/meu-post.md      # português
+content/blog/meu-post.en.md   # inglês
+```
+
+O menu de idioma leva para a tradução da página quando ela existe, senão para a home do idioma. Textos da interface ficam em `i18n/pt.yaml` e `i18n/en.yaml`.
 
 ## Posts de Blog
 
@@ -29,7 +44,10 @@ hugo new content/blog/nome-do-post.md
 title: "Título do Post"
 date: 2026-01-21
 draft: false  # true para rascunho, false para publicar
+description: "Resumo curto exibido abaixo do título"
+image: /images/blog/nome-post/capa.jpg  # opcional: thumbnail (2:1 nos cards); sem ela, a capa é gerada pelo título
 tags: ["categoria", "tecnologia", "tópico"]
+toc: false  # opcional: esconde o sumário lateral (desktop, aparece com 2+ títulos h2/h3)
 authors:
   - name: Jonathan Rodrigues
     link: https://github.com/jonathanarodr
@@ -80,12 +98,12 @@ Resumo e call-to-action.
 
 ### Localização
 
-`content/projects/`
+`content/showcase/`
 
 ### Criar Novo Projeto
 
 ```bash
-hugo new content/projects/nome-projeto.md
+hugo new content/showcase/nome-projeto.md
 ```
 
 ### Template de Front Matter
@@ -167,14 +185,14 @@ def hello():
 > Isto é uma citação
 ```
 
-## Shortcodes do Hextra
+## Shortcodes
 
 ### Cards
 
 ```markdown
 {{< cards >}}
-  {{< card link="/docs" title="Docs" icon="document-text" >}}
-  {{< card link="/blog" title="Blog" icon="newspaper" >}}
+  {{< card link="/showcase" title="Showcase" subtitle="Opcional" >}}
+  {{< card link="/blog" title="Blog" >}}
 {{< /cards >}}
 ```
 
@@ -188,6 +206,13 @@ Informação importante aqui.
 
 Tipos: `info`, `warning`, `error`, `success`
 
+Também funciona com alertas do GitHub:
+
+```markdown
+> [!WARNING]
+> Cuidado com isso.
+```
+
 ### Detalhes (Accordion)
 
 ```markdown
@@ -196,14 +221,33 @@ Conteúdo oculto aqui.
 {{< /details >}}
 ```
 
-### Tabs
+## Currículo (página Sobre)
 
-```markdown
-{{< tabs items="Tab 1,Tab 2,Tab 3" >}}
-  {{< tab >}}Conteúdo da Tab 1{{< /tab >}}
-  {{< tab >}}Conteúdo da Tab 2{{< /tab >}}
-  {{< tab >}}Conteúdo da Tab 3{{< /tab >}}
-{{< /tabs >}}
+Os dados do currículo ficam em `data/resume/pt.yaml` e `data/resume/en.yaml` (um por idioma) e aparecem na página Sobre pelos shortcodes:
+
+| Shortcode | Conteúdo |
+|---|---|
+| `{{< experience >}}` | Timeline de experiências |
+| `{{< education >}}` | Timeline de formação |
+| `{{< skills >}}` | Tags de skills gerais |
+| `{{< languages >}}` | Idiomas e nível |
+| `{{< courses >}}` | Cursos e certificações |
+| `{{< contact >}}` | Lista de contatos (LinkedIn, e-mail) |
+
+Logos das empresas ficam em `static/images/brands/` (SVG quadrado, de preferência). Liste empresas e cargos do mais recente para o mais antigo; datas em `AAAA-MM` e `end` vazio marca o cargo atual:
+
+```yaml
+experience:
+  - company: Empresa
+    url: https://empresa.com   # opcional
+    logo: /images/brands/empresa.svg   # opcional; sem logo aparece um ícone padrão
+    roles:
+      - title: Cargo atual
+        start: 2024-12
+        summary: Resumo do cargo.
+        highlights:
+          - Conquista ou responsabilidade.
+        skills: [Kotlin, Android]
 ```
 
 ## Gestão de Imagens
@@ -218,10 +262,10 @@ Coloque em: `static/images/blog/nome-post/`
 
 ### Projetos
 
-Coloque em: `static/images/projects/nome-projeto/`
+Coloque em: `static/images/showcase/nome-projeto/`
 
 ```markdown
-![Alt text](/images/projects/nome-projeto/screenshot.png)
+![Alt text](/images/showcase/nome-projeto/screenshot.png)
 ```
 
 ## Checklist de Publicação

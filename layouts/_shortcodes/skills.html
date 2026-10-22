@@ -1,0 +1,2 @@
+{{- /* Usage: {{< skills >}} — skills from data/resume/<lang>.yaml */ -}}
+{{- with (partial "jr/resume.html" .).skills }}{{ partial "jr/skill-tags.html" . }}{{ end -}}

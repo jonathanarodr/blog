@@ -1,0 +1,2 @@
+{{- /* Usage: {{< experience >}} — work history from data/resume/<lang>.yaml */ -}}
+{{- partial "jr/timeline.html" (dict "items" (partial "jr/resume.html" .).experience "icon" "building") -}}

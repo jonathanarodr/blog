@@ -1,1 +1,56 @@
 copyright: "© 2026 Jonathan Rodrigues"
+authorBio: "Mobile software engineer no PicPay. Escrevo sobre Android, Kotlin e carreira."
+
+# Header
+mainNav: "Principal"
+language: "Idioma"
+selectLanguage: "Selecionar idioma"
+themeToLight: "Ativar tema claro"
+themeToDark: "Ativar tema escuro"
+
+# Home
+readBlog: "Ler o blog"
+aboutMe: "Sobre mim"
+latestPosts: "Últimos posts"
+seeAll: "Ver todos"
+
+# Blog hub
+searchPlaceholder: "Buscar…"
+searchPosts: "Buscar posts"
+filterByTag: "Filtrar por tag"
+all: "Todos"
+recentPosts: "Posts recentes"
+noPosts: "Nenhum post encontrado."
+
+# Post
+allPosts: "Todos os posts"
+readingTime:
+  one: "{{ .Count }} min de leitura"
+  other: "{{ .Count }} min de leitura"
+tags: "Tags"
+share: "Compartilhar"
+shareOnX: "Compartilhar no X"
+shareOnLinkedIn: "Compartilhar no LinkedIn"
+copyLink: "Copiar link"
+keepReading: "Continue lendo"
+tableOfContents: "Sumário"
+sectionLink: "Link para esta seção"
+copyCode: "Copiar código"
+copy: "Copiar"
+copied: "Copiado!"
+backToTop: "Voltar ao topo"
+
+# About
+present: "Atual"
+
+# Projects
+allProjects: "Todos os projetos"
+technologies: "Tecnologias"
+visitProject: "Conhecer o projeto"
+
+# 404
+notFoundTitle: "Página não encontrada"
+notFoundHeading: "Oops, algo de errado não está certo."
+notFoundText: "A página que você procura não existe ou foi movida."
+backHome: "Voltar ao início"
+goToBlog: "Ir para o blog"

@@ -1,0 +1,11 @@
+{{- /* Usage: {{< languages >}} — spoken languages from data/resume/<lang>.yaml */ -}}
+{{- with (partial "jr/resume.html" .).languages }}
+<dl class="resume-list">
+  {{- range . }}
+  <div class="resume-list__row">
+    <dt>{{ .name }}</dt>
+    <dd>{{ .level }}</dd>
+  </div>
+  {{- end }}
+</dl>
+{{- end -}}
