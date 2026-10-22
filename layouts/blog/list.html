@@ -10,7 +10,7 @@
   {{- partial "jr/hub-header.html" (dict "page" . "search" true) }}
 
   {{- if $tags }}
-  <div class="pills" role="toolbar" aria-label="{{ T "filterByTag" }}">
+  <div class="pills enter" style="--enter-step: 1" role="toolbar" aria-label="{{ T "filterByTag" }}">
     <button class="pill is-active" type="button" data-tag="">{{ T "all" }}</button>
     {{- range $tags }}
       <button class="pill" type="button" data-tag="{{ urlize . }}">{{ . }}</button>
@@ -18,14 +18,14 @@
   </div>
   {{- end }}
 
-  <section class="hub__featured" data-group>
+  <section class="hub__featured enter" style="--enter-step: 2" data-group>
     {{- range $featured }}
       {{- partial "jr/card.html" (dict "page" . "featured" true) }}
     {{- end }}
   </section>
 
   {{- with $rest }}
-  <section data-group>
+  <section class="enter" style="--enter-step: 2" data-group>
     <h2 class="hub__section-title">{{ T "recentPosts" }}</h2>
     <div class="hub__grid">
       {{- range . }}

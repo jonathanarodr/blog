@@ -18,7 +18,20 @@
   }
 }
 
-/* Motion --------------------------------------------------------------- */
+/* Entrance: page content rises in, staggered by --enter-step (0, 1, 2, ...).
+   Skipped when the page arrives through a view transition (html.is-transitioning,
+   set on pagereveal), where cards morph into the page instead, so every page
+   enters the same way and nothing animates twice. */
+.enter {
+  animation: rise 0.6s var(--ease) both;
+  animation-delay: calc(var(--enter-step, 0) * 90ms);
+}
+
+html.is-transitioning .enter {
+  animation: none;
+}
+
+/* View transitions between pages ------------------------------------------ */
 
 ::view-transition-old(root),
 ::view-transition-new(root) {

@@ -1,15 +1,6 @@
 {{ define "main" }}
 <article class="post">
   {{- partial "jr/article-header.html" (dict "page" . "variant" "project") }}
-
-  <div class="container post__cover">{{ partial "jr/cover.html" . }}</div>
-
-  <div class="container container--narrow">
-    <div class="prose">
-      {{ .Content }}
-    </div>
-  </div>
-
-  {{- partial "jr/page-menu.html" (dict "page" . "variant" "floating") }}
+  {{- partial "jr/article-body.html" (dict "page" .) }}
 </article>
 {{ end }}

@@ -2,10 +2,6 @@
 <article class="post">
   {{- partial "jr/article-header.html" (dict "page" . "variant" "post") }}
 
-  {{- if .Params.image }}
-  <div class="container post__cover">{{ partial "jr/cover.html" . }}</div>
-  {{- end }}
-
   {{- partial "jr/article-body.html" (dict "page" . "footer" true) }}
 
   {{- $related := where (.Site.RegularPages.Related .) "Section" "blog" | first 3 }}

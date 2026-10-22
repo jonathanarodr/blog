@@ -1,3 +1,4 @@
 {{- /* View-transition name shared by a page's card and its article, so the element morphs between them.
+  Prefixed by section so a post and a project with the same file name never collide.
   Context: dict "page" "part" ("title" | "cover"). */ -}}
-{{- return printf "%s-%s" .part (.page.File.ContentBaseName | anchorize) -}}
+{{- return printf "%s-%s-%s" .part .page.Section (.page.File.ContentBaseName | anchorize) -}}

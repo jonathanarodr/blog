@@ -4,7 +4,7 @@
 {{- $p := .page }}
 {{- $toc := partial "jr/show-toc.html" $p }}
 <div class="post__layout{{ if $toc }} has-toc{{ end }}">
-  <div class="post__body">
+  <div class="post__body enter" style="--enter-step: 1">
     <div class="prose">
       {{ $p.Content }}
     </div>

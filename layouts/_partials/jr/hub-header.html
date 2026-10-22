@@ -1,9 +1,9 @@
 {{- /* Header of a list page: big title, description and, optionally, the posts search field.
   Context: dict "page" "search" (bool). */ -}}
 {{- $p := .page }}
-<header class="hub__header">
+<header class="hub__header enter">
   <div>
-    <h1 class="display">{{ $p.Title }}</h1>
+    <h1 class="display" style="view-transition-name: page-title">{{ $p.Title }}</h1>
     {{- with $p.Description }}<p class="hub__lead">{{ . }}</p>{{ end }}
   </div>
   {{- if .search }}

@@ -6,7 +6,6 @@
   font-size: 17px;
   line-height: 1.75;
   color: var(--text-muted);
-  animation: rise 0.7s 0.1s var(--ease) both;
 }
 
 .prose > :first-child {

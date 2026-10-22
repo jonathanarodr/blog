@@ -1,5 +1,5 @@
 {{- /* Sticky sidebar table of contents (wide screens). Context: page. */ -}}
-<aside class="toc toc--sidebar" aria-label="{{ T "tableOfContents" }}">
+<aside class="toc toc--sidebar enter" style="--enter-step: 2" aria-label="{{ T "tableOfContents" }}">
   {{- partial "jr/page-menu.html" (dict "page" . "variant" "inline") }}
   <div class="toc__scroll">
     <a class="toc__post-title" href="#main">{{ .Title }}</a>

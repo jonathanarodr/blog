@@ -1,10 +1,14 @@
-{{- /* Header of an article page (post, project, page).
+{{- /* Header of an article page, the same for posts, projects and pages: back link, title,
+  description and per-variant details, then the cover when the page has an `image`.
   Context: dict
     "page"
     "variant"  "post" (date, byline, tags) | "project" (tags, external link) | "page" (title only)
 */ -}}
 {{- $p := .page }}
 {{- $variant := .variant | default "page" }}
+{{- /* Pages are reached from the main menu, so their title morphs like the list titles;
+  posts and projects morph from their cards. */}}
+{{- $titleVT := cond (eq $variant "page") "page-title" (partial "jr/vt-name.html" (dict "page" $p "part" "title")) }}
 <div class="container container--narrow">
   {{- if eq $variant "post" }}
     {{- partial "jr/back-link.html" (dict "href" $p.Parent.RelPermalink "label" (T "allPosts")) }}
@@ -12,17 +16,11 @@
     {{- partial "jr/back-link.html" (dict "href" $p.Parent.RelPermalink "label" (T "allProjects")) }}
   {{- end }}
 
-  {{- if eq $variant "page" }}
-  <header class="page__header">
-    <h1 class="display page__title">{{ $p.Title }}</h1>
-    {{- with $p.Description }}<p class="post__lead">{{ . }}</p>{{ end }}
-  </header>
-  {{- else }}
-  <header class="post__header">
+  <header class="post__header enter">
     {{- if eq $variant "post" }}
     <time class="post__date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format ":date_long" }}</time>
     {{- end }}
-    <h1 class="display post__title" style="view-transition-name: {{ partial "jr/vt-name.html" (dict "page" $p "part" "title") }}">{{ $p.Title }}</h1>
+    <h1 class="display post__title" style="view-transition-name: {{ $titleVT }}">{{ $p.Title }}</h1>
     {{- with $p.Description }}<p class="post__lead">{{ . }}</p>{{ end }}
 
     {{- if eq $variant "post" }}
@@ -30,7 +28,7 @@
       {{- partial "jr/byline.html" (dict "page" $p "readingTime" true) }}
     </div>
     {{- partial "jr/tag-list.html" (dict "tags" $p.Params.tags "label" (T "tags") "href" $p.Parent.RelPermalink) }}
-    {{- else }}
+    {{- else if eq $variant "project" }}
     {{- partial "jr/tag-list.html" (dict "tags" $p.Params.tags "label" (T "technologies")) }}
     {{- with $p.Params.link }}
     <div class="hero__actions hero__actions--center">
@@ -41,5 +39,8 @@
     {{- end }}
     {{- end }}
   </header>
-  {{- end }}
 </div>
+
+{{- if $p.Params.image }}
+<div class="container post__cover enter" style="--enter-step: 1">{{ partial "jr/cover.html" $p }}</div>
+{{- end }}
