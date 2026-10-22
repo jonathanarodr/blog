@@ -1498,6 +1498,18 @@ img {
   border-color: var(--border-strong);
 }
 
+/* Buttons keep their resting look; the cursor chip does the hover */
+.has-cursor-chip .button:hover {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.has-cursor-chip .button--primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  opacity: 1;
+}
+
 .has-cursor-chip :is(.site-header__icon, .site-header__link, .section-heading__link):hover {
   background: none;
 }
