@@ -223,3 +223,18 @@ document.querySelectorAll("[data-lang-menu]").forEach((menu) => {
     if (!menu.contains(e.target)) setOpen(false);
   });
 });
+
+// Back to top: appears once the post header scrolls out of view.
+const backToTop = document.querySelector("[data-back-to-top]");
+const postHeader = document.querySelector(".post__header");
+if (backToTop && postHeader) {
+  new IntersectionObserver(([entry]) => {
+    backToTop.classList.toggle("is-visible", !entry.isIntersecting && entry.boundingClientRect.top < 0);
+  }).observe(postHeader);
+
+  backToTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0 });
+    history.replaceState(null, "", location.pathname + location.search);
+  });
+}

@@ -42,7 +42,7 @@ date: 2026-01-21
 draft: false  # true para rascunho, false para publicar
 description: "Resumo curto exibido abaixo do título"
 tags: ["categoria", "tecnologia", "tópico"]
-toc: false  # opcional: esconde o sumário (aparece com 2+ títulos h2/h3)
+toc: false  # opcional: esconde o sumário lateral (desktop, aparece com 2+ títulos h2/h3)
 authors:
   - name: Jonathan Rodrigues
     link: https://github.com/jonathanarodr

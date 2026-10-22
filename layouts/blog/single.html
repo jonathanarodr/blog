@@ -35,13 +35,6 @@
   {{- $toc := and (ne .Params.toc false) (ge (len .Fragments.HeadingsMap) 2) }}
   <div class="post__layout{{ if $toc }} has-toc{{ end }}">
     <div class="post__body">
-      {{- if $toc }}
-      <details class="toc toc--inline">
-        <summary>{{ T "inThisPost" }}</summary>
-        {{ .TableOfContents }}
-      </details>
-      {{- end }}
-
       <div class="prose">
         {{ .Content }}
       </div>
@@ -83,6 +76,10 @@
     </aside>
     {{- end }}
   </div>
+
+  <a class="back-to-top" href="#main" aria-label="{{ T "backToTop" }}" data-back-to-top>
+    {{- partial "jr/icon.html" "arrow-up" -}}
+  </a>
 
   {{- $related := where (.Site.RegularPages.Related .) "Section" "blog" | first 3 }}
   {{- with $related }}
