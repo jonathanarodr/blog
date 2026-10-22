@@ -1760,3 +1760,70 @@ img {
     margin-bottom: 16px;
   }
 }
+
+/* Résumé: role summary, skill tags and simple lists ------------------------ */
+
+.prose .timeline__summary {
+  margin: 10px 0 0;
+  font-size: 15.5px;
+}
+
+.prose .skill-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 1.4em;
+  padding: 0;
+}
+
+.timeline .skill-tags {
+  margin: 14px 0 0;
+}
+
+.prose .skill-tags .pill {
+  margin: 0;
+  background: transparent;
+  border-color: var(--border-strong);
+  color: var(--text);
+  text-transform: none;
+  cursor: default;
+}
+
+.resume-list {
+  margin: 0 0 1.4em;
+}
+
+.resume-list__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-list__row:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.resume-list dt {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.resume-list__meta {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.resume-list dd {
+  flex-shrink: 0;
+  margin: 0;
+  font: 400 13px/1.5 var(--font-mono);
+  color: var(--text-subtle);
+  text-align: right;
+}

@@ -1,0 +1,38 @@
+{{- /* Résumé timeline, inspired by yudiganeko.com. Context: list of
+  - company, url (optional)
+    roles: list (most recent first) of title, start (YYYY-MM), end (YYYY-MM, empty = current), summary, highlights, skills
+*/ -}}
+{{- with . }}
+<ol class="timeline">
+  {{- range . }}
+    {{- $roles := .roles }}
+    {{- $newest := index $roles 0 }}
+    {{- $oldest := index $roles (sub (len $roles) 1) }}
+    <li class="timeline__item{{ if not $newest.end }} is-current{{ end }}">
+      <div class="timeline__company">
+        <h3 class="timeline__name">
+          {{- with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}{{ .company }}{{ with .url }}</a>{{ end -}}
+        </h3>
+        <p class="timeline__period"><span>{{ partial "jr/month.html" $oldest.start }} –</span> <span>{{ partial "jr/month.html" $newest.end }}</span></p>
+      </div>
+      <div class="timeline__roles">
+        {{- range $roles }}
+        <div class="timeline__role">
+          <h4 class="timeline__title">{{ .title }}</h4>
+          {{- if gt (len $roles) 1 }}
+          <p class="timeline__period"><span>{{ partial "jr/month.html" .start }} –</span> <span>{{ partial "jr/month.html" .end }}</span></p>
+          {{- end }}
+          {{- with .summary }}<p class="timeline__summary">{{ . | markdownify }}</p>{{ end }}
+          {{- with .highlights }}
+          <ul class="timeline__highlights">
+            {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
+          </ul>
+          {{- end }}
+          {{- with .skills }}{{ partial "jr/skill-tags.html" . }}{{ end }}
+        </div>
+        {{- end }}
+      </div>
+    </li>
+  {{- end }}
+</ol>
+{{- end -}}

@@ -217,9 +217,19 @@ Conteúdo oculto aqui.
 {{< /details >}}
 ```
 
-## Experiência (página Sobre)
+## Currículo (página Sobre)
 
-A timeline de experiências do `content/about.md` (e `about.en.md`) vem do front matter e aparece onde estiver o shortcode `{{< experience >}}`. Liste as empresas e os cargos do mais recente para o mais antigo; `end` vazio marca o cargo atual:
+Os dados do currículo ficam em `data/resume/pt.yaml` e `data/resume/en.yaml` (um por idioma) e aparecem na página Sobre pelos shortcodes:
+
+| Shortcode | Conteúdo |
+|---|---|
+| `{{< experience >}}` | Timeline de experiências |
+| `{{< education >}}` | Timeline de formação |
+| `{{< skills >}}` | Tags de skills gerais |
+| `{{< languages >}}` | Idiomas e nível |
+| `{{< courses >}}` | Cursos e certificações |
+
+Liste empresas e cargos do mais recente para o mais antigo; datas em `AAAA-MM` e `end` vazio marca o cargo atual:
 
 ```yaml
 experience:
@@ -227,12 +237,11 @@ experience:
     url: https://empresa.com   # opcional
     roles:
       - title: Cargo atual
-        start: 2024-02
+        start: 2024-12
+        summary: Resumo do cargo.
         highlights:
           - Conquista ou responsabilidade.
-      - title: Cargo anterior
-        start: 2021-06
-        end: 2024-01
+        skills: [Kotlin, Android]
 ```
 
 ## Gestão de Imagens
