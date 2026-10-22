@@ -1,8 +1,0 @@
-{{- /* Context: project page. */ -}}
-<article class="post-card">
-  <a class="post-card__link" href="{{ .RelPermalink }}">
-    {{- partial "jr/cover.html" . }}
-    <h3 class="post-card__title" style="view-transition-name: title-{{ .File.ContentBaseName | anchorize }}">{{ .Title }}</h3>
-  </a>
-  {{- with .Description }}<p class="post-card__description">{{ . }}</p>{{ end }}
-</article>

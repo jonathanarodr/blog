@@ -1,0 +1,10 @@
+{{- /* Share the page on X / LinkedIn or copy its link. Context: page. */ -}}
+{{- $url := .Permalink }}
+<div class="share">
+  <span class="share__label">{{ T "share" }}</span>
+  <a class="share__button" href="https://x.com/intent/post?text={{ .Title | urlquery }}&url={{ $url | urlquery }}" target="_blank" rel="noopener" aria-label="{{ T "shareOnX" }}">{{ partial "jr/icon.html" "x" }}</a>
+  <a class="share__button" href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url | urlquery }}" target="_blank" rel="noopener" aria-label="{{ T "shareOnLinkedIn" }}">{{ partial "jr/icon.html" "linkedin" }}</a>
+  <button class="share__button" type="button" data-copy="{{ $url }}" aria-label="{{ T "copyLink" }}">
+    {{- partial "jr/icon.html" "link" }}{{ partial "jr/icon.html" "check" -}}
+  </button>
+</div>

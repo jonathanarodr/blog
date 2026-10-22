@@ -1,0 +1,45 @@
+{{- /* Header of an article page (post, project, page).
+  Context: dict
+    "page"
+    "variant"  "post" (date, byline, tags) | "project" (tags, external link) | "page" (title only)
+*/ -}}
+{{- $p := .page }}
+{{- $variant := .variant | default "page" }}
+<div class="container container--narrow">
+  {{- if eq $variant "post" }}
+    {{- partial "jr/back-link.html" (dict "href" $p.Parent.RelPermalink "label" (T "allPosts")) }}
+  {{- else if eq $variant "project" }}
+    {{- partial "jr/back-link.html" (dict "href" $p.Parent.RelPermalink "label" (T "allProjects")) }}
+  {{- end }}
+
+  {{- if eq $variant "page" }}
+  <header class="page__header">
+    <h1 class="display page__title">{{ $p.Title }}</h1>
+    {{- with $p.Description }}<p class="post__lead">{{ . }}</p>{{ end }}
+  </header>
+  {{- else }}
+  <header class="post__header">
+    {{- if eq $variant "post" }}
+    <time class="post__date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format ":date_long" }}</time>
+    {{- end }}
+    <h1 class="display post__title" style="view-transition-name: {{ partial "jr/vt-name.html" (dict "page" $p "part" "title") }}">{{ $p.Title }}</h1>
+    {{- with $p.Description }}<p class="post__lead">{{ . }}</p>{{ end }}
+
+    {{- if eq $variant "post" }}
+    <div class="post__meta">
+      {{- partial "jr/byline.html" (dict "page" $p "readingTime" true) }}
+    </div>
+    {{- partial "jr/tag-list.html" (dict "tags" $p.Params.tags "label" (T "tags") "href" $p.Parent.RelPermalink) }}
+    {{- else }}
+    {{- partial "jr/tag-list.html" (dict "tags" $p.Params.tags "label" (T "technologies")) }}
+    {{- with $p.Params.link }}
+    <div class="hero__actions hero__actions--center">
+      <a class="button button--primary button--external" href="{{ . }}" target="_blank" rel="noopener">
+        {{- T "visitProject" }}{{ partial "jr/icon.html" "arrow-up-right" -}}
+      </a>
+    </div>
+    {{- end }}
+    {{- end }}
+  </header>
+  {{- end }}
+</div>

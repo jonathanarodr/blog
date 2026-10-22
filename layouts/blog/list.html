@@ -7,19 +7,7 @@
 {{- $tags = $tags | uniq | sort }}
 
 <div class="container hub" data-hub>
-  <header class="hub__header">
-    <div>
-      <h1 class="display">{{ .Title }}</h1>
-      {{- with .Description }}<p class="hub__lead">{{ . }}</p>{{ end }}
-    </div>
-    <div class="hub__actions">
-      <label class="search">
-        {{- partial "jr/icon.html" "search" }}
-        <input type="search" placeholder="{{ T "searchPlaceholder" }}" aria-label="{{ T "searchPosts" }}" data-search-input />
-        <kbd>/</kbd>
-      </label>
-    </div>
-  </header>
+  {{- partial "jr/hub-header.html" (dict "page" . "search" true) }}
 
   {{- if $tags }}
   <div class="pills" role="toolbar" aria-label="{{ T "filterByTag" }}">
@@ -32,7 +20,7 @@
 
   <section class="hub__featured" data-group>
     {{- range $featured }}
-      {{- partial "jr/post-card.html" (dict "page" . "featured" true) }}
+      {{- partial "jr/card.html" (dict "page" . "featured" true) }}
     {{- end }}
   </section>
 
@@ -41,7 +29,7 @@
     <h2 class="hub__section-title">{{ T "recentPosts" }}</h2>
     <div class="hub__grid">
       {{- range . }}
-        {{- partial "jr/post-card.html" (dict "page" .) }}
+        {{- partial "jr/card.html" (dict "page" .) }}
       {{- end }}
     </div>
   </section>

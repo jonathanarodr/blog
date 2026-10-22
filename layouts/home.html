@@ -25,7 +25,7 @@
       {{- with $blog }}<a class="section-heading__link" href="{{ .RelPermalink }}">{{ T "seeAll" }}{{ partial "jr/icon.html" "chevron-right" }}</a>{{ end }}
     </div>
     <div class="hub__grid">
-      {{- range . }}{{ partial "jr/post-card.html" (dict "page" .) }}{{ end }}
+      {{- range . }}{{ partial "jr/card.html" (dict "page" .) }}{{ end }}
     </div>
   </section>
   {{- end }}
@@ -39,7 +39,7 @@
       {{- end }}
     </div>
     <div class="hub__grid">
-      {{- range . }}{{ partial "jr/project-card.html" . }}{{ end }}
+      {{- range . }}{{ partial "jr/card.html" (dict "page" .) }}{{ end }}
     </div>
   </section>
   {{- end }}

@@ -1,0 +1,17 @@
+{{- /* Site author with bio and social links (from the main menu icons). */ -}}
+{{- with site.Params.author }}
+<div class="author-card">
+  {{- with .image }}<img src="{{ . | relURL }}" alt="" width="48" height="48" />{{ end }}
+  <div>
+    <p class="author-card__name">{{ .name }}</p>
+    {{- with T "authorBio" }}<p class="author-card__bio">{{ . }}</p>{{ end }}
+  </div>
+  <div class="author-card__links">
+    {{- range $entry := site.Menus.main }}
+      {{- with $entry.Params.icon }}
+        <a class="share__button" href="{{ $entry.URL }}" target="_blank" rel="noopener" aria-label="{{ $entry.Name }}">{{ partial "jr/icon.html" . }}</a>
+      {{- end }}
+    {{- end }}
+  </div>
+</div>
+{{- end }}

@@ -1,0 +1,18 @@
+{{- /* Header of a list page: big title, description and, optionally, the posts search field.
+  Context: dict "page" "search" (bool). */ -}}
+{{- $p := .page }}
+<header class="hub__header">
+  <div>
+    <h1 class="display">{{ $p.Title }}</h1>
+    {{- with $p.Description }}<p class="hub__lead">{{ . }}</p>{{ end }}
+  </div>
+  {{- if .search }}
+  <div class="hub__actions">
+    <label class="search">
+      {{- partial "jr/icon.html" "search" }}
+      <input type="search" placeholder="{{ T "searchPlaceholder" }}" aria-label="{{ T "searchPosts" }}" data-search-input />
+      <kbd>/</kbd>
+    </label>
+  </div>
+  {{- end }}
+</header>

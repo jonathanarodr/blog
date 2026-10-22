@@ -1,16 +1,9 @@
 {{ define "main" }}
 <div class="container hub">
-  <header class="hub__header">
-    <div>
-      <h1 class="display">{{ .Title }}</h1>
-      {{- with .Description }}<p class="hub__lead">{{ . }}</p>{{ end }}
-    </div>
-  </header>
-
+  {{- partial "jr/hub-header.html" (dict "page" .) }}
   {{- with .Content }}<div class="prose hub__intro">{{ . }}</div>{{ end }}
-
   <div class="hub__grid">
-    {{- range .RegularPages.ByWeight }}{{ partial "jr/project-card.html" . }}{{ end }}
+    {{- range .RegularPages.ByWeight }}{{ partial "jr/card.html" (dict "page" .) }}{{ end }}
   </div>
 </div>
 {{ end }}

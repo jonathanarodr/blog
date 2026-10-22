@@ -1,5 +1,6 @@
-{{- /* Author avatars, names and date. Context: page. */ -}}
-{{- $authors := .Params.authors | default (slice (dict "name" site.Params.author.name)) }}
+{{- /* Author avatars, names and date; optionally the reading time. Context: dict "page" "readingTime" (bool). */ -}}
+{{- $p := .page }}
+{{- $authors := $p.Params.authors | default (slice (dict "name" site.Params.author.name)) }}
 <div class="byline">
   <span class="byline__avatars">
     {{- range $authors }}
@@ -12,6 +13,12 @@
   </span>
   <span class="byline__group">
     <span class="byline__sep" aria-hidden="true">•</span>
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+    <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format ":date_medium" }}</time>
   </span>
 </div>
+{{- if .readingTime }}
+<span class="byline__group">
+  <span class="byline__sep" aria-hidden="true">•</span>
+  <span>{{ T "readingTime" $p.ReadingTime }}</span>
+</span>
+{{- end }}

@@ -1,5 +1,5 @@
-{{- /* Post cover: uses front matter `image` when present, otherwise a typographic cover tinted per post. Context: page. */ -}}
-{{- $vt := printf "cover-%s" (.File.ContentBaseName | anchorize) }}
+{{- /* Cover: front matter `image` when present, otherwise a typographic cover tinted per page. Context: page. */ -}}
+{{- $vt := partial "jr/vt-name.html" (dict "page" . "part" "cover") }}
 {{- with .Params.image }}
   <div class="cover" style="view-transition-name: {{ $vt }}">
     <img src="{{ . | relURL }}" alt="" loading="lazy" decoding="async" />

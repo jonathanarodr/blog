@@ -25,20 +25,20 @@
   <ul class="dropdown__list dropdown__list--actions" id="{{ $id }}" role="menu" aria-label="{{ T "pageMenu" }}">
     <li class="dropdown__label" role="presentation">{{ T "linkToPage" }}</li>
     <li role="none">
-      <button class="dropdown__item" type="button" role="menuitem" data-copy-text="{{ $page.Permalink }}" data-copied-label="{{ T "copied" }}">
-        {{- partial "jr/icon.html" "link" }}<span>{{ T "copyPageLink" }}</span>
+      <button class="dropdown__item" type="button" role="menuitem" data-copy="{{ $page.Permalink }}" data-copied-label="{{ T "copied" }}">
+        {{- partial "jr/icon.html" "link" }}<span data-copy-label>{{ T "copyPageLink" }}</span>
       </button>
     </li>
     <li class="dropdown__separator" role="separator"></li>
     <li class="dropdown__label" role="presentation">{{ T "shareMarkdown" }}</li>
     <li role="none">
       <button class="dropdown__item" type="button" role="menuitem" data-copy-from="{{ $md.RelPermalink }}" data-copied-label="{{ T "copied" }}">
-        {{- partial "jr/icon.html" "copy" }}<span>{{ T "copyPageMarkdown" }}</span>
+        {{- partial "jr/icon.html" "copy" }}<span data-copy-label>{{ T "copyPageMarkdown" }}</span>
       </button>
     </li>
     <li role="none">
-      <button class="dropdown__item" type="button" role="menuitem" data-copy-text="{{ $md.Permalink }}" data-copied-label="{{ T "copied" }}">
-        {{- partial "jr/icon.html" "link" }}<span>{{ T "copyMarkdownLink" }}</span>
+      <button class="dropdown__item" type="button" role="menuitem" data-copy="{{ $md.Permalink }}" data-copied-label="{{ T "copied" }}">
+        {{- partial "jr/icon.html" "link" }}<span data-copy-label>{{ T "copyMarkdownLink" }}</span>
       </button>
     </li>
     <li role="none">
