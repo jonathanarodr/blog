@@ -449,9 +449,31 @@ img {
 
 /* Post card --------------------------------------------------------------- */
 
+/* The link stretches over the whole card so byline and description are clickable too */
+.post-card {
+  position: relative;
+}
+
 .post-card__link {
   display: block;
   text-decoration: none;
+}
+
+.post-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.post-card__link:focus-visible {
+  outline: none;
+}
+
+.post-card:has(.post-card__link:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+  border-radius: var(--radius);
 }
 
 .post-card__title {
@@ -517,7 +539,7 @@ img {
   animation: sweep 3s linear infinite paused;
 }
 
-.post-card__link:is(:hover, :focus-visible) .cover::before {
+.post-card:is(:hover, :focus-within) .cover::before {
   opacity: 1;
   animation-play-state: running;
 }
@@ -528,11 +550,11 @@ img {
   }
 }
 
-.post-card__link:hover .cover {
+.post-card:hover .cover {
   transform: translateY(-4px);
 }
 
-.post-card__link:hover .cover--generated .cover__title {
+.post-card:hover .cover--generated .cover__title {
   transform: scale(1.03);
 }
 
