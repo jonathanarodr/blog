@@ -1,6 +1,6 @@
 // Theme toggle, persisted under "color-theme".
 const labelThemeToggle = (button) => {
-  const label = document.documentElement.dataset.theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro";
+  const label = document.documentElement.dataset.theme === "dark" ? button.dataset.labelLight : button.dataset.labelDark;
   button.setAttribute("aria-label", label);
   button.title = label;
 };
@@ -93,7 +93,7 @@ document.querySelectorAll("[data-copy-code]").forEach((button) =>
     const code = button.parentElement.querySelector("pre code");
     await navigator.clipboard.writeText(code ? code.innerText : "");
     const label = button.textContent;
-    button.textContent = "Copiado!";
+    button.textContent = button.dataset.copiedLabel;
     setTimeout(() => (button.textContent = label), 1600);
   })
 );
@@ -187,3 +187,39 @@ if (stickyTargets.length && finePointer && !reducedMotion) {
     }
   }, { passive: true });
 }
+
+// Language dropdown: toggle, close on outside click or Escape, arrow-key navigation.
+document.querySelectorAll("[data-lang-menu]").forEach((menu) => {
+  const toggle = menu.querySelector("[data-lang-toggle]");
+  const items = [...menu.querySelectorAll("[role='menuitem']")];
+
+  const setOpen = (open, { focus = false } = {}) => {
+    menu.classList.toggle("is-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    if (open && focus) (items.find((i) => i.classList.contains("is-current")) || items[0])?.focus();
+  };
+
+  toggle.addEventListener("click", () => setOpen(!menu.classList.contains("is-open")));
+  toggle.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setOpen(true, { focus: true });
+    }
+  });
+
+  menu.addEventListener("keydown", (e) => {
+    const index = items.indexOf(document.activeElement);
+    if (e.key === "Escape") {
+      setOpen(false);
+      toggle.focus();
+    } else if (index !== -1 && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+      e.preventDefault();
+      const step = e.key === "ArrowDown" ? 1 : -1;
+      items[(index + step + items.length) % items.length].focus();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target)) setOpen(false);
+  });
+});

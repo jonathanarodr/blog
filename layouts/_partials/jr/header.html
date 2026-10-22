@@ -1,11 +1,12 @@
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="site-header__brand" href="{{ "/" | relLangURL }}">{{ site.Title }}</a>
-    <nav class="site-header__nav" aria-label="Principal">
+    <a class="site-header__brand" href="{{ "/" | relLangURL }}" aria-label="{{ site.Title }}">
+      <span class="site-header__brand-full">{{ site.Title }}</span>
+      <span class="site-header__brand-short" aria-hidden="true">JR</span>
+    </a>
+    <nav class="site-header__nav" aria-label="{{ T "mainNav" }}">
       {{- range site.Menus.main }}
-        {{- $type := .Params.type }}
         {{- $icon := .Params.icon }}
-        {{- if or (eq $type "search") (eq $type "theme-toggle") }}{{ continue }}{{ end }}
         {{- if $icon }}
           <a class="site-header__icon" href="{{ .URL }}" target="_blank" rel="noopener" aria-label="{{ .Name }}">
             {{- partial "jr/icon.html" $icon -}}
@@ -15,7 +16,8 @@
           <a class="site-header__link{{ if $active }} is-active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
         {{- end }}
       {{- end }}
-      <button class="site-header__icon" type="button" data-theme-toggle aria-label="Alternar tema">
+      {{- partial "jr/language-menu.html" . }}
+      <button class="site-header__icon" type="button" data-theme-toggle data-label-light="{{ T "themeToLight" }}" data-label-dark="{{ T "themeToDark" }}" aria-label="{{ T "themeToLight" }}">
         {{- partial "jr/icon.html" "sun" -}}
         {{- partial "jr/icon.html" "moon" -}}
       </button>

@@ -1,6 +1,6 @@
 {{- $lang := .Type | default "text" -}}
 <div class="code-block">
   {{- with .Attributes.filename }}<div class="code-block__filename">{{ . }}</div>{{ end }}
-  <button class="code-block__copy" type="button" data-copy-code aria-label="Copiar código">Copiar</button>
+  <button class="code-block__copy" type="button" data-copy-code data-copied-label="{{ T "copied" }}" aria-label="{{ T "copyCode" }}">{{ T "copy" }}</button>
   {{- transform.Highlight .Inner $lang .Options -}}
 </div>

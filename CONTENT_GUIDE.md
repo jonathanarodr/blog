@@ -10,6 +10,17 @@ Todo o conteúdo fica no diretório `content/`, organizado por seções:
 - `content/projects/` - Projetos
 - `content/about.md` - Página sobre
 
+## Idiomas
+
+O site é bilíngue: português na raiz (`/`) e inglês em `/en/`. A tradução de uma página fica no mesmo diretório com o sufixo `.en.md`:
+
+```
+content/blog/meu-post.md      # português
+content/blog/meu-post.en.md   # inglês
+```
+
+O menu de idioma leva para a tradução da página quando ela existe, senão para a home do idioma. Textos da interface ficam em `i18n/pt.yaml` e `i18n/en.yaml`.
+
 ## Posts de Blog
 
 ### Localização

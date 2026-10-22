@@ -1,11 +1,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-{{- $pageTitle := cond (eq .Kind "404") "Página não encontrada" .Title }}
+{{- $pageTitle := cond (eq .Kind "404") (T "notFoundTitle") .Title }}
 {{- $title := cond .IsHome site.Title (printf "%s · %s" $pageTitle site.Title) }}
 <title>{{ $title }}</title>
 {{- $description := .Description | default (.Summary | plainify | strings.TrimSpace | truncate 160) | default site.Params.description }}
 <meta name="description" content="{{ $description }}" />
 <link rel="canonical" href="{{ .Permalink }}" />
+{{- range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}" />
+{{- end }}
 {{- partial "opengraph.html" . }}
 {{- partial "twitter_cards.html" . }}
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml" />

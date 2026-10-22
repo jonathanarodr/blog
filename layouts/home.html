@@ -13,16 +13,16 @@
       {{ .Content }}
     </div>
     <div class="hero__actions">
-      {{- with $blog }}<a class="button button--primary" href="{{ .RelPermalink }}">Ler o blog</a>{{ end }}
-      {{- with site.GetPage "/about" }}<a class="button" href="{{ .RelPermalink }}">Sobre mim</a>{{ end }}
+      {{- with $blog }}<a class="button button--primary" href="{{ .RelPermalink }}">{{ T "readBlog" }}</a>{{ end }}
+      {{- with site.GetPage "/about" }}<a class="button" href="{{ .RelPermalink }}">{{ T "aboutMe" }}</a>{{ end }}
     </div>
   </section>
 
   {{- with $posts }}
   <section class="home__section">
     <div class="section-heading">
-      <h2 class="hub__section-title">Últimos posts</h2>
-      {{- with $blog }}<a class="section-heading__link" href="{{ .RelPermalink }}">Ver todos</a>{{ end }}
+      <h2 class="hub__section-title">{{ T "latestPosts" }}</h2>
+      {{- with $blog }}<a class="section-heading__link" href="{{ .RelPermalink }}">{{ T "seeAll" }}</a>{{ end }}
     </div>
     <div class="hub__grid">
       {{- range . }}{{ partial "jr/post-card.html" (dict "page" .) }}{{ end }}
@@ -33,8 +33,10 @@
   {{- with $projects }}
   <section class="home__section">
     <div class="section-heading">
-      <h2 class="hub__section-title">Projetos</h2>
-      {{- with site.GetPage "/projects" }}<a class="section-heading__link" href="{{ .RelPermalink }}">Ver todos</a>{{ end }}
+      {{- with site.GetPage "/projects" }}
+      <h2 class="hub__section-title">{{ .Title }}</h2>
+      <a class="section-heading__link" href="{{ .RelPermalink }}">{{ T "seeAll" }}</a>
+      {{- end }}
     </div>
     <div class="hub__grid">
       {{- range . }}{{ partial "jr/project-card.html" . }}{{ end }}

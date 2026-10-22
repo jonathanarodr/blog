@@ -15,15 +15,15 @@
     <div class="hub__actions">
       <label class="search">
         {{- partial "jr/icon.html" "search" }}
-        <input type="search" placeholder="Buscar…" aria-label="Buscar posts" data-search-input />
+        <input type="search" placeholder="{{ T "searchPlaceholder" }}" aria-label="{{ T "searchPosts" }}" data-search-input />
         <kbd>/</kbd>
       </label>
     </div>
   </header>
 
   {{- if $tags }}
-  <div class="pills" role="toolbar" aria-label="Filtrar por tag">
-    <button class="pill is-active" type="button" data-tag="">Todos</button>
+  <div class="pills" role="toolbar" aria-label="{{ T "filterByTag" }}">
+    <button class="pill is-active" type="button" data-tag="">{{ T "all" }}</button>
     {{- range $tags }}
       <button class="pill" type="button" data-tag="{{ urlize . }}">{{ . }}</button>
     {{- end }}
@@ -38,7 +38,7 @@
 
   {{- with $rest }}
   <section data-group>
-    <h2 class="hub__section-title">Posts recentes</h2>
+    <h2 class="hub__section-title">{{ T "recentPosts" }}</h2>
     <div class="hub__grid">
       {{- range . }}
         {{- partial "jr/post-card.html" (dict "page" .) }}
@@ -47,6 +47,6 @@
   </section>
   {{- end }}
 
-  <p class="hub__empty" data-empty hidden>Nenhum post encontrado.</p>
+  <p class="hub__empty" data-empty hidden>{{ T "noPosts" }}</p>
 </div>
 {{ end }}

@@ -1,11 +1,11 @@
 {{ define "main" }}
 <div class="container not-found">
   <p class="not-found__code">404</p>
-  <h1 class="display not-found__title">Oops, algo de errado não está certo.</h1>
-  <p class="hub__lead">A página que você procura não existe ou foi movida.</p>
+  <h1 class="display not-found__title">{{ T "notFoundHeading" }}</h1>
+  <p class="hub__lead">{{ T "notFoundText" }}</p>
   <div class="hero__actions hero__actions--center">
-    <a class="button button--primary" href="{{ "/" | relLangURL }}">Voltar ao início</a>
-    {{- with site.GetPage "/blog" }}<a class="button" href="{{ .RelPermalink }}">Ir para o blog</a>{{ end }}
+    <a class="button button--primary" href="{{ "/" | relLangURL }}">{{ T "backHome" }}</a>
+    {{- with site.GetPage "/blog" }}<a class="button" href="{{ .RelPermalink }}">{{ T "goToBlog" }}</a>{{ end }}
   </div>
 </div>
 {{ end }}
