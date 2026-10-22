@@ -1559,12 +1559,11 @@ img {
   width: 44px;
   height: 44px;
   border-radius: 999px;
-  border: 1px solid var(--border-strong);
-  background: color-mix(in srgb, var(--bg-elevated) 80%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--text);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  border: 0;
+  /* Inverted colors so it stands out over the text */
+  background: var(--accent);
+  color: var(--accent-contrast);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   opacity: 0;
   visibility: hidden;
   transform: translateY(12px) scale(0.9);
@@ -1579,7 +1578,7 @@ img {
 }
 
 .back-to-top:hover {
-  background: var(--surface-hover);
+  background: color-mix(in srgb, var(--accent) 85%, var(--bg));
 }
 
 .back-to-top:hover .icon {
