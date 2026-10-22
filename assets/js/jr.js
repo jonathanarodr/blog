@@ -119,9 +119,9 @@ if (tocLinks.length) {
   setActive();
 }
 
-// Sticky cursor chip, like design.google: snaps onto header items and blog
-// filter pills, sized to the target and pulled toward the cursor.
-const stickyTargets = document.querySelectorAll(".site-header__icon, .site-header__link, .pills .pill");
+// Sticky cursor chip, like design.google: snaps onto header items, sized to
+// the target and pulled toward the cursor.
+const stickyTargets = document.querySelectorAll(".site-header__icon, .site-header__link");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (stickyTargets.length && finePointer && !reducedMotion) {
