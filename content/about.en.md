@@ -2,7 +2,7 @@
 title: About me
 ---
 
-## Who I am
+## Jonathan de Araujo Rodrigues
 
 Software Engineer with over a decade of experience, having started my career in 2012 working across a broad range of technologies, including backend development, relational and non-relational data modeling, RESTful API design, and frontend solutions for web and mobile platforms. Throughout my career, I have contributed to projects in diverse industries such as fintech, health tech, and food tech, gaining strong exposure to complex, scalable systems.
 
