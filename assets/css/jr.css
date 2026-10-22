@@ -1628,7 +1628,7 @@ img {
 /* Experience timeline (About), inspired by yudiganeko.com ------------------ */
 
 .timeline {
-  --rail: 168px;
+  --rail: 200px;
   --gap: 40px;
   list-style: none;
   margin: 2em 0 3em;
@@ -1695,6 +1695,11 @@ img {
   margin: 4px 0 0 !important;
   font: 400 13px/1.5 var(--font-mono);
   color: var(--text-subtle);
+}
+
+/* Each date stays whole; long periods wrap after the dash */
+.timeline__period span {
+  white-space: nowrap;
 }
 
 .timeline__role + .timeline__role {

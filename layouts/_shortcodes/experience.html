@@ -13,14 +13,14 @@
         <h3 class="timeline__name">
           {{- with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}{{ .company }}{{ with .url }}</a>{{ end -}}
         </h3>
-        <p class="timeline__period">{{ partial "jr/month.html" $oldest.start }} – {{ partial "jr/month.html" $newest.end }}</p>
+        <p class="timeline__period"><span>{{ partial "jr/month.html" $oldest.start }} –</span> <span>{{ partial "jr/month.html" $newest.end }}</span></p>
       </div>
       <div class="timeline__roles">
         {{- range $roles }}
         <div class="timeline__role">
           <h4 class="timeline__title">{{ .title }}</h4>
           {{- if gt (len $roles) 1 }}
-          <p class="timeline__period">{{ partial "jr/month.html" .start }} – {{ partial "jr/month.html" .end }}</p>
+          <p class="timeline__period"><span>{{ partial "jr/month.html" .start }} –</span> <span>{{ partial "jr/month.html" .end }}</span></p>
           {{- end }}
           {{- with .highlights }}
           <ul class="timeline__highlights">
