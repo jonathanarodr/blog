@@ -1605,9 +1605,9 @@ img {
 
 /* Action menus: icon + label, section labels and separators */
 
-.dropdown__list--actions .dropdown__item {
+/* Low specificity so items keep the shared .dropdown__item hover/focus look */
+:where(.dropdown__list--actions) .dropdown__item {
   justify-content: flex-start;
-  gap: 12px;
   width: 100%;
   border: 0;
   background: none;
