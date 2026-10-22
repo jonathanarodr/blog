@@ -15,11 +15,11 @@ languages:
         - identifier: blog
           name: Blog
           pageRef: /blog
-          weight: 1
+          weight: 2
         - identifier: showcase
           name: Showcase
           pageRef: /showcase
-          weight: 2
+          weight: 1
         - identifier: about
           name: Sobre
           pageRef: /about
@@ -43,11 +43,11 @@ languages:
         - identifier: blog
           name: Blog
           pageRef: /blog
-          weight: 1
+          weight: 2
         - identifier: showcase
           name: Showcase
           pageRef: /showcase
-          weight: 2
+          weight: 1
         - identifier: about
           name: About
           pageRef: /about
