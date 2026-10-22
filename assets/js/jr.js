@@ -122,10 +122,10 @@ if (tocLinks.length) {
 // Sticky cursor chip, like design.google. Two modes:
 // - "magnetic" (header items, "see all" links): chip slightly wider than the
 //   target, both pulled toward the cursor.
-// - "fit" (post tags, buttons): chip morphs from a dot at the cursor into the
-//   exact shape of the target and locks onto it, filling it with inverted colors.
+// - "fit" (post tags): chip morphs from a dot at the cursor into the exact
+//   shape of the tag and locks onto it, filling it with inverted colors.
 const magneticTargets = document.querySelectorAll(".site-header__icon, .site-header__link, .section-heading__link");
-const fitTargets = document.querySelectorAll(".post__tags .pill, .button");
+const fitTargets = document.querySelectorAll(".post__tags .pill");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if ((magneticTargets.length || fitTargets.length) && finePointer && !reducedMotion) {
