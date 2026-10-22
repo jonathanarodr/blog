@@ -27,7 +27,7 @@ searchPosts: "Buscar posts"
 filterByTag: "Filtrar por tag"
 all: "Todos"
 recentPosts: "Posts recentes"
-archive: "Arquivo"
+archive: "Changelog"
 postsCount:
   one: "{{ .Count }} post"
   other: "{{ .Count }} posts"

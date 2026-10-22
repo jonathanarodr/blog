@@ -107,7 +107,7 @@ params:
 
   # Blog hub: posts shown in the "recent" grid before the yearly archive
   blog:
-    recentPosts: 6
+    minRecentPosts: 3
 
 # Related posts ("Continue lendo") ranked by shared tags
 related:
