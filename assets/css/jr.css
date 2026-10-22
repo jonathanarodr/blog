@@ -1554,7 +1554,9 @@ img {
   top: calc(100% + 12px);
   right: 0;
   z-index: 30;
-  min-width: 220px;
+  /* Sized by its content, capped so long labels wrap instead of overflowing */
+  width: max-content;
+  max-width: min(320px, calc(100vw - 32px));
   margin: 0;
   padding: 8px;
   list-style: none;
@@ -1602,9 +1604,6 @@ img {
 }
 
 /* Action menus: icon + label, section labels and separators */
-.dropdown__list--actions {
-  min-width: 260px;
-}
 
 .dropdown__list--actions .dropdown__item {
   justify-content: flex-start;
@@ -2016,7 +2015,8 @@ img {
   right: 0;
   bottom: 0;
   left: 0;
-  min-width: 0;
+  width: auto;
+  max-width: none;
   padding: 20px 12px calc(16px + env(safe-area-inset-bottom));
   border-radius: 20px 20px 0 0;
   border-bottom: 0;
@@ -2064,7 +2064,8 @@ img {
     right: 0;
     bottom: calc(100% + 12px);
     left: auto;
-    width: 280px;
+    width: max-content;
+    max-width: 320px;
     padding: 8px;
     border-radius: 16px;
     border-bottom: 1px solid var(--border);
