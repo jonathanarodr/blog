@@ -108,10 +108,6 @@ params:
     image: https://github.com/jonathanarodr.png
     email: contato@jonathanarodr.com
 
-  # Blog hub: posts shown in the "recent" grid before the yearly archive
-  blog:
-    minRecentPosts: 3
-
 # Related posts ("Continue lendo") ranked by shared tags
 related:
   includeNewer: true

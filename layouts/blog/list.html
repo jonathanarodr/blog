@@ -1,13 +1,12 @@
 {{ define "main" }}
 {{- $posts := .RegularPagesRecursive.ByDate.Reverse }}
-{{- /* Current year's posts on top (2 featured, the rest in a grid), older years in the archive.
-     Keeps at least blog.minRecentPosts on top so January isn't empty. */}}
-{{- $minTop := site.Params.blog.minRecentPosts | default 3 }}
-{{- $topCount := 0 }}
-{{- range $posts }}{{ if eq .Date.Year now.Year }}{{ $topCount = add $topCount 1 }}{{ end }}{{ end }}
-{{- $topCount = math.Max $topCount $minTop | int }}
-{{- $featured := first 2 $posts }}
-{{- $recent := first (sub $topCount 2) (after 2 $posts) }}
+{{- /* Only the current year's posts sit above the changelog (2 featured, the rest in a grid);
+     earlier years, migrated posts included, go to the changelog. A year with no posts yet
+     features just the latest one, so the top is never empty. */}}
+{{- $topCount := len (where $posts "Date.Year" now.Year) }}
+{{- $topCount = math.Max $topCount 1 | int }}
+{{- $featured := first (math.Min $topCount 2 | int) $posts }}
+{{- $recent := first (math.Max (sub $topCount 2) 0 | int) (after 2 $posts) }}
 {{- $archive := after $topCount $posts }}
 {{- $tags := slice }}
 {{- range $posts }}{{ range .Params.tags }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
