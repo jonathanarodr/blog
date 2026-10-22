@@ -119,12 +119,16 @@ if (tocLinks.length) {
   setActive();
 }
 
-// Sticky cursor chip, like design.google: snaps onto header items and "see all"
-// links, sized to the target and pulled toward the cursor.
-const stickyTargets = document.querySelectorAll(".site-header__icon, .site-header__link, .section-heading__link");
+// Sticky cursor chip, like design.google. Two modes:
+// - "magnetic" (header items, "see all" links): chip slightly wider than the
+//   target, both pulled toward the cursor.
+// - "fit" (post tags): chip morphs from a dot at the cursor into the exact
+//   shape of the tag and locks onto it, filling it with inverted colors.
+const magneticTargets = document.querySelectorAll(".site-header__icon, .site-header__link, .section-heading__link");
+const fitTargets = document.querySelectorAll(".post__tags .pill");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (stickyTargets.length && finePointer && !reducedMotion) {
+if ((magneticTargets.length || fitTargets.length) && finePointer && !reducedMotion) {
   const chip = document.createElement("span");
   chip.className = "cursor-chip";
   chip.setAttribute("aria-hidden", "true");
@@ -136,47 +140,66 @@ if (stickyTargets.length && finePointer && !reducedMotion) {
     chip.style.top = `${y}px`;
   };
 
+  // Place the chip without animating, so the next change visibly morphs from there.
+  const jumpChip = (x, y, size) => {
+    chip.style.transition = "none";
+    moveChip(x, y);
+    if (size) chip.style.width = chip.style.height = `${size}px`;
+    chip.offsetWidth;
+    chip.style.transition = "";
+  };
+
   const release = (target, e) => {
     chip.classList.remove("is-active");
-    chip.style.width = chip.style.height = "";
+    chip.style.width = chip.style.height = chip.style.borderRadius = "";
     if (e) moveChip(e.clientX, e.clientY);
     target?.style.removeProperty("transform");
   };
 
   let current = null;
 
-  stickyTargets.forEach((target) => {
+  const track = (target, onEnter, onMove) => {
     target.addEventListener("pointerenter", (e) => {
-      // Start from the cursor so the chip visibly snaps onto the target.
-      if (!chip.classList.contains("is-active")) {
-        chip.style.transition = "none";
-        moveChip(e.clientX, e.clientY);
-        chip.offsetWidth;
-        chip.style.transition = "";
-      }
-      const rect = target.getBoundingClientRect();
-      const padding = target.classList.contains("site-header__icon") ? 16 : 8;
-      chip.style.width = `${rect.width + padding}px`;
-      chip.style.height = `${rect.height}px`;
+      onEnter(e, target.getBoundingClientRect());
       chip.classList.add("is-active");
       current = target;
     });
-
-    target.addEventListener("pointermove", (e) => {
-      const rect = target.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      // Wide targets move less so text stays readable.
-      const pull = Math.min(1, 40 / rect.width);
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
-      moveChip(cx + dx * 0.3 * pull, cy + dy * 0.3);
-      target.style.transform = `translate(${dx * 0.2 * pull}px, ${dy * 0.2}px)`;
-    });
-
+    if (onMove) target.addEventListener("pointermove", (e) => onMove(e, target.getBoundingClientRect()));
     target.addEventListener("pointerleave", (e) => {
       release(target, e);
       current = null;
+    });
+  };
+
+  magneticTargets.forEach((target) => {
+    const padding = target.classList.contains("site-header__icon") ? 16 : 8;
+    track(
+      target,
+      (e, rect) => {
+        if (!chip.classList.contains("is-active")) jumpChip(e.clientX, e.clientY);
+        chip.style.width = `${rect.width + padding}px`;
+        chip.style.height = `${rect.height}px`;
+      },
+      (e, rect) => {
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        // Wide targets move less so text stays readable.
+        const pull = Math.min(1, 40 / rect.width);
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        moveChip(cx + dx * 0.3 * pull, cy + dy * 0.3);
+        target.style.transform = `translate(${dx * 0.2 * pull}px, ${dy * 0.2}px)`;
+      }
+    );
+  });
+
+  fitTargets.forEach((target) => {
+    track(target, (e, rect) => {
+      if (!chip.classList.contains("is-active")) jumpChip(e.clientX, e.clientY, 24);
+      chip.style.borderRadius = getComputedStyle(target).borderRadius;
+      chip.style.width = `${rect.width}px`;
+      chip.style.height = `${rect.height}px`;
+      moveChip(rect.left + rect.width / 2, rect.top + rect.height / 2);
     });
   });
 

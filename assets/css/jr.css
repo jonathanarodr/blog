@@ -376,6 +376,13 @@ img {
   font-size: 12px;
 }
 
+/* Post tags are outlined chips, like design.google; on hover the cursor chip fills them */
+.post__tags .pill {
+  background: transparent;
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
 /* Hub ------------------------------------------------------------------- */
 
 .hub {
@@ -1485,6 +1492,10 @@ img {
 
 .has-cursor-chip :is(.site-header__icon, .site-header__link, .section-heading__link) {
   transition: color 0.2s var(--ease), background-color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.35s var(--ease);
+}
+
+.has-cursor-chip .post__tags .pill:hover {
+  border-color: var(--border-strong);
 }
 
 .has-cursor-chip :is(.site-header__icon, .site-header__link, .section-heading__link):hover {
