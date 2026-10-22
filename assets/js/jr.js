@@ -99,7 +99,7 @@ document.querySelectorAll("[data-copy-code]").forEach((button) =>
 );
 
 // Table of contents: highlight the section being read.
-const tocLinks = [...document.querySelectorAll(".toc--sidebar a[href^='#']")];
+const tocLinks = [...document.querySelectorAll(".toc--sidebar nav a[href^='#']")];
 if (tocLinks.length) {
   const headings = tocLinks
     .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))

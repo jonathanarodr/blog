@@ -75,6 +75,7 @@
 
     {{- if $toc }}
     <aside class="toc toc--sidebar" aria-label="{{ T "tableOfContents" }}">
+      <a class="toc__post-title" href="#main">{{ .Title }}</a>
       <p class="toc__title">{{ T "inThisPost" }}</p>
       {{ .TableOfContents }}
     </aside>

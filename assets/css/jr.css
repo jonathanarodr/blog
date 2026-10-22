@@ -1325,6 +1325,30 @@ img {
   }
 }
 
+.toc .toc__post-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-decoration: none;
+  text-wrap: balance;
+}
+
+.toc .toc__post-title:hover {
+  color: var(--text-muted);
+}
+
+.toc__post-title + .toc__title {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
 .toc__title {
   margin: 0 0 8px;
   color: var(--text-subtle);
