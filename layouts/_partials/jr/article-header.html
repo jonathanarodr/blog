@@ -3,6 +3,7 @@
   Context: dict
     "page"
     "variant"  "post" (date, byline, tags) | "project" (tags, external link) | "page" (title only)
+  Pages with `avatar: true` in front matter show the author's photo above the title.
 */ -}}
 {{- $p := .page }}
 {{- $variant := .variant | default "page" }}
@@ -17,6 +18,7 @@
   {{- end }}
 
   <header class="post__header enter">
+    {{- if $p.Params.avatar }}{{ partial "jr/avatar.html" (dict "size" 96) }}{{ end }}
     {{- if eq $variant "post" }}
     <time class="post__date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format ":date_long" }}</time>
     {{- end }}

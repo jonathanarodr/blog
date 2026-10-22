@@ -5,9 +5,7 @@
 
 <div class="container home">
   <section class="hero enter">
-    {{- with site.Params.author.image }}
-      <img class="hero__avatar" src="{{ . | relURL }}" alt="" width="72" height="72" />
-    {{- end }}
+    {{- partial "jr/avatar.html" (dict) }}
     <h1 class="display hero__title">{{ .Params.heading | default .Title }}</h1>
     <div class="prose hero__intro">
       {{ .Content }}

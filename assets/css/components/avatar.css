@@ -1,0 +1,17 @@
+/* Author photo (home hero, About) */
+
+.avatar {
+  width: var(--avatar-size, 72px);
+  height: var(--avatar-size, 72px);
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  view-transition-name: author-avatar;
+}
+
+.hero .avatar {
+  margin-bottom: 28px;
+}
+
+.post__header .avatar {
+  margin: 0 auto 24px;
+}

@@ -1,0 +1,6 @@
+{{- /* The author's photo. Shares one view-transition name, so it morphs between the
+  home hero and the About page. Context: dict "size" (px, default 72). */ -}}
+{{- $size := .size | default 72 }}
+{{- with site.Params.author.image }}
+<img class="avatar" src="{{ . | relURL }}" alt="" width="{{ $size }}" height="{{ $size }}" style="--avatar-size: {{ $size }}px" />
+{{- end }}

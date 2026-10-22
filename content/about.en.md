@@ -1,4 +1,5 @@
 ---
+avatar: true
 title: About me
 ---
 

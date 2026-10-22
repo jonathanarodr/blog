@@ -7,14 +7,6 @@
   max-width: 760px;
 }
 
-.hero__avatar {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  margin-bottom: 28px;
-}
-
 .hero__title {
   font-size: clamp(48px, 8.5vw, 92px);
   text-wrap: balance;
