@@ -13,12 +13,12 @@
 <div class="dropdown page-menu page-menu--{{ $variant }}{{ if $.hideDesktop }} page-menu--hide-desktop{{ end }}" data-dropdown>
   {{- if eq $variant "floating" }}
   <button class="page-menu__fab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="{{ $id }}" aria-label="{{ T "pageMenu" }}" data-dropdown-toggle>
-    {{- partial "jr/icon.html" "share" -}}
+    {{- partial "jr/icon.html" "open-in-new" -}}
   </button>
   <div class="page-menu__backdrop" data-dropdown-close></div>
   {{- else }}
   <button class="site-header__icon site-header__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="{{ $id }}" aria-label="{{ T "pageMenu" }}" data-dropdown-toggle>
-    {{- partial "jr/icon.html" "copy" -}}
+    {{- partial "jr/icon.html" "open-in-new" -}}
     {{- partial "jr/icon.html" "chevron-down" -}}
   </button>
   {{- end }}
