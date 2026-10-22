@@ -1,0 +1,35 @@
+{{- /* Page share dropdown: copy the page link, or copy/open its Markdown version. Only on pages with a Markdown output. Context: page. */ -}}
+{{- with .OutputFormats.Get "markdown" }}
+{{- $md := . }}
+<div class="dropdown" data-dropdown>
+  <button class="site-header__icon site-header__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="page-menu" aria-label="{{ T "pageMenu" }}" data-dropdown-toggle>
+    {{- partial "jr/icon.html" "copy" -}}
+    {{- partial "jr/icon.html" "chevron-down" -}}
+  </button>
+  <ul class="dropdown__list dropdown__list--actions" id="page-menu" role="menu" aria-label="{{ T "pageMenu" }}">
+    <li class="dropdown__label" role="presentation">{{ T "linkToPage" }}</li>
+    <li role="none">
+      <button class="dropdown__item" type="button" role="menuitem" data-copy-text="{{ $.Permalink }}" data-copied-label="{{ T "copied" }}">
+        {{- partial "jr/icon.html" "link" }}<span>{{ T "copyPageLink" }}</span>
+      </button>
+    </li>
+    <li class="dropdown__separator" role="separator"></li>
+    <li class="dropdown__label" role="presentation">{{ T "shareMarkdown" }}</li>
+    <li role="none">
+      <button class="dropdown__item" type="button" role="menuitem" data-copy-from="{{ $md.RelPermalink }}" data-copied-label="{{ T "copied" }}">
+        {{- partial "jr/icon.html" "copy" }}<span>{{ T "copyPageMarkdown" }}</span>
+      </button>
+    </li>
+    <li role="none">
+      <button class="dropdown__item" type="button" role="menuitem" data-copy-text="{{ $md.Permalink }}" data-copied-label="{{ T "copied" }}">
+        {{- partial "jr/icon.html" "link" }}<span>{{ T "copyMarkdownLink" }}</span>
+      </button>
+    </li>
+    <li role="none">
+      <a class="dropdown__item" role="menuitem" href="{{ $md.RelPermalink }}" target="_blank" rel="noopener">
+        {{- partial "jr/icon.html" "arrow-up-right" }}<span>{{ T "openMarkdown" }}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+{{- end }}

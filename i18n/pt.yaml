@@ -7,6 +7,13 @@ language: "Idioma"
 selectLanguage: "Selecionar idioma"
 themeToLight: "Ativar tema claro"
 themeToDark: "Ativar tema escuro"
+pageMenu: "Compartilhar página"
+linkToPage: "Link da página"
+copyPageLink: "Copiar link da página"
+shareMarkdown: "Compartilhar Markdown"
+copyPageMarkdown: "Copiar Markdown da página"
+copyMarkdownLink: "Copiar link do Markdown"
+openMarkdown: "Abrir Markdown"
 
 # Home
 readBlog: "Ler o blog"

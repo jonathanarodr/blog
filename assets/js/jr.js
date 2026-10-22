@@ -211,12 +211,15 @@ if ((magneticTargets.length || fitTargets.length) && finePointer && !reducedMoti
   }, { passive: true });
 }
 
-// Language dropdown: toggle, close on outside click or Escape, arrow-key navigation.
-document.querySelectorAll("[data-lang-menu]").forEach((menu) => {
-  const toggle = menu.querySelector("[data-lang-toggle]");
+// Header dropdowns (language, page share): toggle, one open at a time, close on
+// outside click or Escape, arrow-key navigation.
+const dropdowns = [...document.querySelectorAll("[data-dropdown]")];
+dropdowns.forEach((menu) => {
+  const toggle = menu.querySelector("[data-dropdown-toggle]");
   const items = [...menu.querySelectorAll("[role='menuitem']")];
 
   const setOpen = (open, { focus = false } = {}) => {
+    if (open) dropdowns.forEach((other) => other !== menu && other.close?.());
     menu.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
     if (open && focus) (items.find((i) => i.classList.contains("is-current")) || items[0])?.focus();
@@ -242,6 +245,8 @@ document.querySelectorAll("[data-lang-menu]").forEach((menu) => {
     }
   });
 
+  menu.close = () => setOpen(false);
+
   document.addEventListener("click", (e) => {
     if (!menu.contains(e.target)) setOpen(false);
   });
@@ -261,3 +266,18 @@ if (backToTop && postHeader) {
     history.replaceState(null, "", location.pathname + location.search);
   });
 }
+
+// Page share menu: copy the page link, the Markdown link or the Markdown itself.
+document.querySelectorAll("[data-copy-text], [data-copy-from]").forEach((item) => {
+  item.addEventListener("click", async () => {
+    const text = item.dataset.copyText ?? (await (await fetch(item.dataset.copyFrom)).text());
+    await navigator.clipboard.writeText(text);
+    const label = item.querySelector("span");
+    const original = label.textContent;
+    label.textContent = item.dataset.copiedLabel;
+    setTimeout(() => {
+      label.textContent = original;
+      item.closest("[data-dropdown]")?.close?.();
+    }, 1200);
+  });
+});
