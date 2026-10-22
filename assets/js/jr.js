@@ -282,3 +282,12 @@ document.querySelectorAll("[data-copy-text], [data-copy-from]").forEach((item) =
     }, 1200);
   });
 });
+
+// Bottom fade: hide it once the page is scrolled to the end, so the footer stays clear.
+const updateBottomFade = () => {
+  const root = document.documentElement;
+  root.classList.toggle("is-at-bottom", window.innerHeight + window.scrollY >= root.scrollHeight - 8);
+};
+document.addEventListener("scroll", updateBottomFade, { passive: true });
+window.addEventListener("resize", updateBottomFade);
+updateBottomFade();
