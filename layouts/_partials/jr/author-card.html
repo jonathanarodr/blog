@@ -1,4 +1,4 @@
-{{- /* Site author with bio and social links (from the main menu icons). */ -}}
+{{- /* Site author with bio, social links (from the main menu icons) and email. */ -}}
 {{- with site.Params.author }}
 <div class="author-card">
   {{- with .image }}<img src="{{ . | relURL }}" alt="" width="48" height="48" />{{ end }}
@@ -11,6 +11,9 @@
       {{- with $entry.Params.icon }}
         <a class="share__button" href="{{ $entry.URL }}" target="_blank" rel="noopener" aria-label="{{ $entry.Name }}">{{ partial "jr/icon.html" . }}</a>
       {{- end }}
+    {{- end }}
+    {{- with .email }}
+    <a class="share__button" href="mailto:{{ . }}" aria-label="{{ T "emailMe" }}" title="{{ . }}">{{ partial "jr/icon.html" "mail" }}</a>
     {{- end }}
   </div>
 </div>
