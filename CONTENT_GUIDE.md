@@ -7,7 +7,7 @@ Este guia explica como criar e gerenciar conteúdo para o blog.
 Todo o conteúdo fica no diretório `content/`, organizado por seções:
 
 - `content/blog/` - Posts do blog
-- `content/projects/` - Projetos
+- `content/showcase/` - Showcase (projetos)
 - `content/about.md` - Página sobre
 
 ## Idiomas
@@ -93,12 +93,12 @@ Resumo e call-to-action.
 
 ### Localização
 
-`content/projects/`
+`content/showcase/`
 
 ### Criar Novo Projeto
 
 ```bash
-hugo new content/projects/nome-projeto.md
+hugo new content/showcase/nome-projeto.md
 ```
 
 ### Template de Front Matter
@@ -186,7 +186,7 @@ def hello():
 
 ```markdown
 {{< cards >}}
-  {{< card link="/projects" title="Projetos" subtitle="Opcional" >}}
+  {{< card link="/showcase" title="Showcase" subtitle="Opcional" >}}
   {{< card link="/blog" title="Blog" >}}
 {{< /cards >}}
 ```
@@ -228,10 +228,10 @@ Coloque em: `static/images/blog/nome-post/`
 
 ### Projetos
 
-Coloque em: `static/images/projects/nome-projeto/`
+Coloque em: `static/images/showcase/nome-projeto/`
 
 ```markdown
-![Alt text](/images/projects/nome-projeto/screenshot.png)
+![Alt text](/images/showcase/nome-projeto/screenshot.png)
 ```
 
 ## Checklist de Publicação

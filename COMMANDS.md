@@ -26,7 +26,7 @@ hugo --gc --minify --verbose
 hugo new content/blog/meu-post.md
 
 # Novo projeto
-hugo new content/projects/meu-projeto.md
+hugo new content/showcase/meu-projeto.md
 
 # Nova página
 hugo new content/pagina.md

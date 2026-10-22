@@ -1,4 +1,6 @@
 ---
+aliases:
+  - /projects/mone-app/
 title: "Mone - Finanças pessoais"
 description: Gerenciador de finanças pessoais para registrar entradas e saídas e ter uma visão simples do seu dinheiro.
 date: 2026-01-29

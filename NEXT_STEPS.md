@@ -107,7 +107,7 @@ blog/
 │   │   ├── _index.md
 │   │   ├── getting-started-with-hugo.md
 │   │   └── my-first-post.md
-│   └── projects/
+│   └── showcase/
 │       ├── _index.md
 │       └── personal-blog.md
 ├── static/

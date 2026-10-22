@@ -1,4 +1,6 @@
 ---
+aliases:
+  - /projects/mone-app/
 title: "Mone - Personal finance"
 description: Personal finance manager to record income and expenses and get a simple view of your money.
 date: 2026-01-29

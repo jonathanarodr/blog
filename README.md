@@ -60,7 +60,7 @@ authors:
 
 ```bash
 # Criar novo projeto
-hugo new content/projects/meu-projeto.md
+hugo new content/showcase/meu-projeto.md
 ```
 
 Estrutura do front matter:
@@ -95,7 +95,7 @@ Deploy automático para GitHub Pages ocorre a cada push para a branch `main` via
 │   ├── _index.md           # Página inicial
 │   ├── about.md            # Página sobre
 │   ├── blog/               # Posts do blog
-│   └── projects/           # Projetos
+│   └── showcase/           # Showcase (projetos)
 ├── static/
 │   └── images/             # Imagens e assets
 ├── hugo.yaml               # Configuração do Hugo
