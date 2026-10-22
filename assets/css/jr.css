@@ -1652,15 +1652,26 @@ img {
   left: calc(var(--rail) + var(--gap) / 2);
 }
 
+/* The line breaks around the dot (dot + ring span ~10–31px) with a gap on
+   both sides, and starts below the dot on the first item */
 .timeline__item::before {
+  --line: var(--border-strong);
   top: 0;
   bottom: 0;
   width: 1px;
-  background: var(--border-strong);
+  background: linear-gradient(var(--line) 4px, transparent 4px 38px, var(--line) 38px);
+}
+
+.timeline__item:first-child::before {
+  background: linear-gradient(transparent 38px, var(--line) 38px);
 }
 
 .timeline__item:last-child::before {
-  background: linear-gradient(var(--border-strong), transparent);
+  background: linear-gradient(var(--line) 4px, transparent 4px 38px, var(--line) 38px, transparent);
+}
+
+.timeline__item:only-child::before {
+  background: linear-gradient(transparent 38px, var(--line) 38px, transparent);
 }
 
 .timeline__item::after {
