@@ -26,7 +26,7 @@ O tema é próprio (pasta `layouts/`), então não há módulos para instalar: b
 ## 3. Testar Localmente
 
 ```bash
-hugo server --buildDrafts -p 1313
+hugo server --buildDrafts --noHTTPCache -p 1313
 ```
 
 Acesse http://localhost:1313 para ver o blog funcionando.

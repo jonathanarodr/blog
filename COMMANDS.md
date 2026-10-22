@@ -4,7 +4,7 @@
 
 ```bash
 # Iniciar servidor de desenvolvimento
-hugo server --buildDrafts --disableFastRender -p 1313
+hugo server --buildDrafts --disableFastRender --noHTTPCache -p 1313
 
 # Iniciar com live reload otimizado
 hugo server -D
@@ -140,7 +140,7 @@ hugo server --log --verboseLog
 
 ```bash
 # Servidor rápido (desenvolvimento)
-alias hserve="hugo server -D --disableFastRender"
+alias hserve="hugo server -D --disableFastRender --noHTTPCache"
 
 # Build rápido (produção)
 alias hbuild="hugo --gc --minify"

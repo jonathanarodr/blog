@@ -25,7 +25,7 @@ git clone https://github.com/jonathanarodr/blog.git
 cd blog
 
 # Iniciar servidor de desenvolvimento
-hugo server --buildDrafts --disableFastRender -p 1313
+hugo server --buildDrafts --disableFastRender --noHTTPCache -p 1313
 
 # Build para produção
 hugo --gc --minify
@@ -106,7 +106,7 @@ Deploy automático para GitHub Pages ocorre a cada push para a branch `main` via
 
 ```bash
 # Servidor de desenvolvimento
-hugo server --buildDrafts -p 1313
+hugo server --buildDrafts --noHTTPCache -p 1313
 
 # Build de produção
 hugo --gc --minify
