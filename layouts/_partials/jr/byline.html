@@ -10,6 +10,8 @@
   <span class="byline__names">
     {{- range $i, $a := $authors }}{{ if $i }}, {{ end }}{{ $a.name }}{{ end -}}
   </span>
-  <span class="byline__sep" aria-hidden="true">·</span>
-  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+  <span class="byline__group">
+    <span class="byline__sep" aria-hidden="true">•</span>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+  </span>
 </div>

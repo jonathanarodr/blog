@@ -577,8 +577,17 @@ img {
   color: var(--text);
 }
 
+.byline__group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
 .byline__sep {
   color: var(--text-subtle);
+  font-size: 1.15em;
+  line-height: 1;
 }
 
 /* Post ------------------------------------------------------------------- */

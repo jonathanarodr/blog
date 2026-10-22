@@ -12,8 +12,10 @@
 
       <div class="post__meta">
         {{- partial "jr/byline.html" . }}
-        <span class="byline__sep" aria-hidden="true">·</span>
-        <span>{{ T "readingTime" .ReadingTime }}</span>
+        <span class="byline__group">
+          <span class="byline__sep" aria-hidden="true">•</span>
+          <span>{{ T "readingTime" .ReadingTime }}</span>
+        </span>
       </div>
 
       {{- with .Params.tags }}
