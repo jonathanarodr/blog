@@ -118,3 +118,72 @@ if (tocLinks.length) {
   document.addEventListener("scroll", setActive, { passive: true });
   setActive();
 }
+
+// Sticky cursor chip, like design.google: snaps onto header items and blog
+// filter pills, sized to the target and pulled toward the cursor.
+const stickyTargets = document.querySelectorAll(".site-header__icon, .site-header__link, .pills .pill");
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (stickyTargets.length && finePointer && !reducedMotion) {
+  const chip = document.createElement("span");
+  chip.className = "cursor-chip";
+  chip.setAttribute("aria-hidden", "true");
+  document.body.append(chip);
+  document.documentElement.classList.add("has-cursor-chip");
+
+  const moveChip = (x, y) => {
+    chip.style.left = `${x}px`;
+    chip.style.top = `${y}px`;
+  };
+
+  const release = (target, e) => {
+    chip.classList.remove("is-active");
+    chip.style.width = chip.style.height = "";
+    if (e) moveChip(e.clientX, e.clientY);
+    target?.style.removeProperty("transform");
+  };
+
+  let current = null;
+
+  stickyTargets.forEach((target) => {
+    target.addEventListener("pointerenter", (e) => {
+      // Start from the cursor so the chip visibly snaps onto the target.
+      if (!chip.classList.contains("is-active")) {
+        chip.style.transition = "none";
+        moveChip(e.clientX, e.clientY);
+        chip.offsetWidth;
+        chip.style.transition = "";
+      }
+      const rect = target.getBoundingClientRect();
+      const padding = target.classList.contains("site-header__icon") ? 16 : 8;
+      chip.style.width = `${rect.width + padding}px`;
+      chip.style.height = `${rect.height}px`;
+      chip.classList.add("is-active");
+      current = target;
+    });
+
+    target.addEventListener("pointermove", (e) => {
+      const rect = target.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      // Wide targets move less so text stays readable.
+      const pull = Math.min(1, 40 / rect.width);
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      moveChip(cx + dx * 0.3 * pull, cy + dy * 0.3);
+      target.style.transform = `translate(${dx * 0.2 * pull}px, ${dy * 0.2}px)`;
+    });
+
+    target.addEventListener("pointerleave", (e) => {
+      release(target, e);
+      current = null;
+    });
+  });
+
+  document.addEventListener("scroll", () => {
+    if (current) {
+      release(current);
+      current = null;
+    }
+  }, { passive: true });
+}
