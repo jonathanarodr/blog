@@ -89,3 +89,24 @@ document.querySelectorAll("[data-copy-code]").forEach((button) =>
     setTimeout(() => (button.textContent = label), 1600);
   })
 );
+
+// Table of contents: highlight the section being read.
+const tocLinks = [...document.querySelectorAll(".toc--sidebar a[href^='#']")];
+if (tocLinks.length) {
+  const headings = tocLinks
+    .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+    .filter(Boolean);
+
+  const setActive = () => {
+    let current = headings[0];
+    for (const heading of headings) {
+      if (heading.getBoundingClientRect().top <= 120) current = heading;
+    }
+    tocLinks.forEach((link) =>
+      link.classList.toggle("is-active", decodeURIComponent(link.hash.slice(1)) === current.id)
+    );
+  };
+
+  document.addEventListener("scroll", setActive, { passive: true });
+  setActive();
+}

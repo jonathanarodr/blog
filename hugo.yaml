@@ -19,6 +19,12 @@ markup:
     renderer:
       unsafe: true
 
+  # Table of contents on blog posts: h2 and h3 only
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false
+
   # Syntax highlight via CSS classes (assets/css/jr-chroma.css)
   highlight:
     noClasses: false

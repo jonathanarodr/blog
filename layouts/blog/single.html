@@ -30,38 +30,55 @@
   <div class="container post__cover">{{ partial "jr/cover.html" . }}</div>
   {{- end }}
 
-  <div class="container container--narrow">
-    <div class="prose">
-      {{ .Content }}
+  {{- $toc := and (ne .Params.toc false) (ge (len .Fragments.HeadingsMap) 2) }}
+  <div class="post__layout{{ if $toc }} has-toc{{ end }}">
+    <div class="post__body">
+      {{- if $toc }}
+      <details class="toc toc--inline">
+        <summary>Neste post</summary>
+        {{ .TableOfContents }}
+      </details>
+      {{- end }}
+
+      <div class="prose">
+        {{ .Content }}
+      </div>
+
+      <footer class="post__footer">
+        <div class="share">
+          <span class="share__label">Compartilhar</span>
+          <a class="share__button" href="https://x.com/intent/post?text={{ .Title | urlquery }}&url={{ $url | urlquery }}" target="_blank" rel="noopener" aria-label="Compartilhar no X">{{ partial "jr/icon.html" "x" }}</a>
+          <a class="share__button" href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url | urlquery }}" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn">{{ partial "jr/icon.html" "linkedin" }}</a>
+          <button class="share__button" type="button" data-copy-link="{{ $url }}" aria-label="Copiar link">
+            {{- partial "jr/icon.html" "link" }}{{ partial "jr/icon.html" "check" -}}
+          </button>
+        </div>
+
+        {{- with site.Params.author }}
+        <div class="author-card">
+          {{- with .image }}<img src="{{ . | relURL }}" alt="" width="48" height="48" />{{ end }}
+          <div>
+            <p class="author-card__name">{{ .name }}</p>
+            {{- with .bio }}<p class="author-card__bio">{{ . }}</p>{{ end }}
+          </div>
+          <div class="author-card__links">
+            {{- range $entry := site.Menus.main }}
+              {{- with $entry.Params.icon }}
+                <a class="share__button" href="{{ $entry.URL }}" target="_blank" rel="noopener" aria-label="{{ $entry.Name }}">{{ partial "jr/icon.html" . }}</a>
+              {{- end }}
+            {{- end }}
+          </div>
+        </div>
+        {{- end }}
+      </footer>
     </div>
 
-    <footer class="post__footer">
-      <div class="share">
-        <span class="share__label">Compartilhar</span>
-        <a class="share__button" href="https://x.com/intent/post?text={{ .Title | urlquery }}&url={{ $url | urlquery }}" target="_blank" rel="noopener" aria-label="Compartilhar no X">{{ partial "jr/icon.html" "x" }}</a>
-        <a class="share__button" href="https://www.linkedin.com/sharing/share-offsite/?url={{ $url | urlquery }}" target="_blank" rel="noopener" aria-label="Compartilhar no LinkedIn">{{ partial "jr/icon.html" "linkedin" }}</a>
-        <button class="share__button" type="button" data-copy-link="{{ $url }}" aria-label="Copiar link">
-          {{- partial "jr/icon.html" "link" }}{{ partial "jr/icon.html" "check" -}}
-        </button>
-      </div>
-
-      {{- with site.Params.author }}
-      <div class="author-card">
-        {{- with .image }}<img src="{{ . | relURL }}" alt="" width="48" height="48" />{{ end }}
-        <div>
-          <p class="author-card__name">{{ .name }}</p>
-          {{- with .bio }}<p class="author-card__bio">{{ . }}</p>{{ end }}
-        </div>
-        <div class="author-card__links">
-          {{- range $entry := site.Menus.main }}
-            {{- with $entry.Params.icon }}
-              <a class="share__button" href="{{ $entry.URL }}" target="_blank" rel="noopener" aria-label="{{ $entry.Name }}">{{ partial "jr/icon.html" . }}</a>
-            {{- end }}
-          {{- end }}
-        </div>
-      </div>
-      {{- end }}
-    </footer>
+    {{- if $toc }}
+    <aside class="toc toc--sidebar" aria-label="Sumário">
+      <p class="toc__title">Neste post</p>
+      {{ .TableOfContents }}
+    </aside>
+    {{- end }}
   </div>
 
   {{- $related := where (.Site.RegularPages.Related .) "Section" "blog" | first 3 }}
