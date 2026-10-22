@@ -6,6 +6,8 @@ title: About me
 
 <p class="name-role">Android Software Engineer</p>
 
+<p class="name-contact"><a href="mailto:contato@jonathanarodr.com">contato@jonathanarodr.com</a></p>
+
 Software Engineer with over a decade of experience, having started my career in 2012 working across a broad range of technologies, including backend development, relational and non-relational data modeling, RESTful API design, and frontend solutions for web and mobile platforms. Throughout my career, I have contributed to projects in diverse industries such as fintech, health tech, and food tech, gaining strong exposure to complex, scalable systems.
 
 In recent years, I have specialized in Android mobile development and currently work as a Mobile Software Engineer, focusing on building high-quality, scalable, and maintainable mobile applications.
