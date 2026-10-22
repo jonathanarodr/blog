@@ -1,0 +1,113 @@
+/* List pages (blog, showcase) and section headings */
+
+/* Hub ------------------------------------------------------------------- */
+
+.hub {
+  padding-top: clamp(40px, 8vw, 88px);
+}
+
+.hub__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.hub__header .display {
+  font-size: clamp(56px, 10vw, 104px);
+}
+
+.hub__lead {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+
+.hub__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hub__actions .search {
+  width: 240px;
+}
+
+@media (max-width: 560px) {
+  .hub__actions,
+  .hub__actions .search {
+    width: 100%;
+  }
+  .hub__actions .search {
+    flex: 1;
+  }
+}
+
+.hub__featured {
+  display: grid;
+  /* auto-fill keeps a lone featured post at half width instead of stretching */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+  gap: clamp(24px, 3vw, 40px);
+  margin-bottom: 80px;
+}
+
+.hub__section-title {
+  font: 600 20px var(--font-sans);
+  letter-spacing: -0.01em;
+  margin: 0 0 24px;
+}
+
+.hub__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 48px clamp(20px, 2.5vw, 32px);
+}
+
+.hub__empty {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 64px 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-heading .hub__section-title {
+  margin: 0;
+}
+
+.section-heading__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 34px;
+  padding: 0 8px 0 12px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+.section-heading__link .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.section-heading__link:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+}
+
+.hub__intro {
+  max-width: var(--max-narrow);
+  margin-bottom: 40px;
+}

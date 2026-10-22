@@ -1,0 +1,40 @@
+/* Sticky cursor chip, like design.google */
+
+/* Sticky cursor chip on header items, like design.google ----------------- */
+
+.cursor-chip {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-radius: 999px;
+  background: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition:
+    top 0.2s cubic-bezier(0, 0.1, 0.1, 1),
+    left 0.25s cubic-bezier(0, 0.1, 0.1, 1),
+    width 0.2s var(--ease),
+    height 0.2s var(--ease),
+    opacity 0.2s ease-out;
+}
+
+.cursor-chip.is-active {
+  opacity: 1;
+}
+
+.has-cursor-chip :is(.site-header__icon, .site-header__link, .section-heading__link) {
+  transition: color 0.2s var(--ease), background-color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.35s var(--ease);
+}
+
+.has-cursor-chip .post__tags .pill:hover {
+  border-color: var(--border-strong);
+}
+
+.has-cursor-chip :is(.site-header__icon, .site-header__link, .section-heading__link):hover {
+  background: none;
+}

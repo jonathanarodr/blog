@@ -1,0 +1,15 @@
+/* Display font for titles (Momo Trust Display ships a single weight) */
+
+/* Titles use Momo Trust Display, which ships a single weight: never fake bold */
+.display,
+.cover__title,
+.site-header__brand,
+.hub__section-title,
+.post-card__title,
+.prose :is(h2, h3, h4),
+.author-card__name,
+.link-card__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis-weight: none;
+}

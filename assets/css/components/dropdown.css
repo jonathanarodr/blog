@@ -1,0 +1,91 @@
+/* Dropdown menus (language, page share), inspired by news.airbnb.com */
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown__list {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 30;
+  /* Sized by its content, capped so long labels wrap instead of overflowing */
+  width: max-content;
+  max-width: min(320px, calc(100vw - 32px));
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.97);
+  transform-origin: top right;
+  transition: opacity 0.2s var(--ease), transform 0.25s var(--ease), visibility 0s linear 0.25s;
+}
+
+.dropdown.is-open .dropdown__list {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.2s var(--ease), transform 0.25s var(--ease), visibility 0s;
+}
+
+.dropdown__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.dropdown__item:hover,
+.dropdown__item:focus-visible {
+  background: var(--surface-hover);
+  color: var(--text);
+  outline: none;
+}
+
+.dropdown__item.is-current {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Action menus: icon + label, section labels and separators */
+
+/* Low specificity so items keep the shared .dropdown__item hover/focus look */
+:where(.dropdown__list--actions) .dropdown__item {
+  justify-content: flex-start;
+  width: 100%;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown__list--actions .dropdown__item .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.dropdown__label {
+  padding: 8px 12px 4px;
+  color: var(--text-subtle);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.dropdown__separator {
+  height: 1px;
+  margin: 6px 4px;
+  background: var(--border);
+}

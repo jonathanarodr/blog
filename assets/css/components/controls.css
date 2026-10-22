@@ -1,0 +1,136 @@
+/* Buttons, search field and pills */
+
+/* Shared controls --------------------------------------------------------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: 500 14px var(--font-sans);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.button:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 8px 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-subtle);
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+.search:focus-within {
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+}
+
+.search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  color: var(--text);
+  font: 400 14px var(--font-sans);
+}
+
+.search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search kbd {
+  font: 500 11px var(--font-mono);
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  color: var(--text-subtle);
+}
+
+/* The "/" shortcut needs a physical keyboard; hide the hint on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .search kbd {
+    display: none;
+  }
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font: 500 13px var(--font-sans);
+  text-decoration: none;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.pill:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.pill.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.pill--small {
+  height: 28px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+/* Buttons ---------------------------------------------------------------- */
+
+.button--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.button--primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  opacity: 0.85;
+}
+
+/* Leaves the site: diagonal arrow nudges out on hover */
+.button--external .icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.25s var(--ease);
+}
+
+.button--external:hover .icon {
+  transform: translate(2px, -2px);
+}
