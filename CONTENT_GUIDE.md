@@ -41,6 +41,7 @@ title: "Título do Post"
 date: 2026-01-21
 draft: false  # true para rascunho, false para publicar
 description: "Resumo curto exibido abaixo do título"
+image: /images/blog/nome-post/capa.jpg  # opcional: thumbnail (2:1 nos cards); sem ela, a capa é gerada pelo título
 tags: ["categoria", "tecnologia", "tópico"]
 toc: false  # opcional: esconde o sumário lateral (desktop, aparece com 2+ títulos h2/h3)
 authors:

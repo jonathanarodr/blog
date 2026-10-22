@@ -7,7 +7,6 @@
 {{- else }}
   {{- $hue := mod (hash.FNV32a .Title) 360 }}
   <div class="cover cover--generated" style="--hue: {{ $hue }}; view-transition-name: {{ $vt }}" aria-hidden="true">
-    <span class="cover__badge">JR</span>
     <span class="cover__title">{{ .Title }}</span>
   </div>
 {{- end }}
