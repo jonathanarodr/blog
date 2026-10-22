@@ -3,14 +3,20 @@ title: "Mone, os desafios do meu primeiro aplicativo"
 date: 2022-03-04T17:53:12Z
 draft: false
 description: "Como o Mone saiu de um projeto de conclusão de curso, passou por desistências e chegou à Google Play."
-tags: ["android", "mone", "carreira"]
+tags: ["android", "showcase", "side project"]
 authors:
   - name: Jonathan Rodrigues
 ---
 
-O Mone surgiu a partir do projeto de conclusão de curso chamado capstone que construí em **2018** pelo programa **Android Nanodegree** da **Udacity**, na época tínhamos que aplicar todo conhecimento adquirido durante o programa em um projeto de tema aberto, e como estava inserido no mercado financeiro resolvi construir um app que pudesse registrar receitas e despesas de forma bem simples.
+## TL;DR
+
+> A história do Mone, meu app de finanças pessoais: como ele saiu de um projeto de conclusão de curso em 2018, passou por algumas desistências e chegou à Google Play no fim de 2021, e o que aprendi sobre quebrar grandes objetivos em pequenas conquistas.
 
 <!--more-->
+
+## Introdução
+
+O Mone surgiu a partir do projeto de conclusão de curso chamado capstone que construí em **2018** pelo programa **Android Nanodegree** da **Udacity**, na época tínhamos que aplicar todo conhecimento adquirido durante o programa em um projeto de tema aberto, e como estava inserido no mercado financeiro resolvi construir um app que pudesse registrar receitas e despesas de forma bem simples.
 
 ![Protótipos de tela do projeto capstone](images/prototipos-capstone.png "Primeiros protótipos do projeto capstone")
 
