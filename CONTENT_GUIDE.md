@@ -93,6 +93,8 @@ Resumo e call-to-action.
 
 `content/showcase/nome-projeto/` (uma pasta por projeto, como nos posts)
 
+Um arquivo `icon.*` (de preferência SVG quadrado) na pasta do projeto aparece redondo acima do título, como a foto na página Sobre. O botão "Conhecer o projeto" vem do campo `link` do front matter, então não repita o link no fim do texto.
+
 ### Criar Novo Projeto
 
 ```bash
