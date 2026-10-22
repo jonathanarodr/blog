@@ -54,7 +54,8 @@
 }
 
 .hub__section-title {
-  font: 600 20px var(--font-sans);
+  font: 400 20px var(--font-display);
+  font-synthesis-weight: none;
   letter-spacing: -0.01em;
   margin: 0 0 24px;
 }

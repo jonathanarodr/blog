@@ -172,7 +172,9 @@
 
 .author-card__name {
   margin: 0;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis-weight: none;
 }
 
 .author-card__bio {

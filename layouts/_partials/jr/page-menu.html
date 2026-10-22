@@ -12,7 +12,7 @@
 {{- $id := printf "page-menu-%s" $variant }}
 <div class="dropdown page-menu page-menu--{{ $variant }}{{ if $.hideDesktop }} page-menu--hide-desktop{{ end }}" data-dropdown>
   {{- if eq $variant "floating" }}
-  <button class="page-menu__fab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="{{ $id }}" aria-label="{{ T "pageMenu" }}" data-dropdown-toggle>
+  <button class="fab page-menu__fab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="{{ $id }}" aria-label="{{ T "pageMenu" }}" data-dropdown-toggle>
     {{- partial "jr/icon.html" "open-in-new" -}}
   </button>
   <div class="page-menu__backdrop" data-dropdown-close></div>

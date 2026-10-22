@@ -33,7 +33,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 {{- /* Component stylesheets, bundled in cascade order */}}
-{{- $components := slice "base" "motion" "header" "footer" "controls" "hub" "cards" "article" "prose" "home" "not-found" "toc" "cursor-chip" "dropdown" "back-to-top" "resume" "page-menu" "typography" "chroma" }}
+{{- $components := slice "base" "motion" "header" "footer" "controls" "hub" "cards" "article" "prose" "home" "not-found" "toc" "cursor-chip" "dropdown" "fab" "back-to-top" "resume" "page-menu" "chroma" }}
 {{- $styles := slice }}
 {{- range $components }}{{ $styles = $styles | append (resources.Get (printf "css/components/%s.css" .)) }}{{ end }}
 {{- $css := $styles | resources.Concat "css/jr.bundle.css" }}

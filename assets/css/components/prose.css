@@ -34,7 +34,9 @@
 .prose h3,
 .prose h4 {
   position: relative;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis-weight: none;
   letter-spacing: -0.015em;
   line-height: 1.3;
 }
@@ -251,7 +253,9 @@
 }
 
 .link-card__title {
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis-weight: none;
   color: var(--text);
 }
 

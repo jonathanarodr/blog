@@ -44,6 +44,8 @@
   position: relative;
   z-index: 1;
   font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis-weight: none;
   font-size: clamp(26px, 4vw, 44px);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -87,7 +89,8 @@
 }
 
 .post-card__title {
-  font: 500 19px/1.35 var(--font-sans);
+  font: 400 19px/1.35 var(--font-display);
+  font-synthesis-weight: none;
   letter-spacing: -0.015em;
   margin: 18px 0 10px;
   text-wrap: balance;
