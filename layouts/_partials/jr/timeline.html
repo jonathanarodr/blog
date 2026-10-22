@@ -1,8 +1,11 @@
-{{- /* Résumé timeline, inspired by yudiganeko.com. Context: list of
-  - company, url (optional)
-    roles: list (most recent first) of title, start (YYYY-MM), end (YYYY-MM, empty = current), summary, highlights, skills
+{{- /* Résumé timeline, inspired by yudiganeko.com. Context: dict
+  "items": list of
+    - company, url (optional), logo (optional, e.g. /images/brands/acme.svg)
+      roles: list (most recent first) of title, start (YYYY-MM), end (YYYY-MM, empty = current), summary, highlights, skills
+  "icon": icon name shown when an item has no logo
 */ -}}
-{{- with . }}
+{{- $icon := .icon | default "building" }}
+{{- with .items }}
 <ol class="timeline">
   {{- range . }}
     {{- $roles := .roles }}
@@ -10,6 +13,9 @@
     {{- $oldest := index $roles (sub (len $roles) 1) }}
     <li class="timeline__item{{ if not $newest.end }} is-current{{ end }}">
       <div class="timeline__company">
+        <span class="timeline__logo{{ if not .logo }} timeline__logo--default{{ end }}" aria-hidden="true">
+          {{- with .logo }}<img src="{{ . | relURL }}" alt="" width="40" height="40" loading="lazy" />{{ else }}{{ partial "jr/icon.html" $icon }}{{ end -}}
+        </span>
         <h3 class="timeline__name">
           {{- with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}{{ .company }}{{ with .url }}</a>{{ end -}}
         </h3>

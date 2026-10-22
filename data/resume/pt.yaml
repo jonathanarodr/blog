@@ -1,9 +1,11 @@
 # Dados de currículo da página Sobre (português). Renderizados pelos shortcodes
 # experience, education, skills, languages e courses.
-# Datas no formato AAAA-MM; `end` vazio significa atual.
+# Datas no formato AAAA-MM; `end` vazio significa atual. `logo` é opcional
+# (arquivos em static/images/brands/); sem ele aparece um ícone padrão.
 
 experience:
   - company: PicPay
+    logo: /images/brands/picpay.svg
     url: https://picpay.com
     roles:
       - title: Staff Software Engineer
@@ -15,6 +17,7 @@ experience:
         skills: [Kotlin, Android, Jetpack Compose, Design System, Dynatrace, Modularização]
 
   - company: Itaú Unibanco
+    logo: /images/brands/itau.svg
     url: https://www.itau.com.br
     roles:
       - title: Senior Software Engineer
@@ -30,6 +33,7 @@ experience:
         skills: [Kotlin, Android, GitHub Actions, Gradle, Detekt, Ktlint, Danger, Splunk]
 
   - company: iFood
+    logo: /images/brands/ifood.svg
     url: https://www.ifood.com.br
     roles:
       - title: Senior Software Engineer
@@ -43,6 +47,7 @@ experience:
         skills: [Kotlin, Android, Jetpack Compose, Acessibilidade, Modularização]
 
   - company: Itaú Unibanco
+    logo: /images/brands/itau.svg
     url: https://www.itau.com.br
     roles:
       - title: Senior Software Engineer

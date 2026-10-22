@@ -229,12 +229,13 @@ Os dados do currículo ficam em `data/resume/pt.yaml` e `data/resume/en.yaml` (u
 | `{{< languages >}}` | Idiomas e nível |
 | `{{< courses >}}` | Cursos e certificações |
 
-Liste empresas e cargos do mais recente para o mais antigo; datas em `AAAA-MM` e `end` vazio marca o cargo atual:
+Logos das empresas ficam em `static/images/brands/` (SVG quadrado, de preferência). Liste empresas e cargos do mais recente para o mais antigo; datas em `AAAA-MM` e `end` vazio marca o cargo atual:
 
 ```yaml
 experience:
   - company: Empresa
     url: https://empresa.com   # opcional
+    logo: /images/brands/empresa.svg   # opcional; sem logo aparece um ícone padrão
     roles:
       - title: Cargo atual
         start: 2024-12
