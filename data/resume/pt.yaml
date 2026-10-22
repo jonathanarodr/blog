@@ -106,31 +106,40 @@ languages:
 courses:
   - name: IA na engenharia de software
     issuer: Alura
+    url: https://www.alura.com.br/
     date: 2026-08
   - name: Formação em Liderança
     issuer: Escola Conquer
+    url: https://escolaconquer.com.br/
     date: 2023-09
   - name: Data Structures & Algorithms in Kotlin
     issuer: Kodeco
+    url: https://www.kodeco.com/
     date: 2022-08
   - name: Acessibilidade Digital
     issuer: AccessBoost
     date: 2022-04
   - name: Android Developer Nanodegree
     issuer: Udacity
+    url: https://www.udacity.com/
     date: 2018-05
   - name: Técnicas de desenvolvimento Android avançado
     issuer: Caelum
+    url: https://www.alura.com.br/
     date: 2017-09
   - name: "JAX-RS e Jersey: domine a criação de webservices REST"
     issuer: Alura
+    url: https://www.alura.com.br/
     date: 2016-10
   - name: "Java e JPA: persista seus objetos com a JPA2 e Hibernate"
     issuer: Alura
+    url: https://www.alura.com.br/
     date: 2016-07
   - name: "REST: construa APIs inteligentes"
     issuer: Alura
+    url: https://www.alura.com.br/
     date: 2016-07
   - name: SQL Server 2008 / 2014
     issuer: Impacta
+    url: https://www.impacta.com.br/
     date: 2015-09

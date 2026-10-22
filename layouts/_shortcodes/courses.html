@@ -1,9 +1,9 @@
 {{- /* Usage: {{< courses >}} — courses and certifications from data/resume/<lang>.yaml */ -}}
 {{- with (partial "jr/resume.html" .).courses }}
 <dl class="resume-list">
-  {{- range . }}
+  {{- range $course := . }}
   <div class="resume-list__row">
-    <dt>{{ .name }}{{ with .issuer }}<span class="resume-list__meta">{{ . }}</span>{{ end }}</dt>
+    <dt>{{ .name }}{{ with .issuer }}<span class="resume-list__meta">{{ with $course.url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}{{ . }}{{ with $course.url }}</a>{{ end }}</span>{{ end }}</dt>
     <dd>{{ partial "jr/month.html" .date }}</dd>
   </div>
   {{- end }}

@@ -1831,6 +1831,10 @@ img {
   font-weight: 400;
 }
 
+.prose .resume-list__meta a {
+  color: inherit;
+}
+
 .resume-list dd {
   flex-shrink: 0;
   margin: 0;
