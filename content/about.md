@@ -4,6 +4,8 @@ title: Sobre mim
 
 ## Jonathan de Araujo Rodrigues
 
+<p class="name-role">Android Software Engineer</p>
+
 Engenheiro de software com mais de uma década de experiência. Comecei minha carreira em 2012 trabalhando com uma ampla variedade de tecnologias, incluindo desenvolvimento backend, modelagem de dados relacionais e não relacionais, design de APIs RESTful e soluções frontend para plataformas web e mobile. Ao longo da carreira, contribuí para projetos em diversos setores, como fintech, health tech e food tech, ganhando ampla experiência com sistemas complexos e escaláveis.
 
 Nos últimos anos, me especializei em desenvolvimento mobile Android e atualmente atuo como Mobile Software Engineer, com foco em construir aplicativos mobile de alta qualidade, escaláveis e fáceis de manter.
