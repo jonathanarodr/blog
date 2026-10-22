@@ -55,7 +55,7 @@ url: "https://linkedin.com/in/SEU-PERFIL"
 
 Também atualize os links em:
 - `content/about.md` (linhas 21-22)
-- `content/blog/my-first-post.md` (linha 30)
+- `content/blog/my-first-post/index.md`
 - `README.md` (linha 24)
 
 ## 5. Criar Repositório no GitHub
@@ -106,7 +106,7 @@ blog/
 │   ├── blog/
 │   │   ├── _index.md
 │   │   ├── getting-started-with-hugo.md
-│   │   └── my-first-post.md
+│   │   └── my-first-post/     # page bundle: index.md, index.en.md, images/
 │   └── showcase/
 │       ├── _index.md
 │       └── personal-blog.md
@@ -137,7 +137,7 @@ blog/
 hugo server -D
 
 # Criar novo post
-hugo new content/blog/nome-do-post.md
+hugo new content/blog/nome-do-post/index.md
 
 # Build de produção
 hugo --gc --minify

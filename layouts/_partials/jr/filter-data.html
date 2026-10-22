@@ -1,6 +1,7 @@
 {{- /* Data read by the blog hub filters (assets/js/components/hub-filter.js) for one post:
-  urlized tags and lowercase search text. Context: page. */ -}}
-{{- $tags := apply (.Params.tags | default slice) "urlize" "." }}
+  tag keys (jr/tag-key.html) and lowercase search text. Context: page. */ -}}
+{{- $tags := slice }}
+{{- range .Params.tags }}{{ $tags = $tags | append (partial "jr/tag-key.html" .) }}{{ end }}
 {{- return dict
   "tags" (delimit $tags " ")
   "search" (lower (printf "%s %s" .Title (.Description | default .Summary | plainify)))

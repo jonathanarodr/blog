@@ -12,6 +12,12 @@
   margin-bottom: 28px;
 }
 
+/* A project's icon in the same round frame; only the author photo morphs between pages */
+.avatar--icon {
+  view-transition-name: none;
+  object-fit: cover;
+}
+
 .post__header .avatar {
   margin: 0 auto 24px;
 }

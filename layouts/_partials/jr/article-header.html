@@ -1,9 +1,10 @@
 {{- /* Header of an article page, the same for posts, projects and pages: back link, title,
-  description and per-variant details, then the cover when the page has an `image`.
+  description and per-variant details, then the cover when the page has one (`cover.*` in its bundle or an `image`).
   Context: dict
     "page"
     "variant"  "post" (date, byline, tags) | "project" (tags, external link) | "page" (title only)
-  Pages with `avatar: true` in front matter show the author's photo above the title.
+  Pages with `avatar: true` in front matter show the author's photo above the title; projects with an
+  `icon.*` in their bundle show it there instead, in the same round frame.
 */ -}}
 {{- $p := .page }}
 {{- $variant := .variant | default "page" }}
@@ -19,6 +20,9 @@
 
   <header class="post__header enter">
     {{- if $p.Params.avatar }}{{ partial "jr/avatar.html" (dict "size" 96) }}{{ end }}
+    {{- with $p.Resources.GetMatch "icon.*" }}
+    <img class="avatar avatar--icon" src="{{ .RelPermalink }}" alt="" width="96" height="96" style="--avatar-size: 96px" />
+    {{- end }}
     {{- if eq $variant "post" }}
     <time class="post__date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format ":date_long" }}</time>
     {{- end }}
@@ -43,6 +47,6 @@
   </header>
 </div>
 
-{{- if $p.Params.image }}
+{{- if or ($p.Resources.GetMatch "cover.*") $p.Params.image }}
 <div class="container post__cover enter" style="--enter-step: 1">{{ partial "jr/cover.html" $p }}</div>
 {{- end }}

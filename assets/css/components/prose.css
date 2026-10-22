@@ -63,7 +63,7 @@
 }
 
 /* Underline draws left to right on hover and retracts on leave, like developer.android.com/blog */
-.prose a:not(.link-card, .heading-anchor) {
+.prose a:not(.link-card, .heading-anchor, .figure__link) {
   color: var(--text);
   text-decoration: none;
   background-image:
@@ -78,7 +78,7 @@
   transition: background-size 0.3s cubic-bezier(0.34, 0.88, 0.34, 1);
 }
 
-.prose a:not(.link-card, .heading-anchor):is(:hover, :focus-visible) {
+.prose a:not(.link-card, .heading-anchor, .figure__link):is(:hover, :focus-visible) {
   background-size: 100% 1px, 100% 1px;
 }
 

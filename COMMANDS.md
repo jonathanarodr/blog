@@ -23,10 +23,10 @@ hugo --gc --minify --verbose
 
 ```bash
 # Novo post de blog
-hugo new content/blog/meu-post.md
+hugo new content/blog/meu-post/index.md
 
 # Novo projeto
-hugo new content/showcase/meu-projeto.md
+hugo new content/showcase/meu-projeto/index.md
 
 # Nova página
 hugo new content/pagina.md
@@ -86,7 +86,7 @@ git status
 
 # Adicionar arquivos
 git add .
-git add content/blog/novo-post.md
+git add content/blog/novo-post/
 
 # Commit
 git commit -m "Add: novo post sobre tecnologia"

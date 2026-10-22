@@ -1,0 +1,3 @@
+{{- /* Key that identifies a tag in the blog filter and its ?tag= link: urlized but readable
+  ("Reflexões" → "reflexões", not "reflex%C3%B5es", which the URL would encode a second time). Context: tag. */ -}}
+{{- return (urls.PathUnescape (urlize .)) -}}

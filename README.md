@@ -39,7 +39,7 @@ Acesse http://localhost:1313 para visualizar o site localmente.
 
 ```bash
 # Criar novo post
-hugo new content/blog/meu-novo-post.md
+hugo new content/blog/meu-novo-post/index.md
 ```
 
 Estrutura do front matter:
@@ -60,7 +60,7 @@ authors:
 
 ```bash
 # Criar novo projeto
-hugo new content/showcase/meu-projeto.md
+hugo new content/showcase/meu-projeto/index.md
 ```
 
 Estrutura do front matter:

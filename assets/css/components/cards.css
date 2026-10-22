@@ -30,14 +30,15 @@
     hsl(var(--hue) 12% var(--cover-l));
 }
 
-.cover--generated::after {
-  content: "";
+/* Default gradient image: fills the cover under the title; the title stays light on it in both themes */
+.cover__image {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(color-mix(in srgb, var(--text) 14%, transparent) 1px, transparent 1px);
-  background-size: 18px 18px;
-  mask-image: linear-gradient(to bottom, #000, transparent 70%);
-  pointer-events: none;
+}
+
+.cover--generated:has(.cover__image) .cover__title {
+  color: #fff;
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.25);
 }
 
 .cover__title {
@@ -93,7 +94,8 @@
   font-synthesis-weight: none;
   letter-spacing: -0.015em;
   margin: 18px 0 10px;
-  text-wrap: balance;
+  /* Fill each line before wrapping; pretty only avoids a lone last word */
+  text-wrap: pretty;
   width: fit-content;
 }
 

@@ -4,7 +4,7 @@
 <ul class="post__tags" aria-label="{{ $.label }}">
   {{- range . }}
     {{- if $href }}
-      <li><a class="pill pill--small" href="{{ $href }}?tag={{ urlize . }}">{{ . }}</a></li>
+      <li><a class="pill pill--small" href="{{ $href }}?tag={{ partial "jr/tag-key.html" . }}">{{ . }}</a></li>
     {{- else }}
       <li><span class="pill pill--small">{{ . }}</span></li>
     {{- end }}

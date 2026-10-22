@@ -1,12 +1,30 @@
-{{- /* Cover: front matter `image` when present, otherwise a typographic cover tinted per page. Context: page. */ -}}
+{{- /* Cover, in order: `cover.*` in the page bundle, the front matter `image` (a bundle file or a site path),
+  optionally over the front matter `coverBackground` color,
+  otherwise a typographic cover over one of the default gradients in assets/images/covers/, picked from
+  the title so each page keeps its own. Context: page. */ -}}
 {{- $vt := partial "jr/vt-name.html" (dict "page" . "part" "cover") }}
-{{- with .Params.image }}
-  <div class="cover" style="view-transition-name: {{ $vt }}">
-    <img src="{{ . | relURL }}" alt="" loading="lazy" decoding="async" />
+{{- $img := .Resources.GetMatch "cover.*" }}
+{{- $src := "" }}
+{{- with .Params.image }}{{ $img = or $img ($.Resources.Get .) }}{{ $src = . | relURL }}{{ end }}
+{{- if $img }}
+  {{- $src = $img.RelPermalink }}
+  {{- if and (eq $img.ResourceType "image") (ne $img.MediaType.SubType "svg") (gt $img.Width 1600) }}
+    {{- $src = ($img.Resize "1600x webp q80").RelPermalink }}
+  {{- end }}
+{{- end }}
+{{- with $src }}
+  {{- /* `coverBackground` fills what the image leaves empty (transparent or letterboxed covers) */}}
+  <div class="cover" style="view-transition-name: {{ $vt }}{{ with $.Params.coverBackground }}; background: {{ . | safeCSS }}{{ end }}">
+    <img src="{{ . }}" alt="" loading="lazy" decoding="async" />
   </div>
 {{- else }}
-  {{- $hue := mod (hash.FNV32a .Title) 360 }}
-  <div class="cover cover--generated" style="--hue: {{ $hue }}; view-transition-name: {{ $vt }}" aria-hidden="true">
+  {{- $seed := hash.FNV32a .Title }}
+  {{- $covers := resources.Match "images/covers/*" }}
+  <div class="cover cover--generated" style="--hue: {{ mod $seed 360 }}; view-transition-name: {{ $vt }}" aria-hidden="true">
+    {{- with $covers }}
+    {{- $img := (index . (mod $seed (len .))).Fill "1280x720 webp q80" }}
+    <img class="cover__image" src="{{ $img.RelPermalink }}" alt="" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" decoding="async" />
+    {{- end }}
     <span class="cover__title">{{ .Title }}</span>
   </div>
 {{- end }}
