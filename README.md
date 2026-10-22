@@ -106,7 +106,7 @@ Deploy automático para GitHub Pages ocorre a cada push para a branch `main` via
 
 O tema é próprio e organizado por componente:
 
-- **Templates** — `layouts/_partials/jr/`: `card` (posts e projetos), `hub-header` (listas), `article-header` e `article-body` (posts, projetos e páginas), `toc`, `page-menu`, `post-footer` (`share-links`, `author-card`), `timeline` (currículo) e helpers como `vt-name` (nomes de view transition) e `icon`.
+- **Templates** — `layouts/_partials/jr/`: `card` (posts e projetos), `hub-header` (listas), `article-header` e `article-body` (posts, projetos e páginas), `toc`, `page-menu`, `share-links` e `author-card` (rodapé do post), `timeline` (currículo) e helpers como `vt-name` (nomes de view transition) e `icon`.
 - **Estilos** — `assets/css/components/*.css`, um arquivo por componente, concatenados em ordem em `layouts/_partials/jr/head.html`.
 - **Scripts** — `assets/js/main.js` importa um módulo por componente (`assets/js/components/`) sobre utilitários compartilhados (`assets/js/lib/`: scroll único, view transitions, clipboard).
 - **Animações** — toda página entra com a classe `.enter` (escalonada por `--enter-step`); ao navegar com view transition, cards e títulos se transformam no destino e a animação de entrada é pulada.
