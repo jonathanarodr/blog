@@ -336,6 +336,13 @@ img {
   color: var(--text-subtle);
 }
 
+/* The "/" shortcut needs a physical keyboard; hide the hint on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .search kbd {
+    display: none;
+  }
+}
+
 .pills {
   display: flex;
   flex-wrap: wrap;
@@ -542,18 +549,25 @@ img {
   mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s var(--ease);
-  animation: sweep 3s linear infinite paused;
 }
 
+/* Two laps per hover, then fade out; restarts on the next hover */
 .post-card:is(:hover, :focus-within) .cover::before {
-  opacity: 1;
-  animation-play-state: running;
+  animation: sweep 5s linear both;
 }
 
 @keyframes sweep {
-  to {
-    --sweep: 360deg;
+  0% {
+    --sweep: 0deg;
+    opacity: 0;
+  }
+  8%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    --sweep: 720deg;
+    opacity: 0;
   }
 }
 
