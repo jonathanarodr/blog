@@ -1,7 +1,10 @@
 {{ define "main" }}
 {{- $posts := .RegularPagesRecursive.ByDate.Reverse }}
+{{- /* Newest 2 featured, the next few in a grid, everything older in the yearly archive */}}
+{{- $recentCount := site.Params.blog.recentPosts | default 6 }}
 {{- $featured := first 2 $posts }}
-{{- $rest := after 2 $posts }}
+{{- $recent := first $recentCount (after 2 $posts) }}
+{{- $archive := after (add 2 $recentCount) $posts }}
 {{- $tags := slice }}
 {{- range $posts }}{{ range .Params.tags }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
 {{- $tags = $tags | uniq | sort }}
@@ -24,7 +27,7 @@
     {{- end }}
   </section>
 
-  {{- with $rest }}
+  {{- with $recent }}
   <section class="enter" style="--enter-step: 2" data-group>
     <h2 class="hub__section-title">{{ T "recentPosts" }}</h2>
     <div class="hub__grid">
@@ -34,6 +37,8 @@
     </div>
   </section>
   {{- end }}
+
+  {{- partial "jr/archive.html" (dict "pages" $archive) }}
 
   <p class="hub__empty" data-empty hidden>{{ T "noPosts" }}</p>
 </div>

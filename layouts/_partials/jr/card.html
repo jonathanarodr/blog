@@ -3,12 +3,12 @@
   Context: dict "page" "featured" (bool). */ -}}
 {{- $p := .page }}
 {{- $isPost := eq $p.Section "blog" }}
-{{- $tags := apply ($p.Params.tags | default slice) "urlize" "." }}
 <article class="post-card{{ if .featured }} post-card--featured{{ end }}"
   {{- if $isPost }}
+  {{- $filter := partial "jr/filter-data.html" $p }}
   data-post
-  data-tags="{{ delimit $tags " " }}"
-  data-search="{{ lower (printf "%s %s" $p.Title ($p.Description | default $p.Summary | plainify)) }}"
+  data-tags="{{ $filter.tags }}"
+  data-search="{{ $filter.search }}"
   {{- end }}>
   <a class="post-card__link" href="{{ $p.RelPermalink }}">
     {{- partial "jr/cover.html" $p }}

@@ -27,6 +27,10 @@ searchPosts: "Search posts"
 filterByTag: "Filter by tag"
 all: "All"
 recentPosts: "Recent posts"
+archive: "Archive"
+postsCount:
+  one: "{{ .Count }} post"
+  other: "{{ .Count }} posts"
 noPosts: "No posts found."
 
 # Post
