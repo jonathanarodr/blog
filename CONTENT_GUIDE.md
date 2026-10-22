@@ -260,7 +260,7 @@ content/blog/nome-do-post/
 Regras:
 
 1. **Uma pasta por post ou projeto**, com o slug como nome; ele vira a URL (`/blog/nome-do-post/`).
-2. **Capa**: um arquivo `cover.*` (jpg, png, webp) na raiz da pasta. Aparece no card (2:1) e no topo do post (16:9), e é usada no compartilhamento (Open Graph). Sem ela, o card ganha uma capa padrão: um dos gradientes de `assets/images/covers/`, escolhido pelo título, com o título por cima.
+2. **Capa**: um arquivo `cover.*` (jpg, png, webp) na raiz da pasta. Aparece no card (2:1) e no topo do post (16:9), e é usada no compartilhamento (Open Graph). Se a imagem tiver fundo transparente ou não preencher a área, defina a cor de fundo no front matter com `coverBackground: "#fff"`. Sem `cover.*`, o card ganha uma capa padrão: um dos gradientes de `assets/images/covers/`, escolhido pelo título, com o título por cima.
 3. **Demais imagens em `images/`**, referenciadas por caminho relativo.
 4. **Nomes de arquivo** em minúsculas, com hífen e sem acento (`tela-inicial.png`).
 5. **Fora da pasta** só o que é compartilhado: capas padrão em `assets/images/covers/` e logos SVG em `static/images/brands/`.
@@ -286,6 +286,14 @@ Fotos declaradas juntas formam um mosaico: a primeira grande à esquerda e até 
 ```
 
 Uma imagem por linha. Com 2 a 4 fotos o mosaico se adapta.
+
+### Vídeo do YouTube
+
+Vídeo 16:9 com os mesmos cantos das imagens, via `youtube-nocookie.com`. Na versão em Markdown vira um link:
+
+```markdown
+{{</* youtube id="XmYM505rHkQ" title="Título do vídeo" caption="Legenda opcional" */>}}
+```
 
 ## Checklist de Publicação
 

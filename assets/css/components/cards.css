@@ -94,7 +94,8 @@
   font-synthesis-weight: none;
   letter-spacing: -0.015em;
   margin: 18px 0 10px;
-  text-wrap: balance;
+  /* Fill each line before wrapping; pretty only avoids a lone last word */
+  text-wrap: pretty;
   width: fit-content;
 }
 

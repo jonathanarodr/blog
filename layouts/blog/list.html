@@ -20,7 +20,7 @@
   <div class="pills enter" style="--enter-step: 1" role="toolbar" aria-label="{{ T "filterByTag" }}">
     <button class="pill is-active" type="button" data-tag="">{{ T "all" }}</button>
     {{- range $tags }}
-      <button class="pill" type="button" data-tag="{{ urlize . }}">{{ . }}</button>
+      <button class="pill" type="button" data-tag="{{ partial "jr/tag-key.html" . }}">{{ . }}</button>
     {{- end }}
   </div>
   {{- end }}

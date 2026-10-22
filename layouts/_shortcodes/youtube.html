@@ -1,0 +1,12 @@
+{{- /* Usage: {{< youtube id="XmYM505rHkQ" title="Nome do vídeo" caption="Legenda opcional" >}}
+  Overrides Hugo's built-in: a 16:9 privacy-enhanced embed in a figure, styled like post images. */ -}}
+{{- $id := .Get "id" | default (.Get 0) }}
+{{- $title := .Get "title" | default "YouTube video" }}
+<figure class="figure video">
+  <div class="video__frame">
+    <iframe src="https://www.youtube-nocookie.com/embed/{{ $id }}" title="{{ $title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>
