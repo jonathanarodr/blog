@@ -143,3 +143,11 @@ courses:
     issuer: Impacta
     url: https://www.impacta.com.br/
     date: 2015-09
+
+contact:
+  - label: LinkedIn
+    value: linkedin.com/in/jonathanarodr
+    url: https://www.linkedin.com/in/jonathanarodr/
+  - label: Email
+    value: contato@jonathanarodr.com
+    url: mailto:contato@jonathanarodr.com

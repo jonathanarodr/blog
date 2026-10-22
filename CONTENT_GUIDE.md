@@ -228,6 +228,7 @@ Os dados do currículo ficam em `data/resume/pt.yaml` e `data/resume/en.yaml` (u
 | `{{< skills >}}` | Tags de skills gerais |
 | `{{< languages >}}` | Idiomas e nível |
 | `{{< courses >}}` | Cursos e certificações |
+| `{{< contact >}}` | Lista de contatos (LinkedIn, e-mail) |
 
 Logos das empresas ficam em `static/images/brands/` (SVG quadrado, de preferência). Liste empresas e cargos do mais recente para o mais antigo; datas em `AAAA-MM` e `end` vazio marca o cargo atual:
 
