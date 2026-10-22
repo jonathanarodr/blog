@@ -16,7 +16,7 @@ brew install hugo
 
 ```bash
 hugo version
-# Deve mostrar: hugo v0.147.9 ou superior
+# Deve mostrar: hugo v0.155.0 ou superior
 ```
 
 ## 2. Dependências

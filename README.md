@@ -14,7 +14,7 @@ Blog pessoal em português construído com Hugo e um tema próprio.
 
 ### Pré-requisitos
 
-- Hugo (versão extended) 0.147.9+
+- Hugo (versão extended) 0.155.0+
 - Git
 
 ### Desenvolvimento Local
