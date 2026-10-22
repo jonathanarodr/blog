@@ -247,9 +247,9 @@ document.querySelectorAll("[data-lang-menu]").forEach((menu) => {
   });
 });
 
-// Back to top: appears once the post header scrolls out of view.
+// Back to top: appears once the page header scrolls out of view.
 const backToTop = document.querySelector("[data-back-to-top]");
-const postHeader = document.querySelector(".post__header");
+const postHeader = document.querySelector(".post__header, .page__header");
 if (backToTop && postHeader) {
   new IntersectionObserver(([entry]) => {
     backToTop.classList.toggle("is-visible", !entry.isIntersecting && entry.boundingClientRect.top < 0);

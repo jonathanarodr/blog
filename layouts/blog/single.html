@@ -32,7 +32,7 @@
   <div class="container post__cover">{{ partial "jr/cover.html" . }}</div>
   {{- end }}
 
-  {{- $toc := and (ne .Params.toc false) (ge (len .Fragments.HeadingsMap) 2) }}
+  {{- $toc := partial "jr/show-toc.html" . }}
   <div class="post__layout{{ if $toc }} has-toc{{ end }}">
     <div class="post__body">
       <div class="prose">
@@ -68,18 +68,10 @@
       </footer>
     </div>
 
-    {{- if $toc }}
-    <aside class="toc toc--sidebar" aria-label="{{ T "tableOfContents" }}">
-      <a class="toc__post-title" href="#main">{{ .Title }}</a>
-      <p class="toc__title">{{ T "tableOfContents" }}</p>
-      {{ .TableOfContents }}
-    </aside>
-    {{- end }}
+    {{- if $toc }}{{ partial "jr/toc.html" . }}{{ end }}
   </div>
 
-  <a class="back-to-top" href="#main" aria-label="{{ T "backToTop" }}" data-back-to-top>
-    {{- partial "jr/icon.html" "arrow-up" -}}
-  </a>
+  {{- partial "jr/back-to-top.html" . }}
 
   {{- $related := where (.Site.RegularPages.Related .) "Section" "blog" | first 3 }}
   {{- with $related }}
