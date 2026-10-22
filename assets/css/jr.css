@@ -1724,11 +1724,10 @@ img {
 }
 
 .timeline__highlights li::before {
-  content: "▸";
+  content: "•";
   position: absolute;
-  left: 0;
+  left: 4px;
   color: var(--text-subtle);
-  font-size: 0.85em;
 }
 
 @supports (animation-timeline: view()) {
