@@ -1,0 +1,28 @@
+{{- /* Image as a figure: a resized thumbnail linking to the full image, opened in the lightbox.
+  Looks the source up as a page resource, then under assets/; anything else (static/, remote, SVG) is used as is.
+  Context: dict "page" "src" "alt" ("caption") ("width": thumbnail width, default 1400) ("group": lightbox group)
+  ("hidden": only reachable through the lightbox) ("more": count shown as "+N" over the tile). */ -}}
+{{- $src := .src }}
+{{- $width := .width | default 1400 }}
+{{- $img := or (.page.Resources.Get $src) (resources.Get (strings.TrimPrefix "/" $src)) }}
+{{- $thumb := dict "src" ($src | relURL) }}
+{{- $full := $src | relURL }}
+{{- if and $img (eq $img.ResourceType "image") (ne $img.MediaType.SubType "svg") }}
+  {{- $t := $img }}
+  {{- if gt $img.Width $width }}{{ $t = $img.Resize (printf "%dx webp q80" $width) }}{{ end }}
+  {{- $thumb = dict "src" $t.RelPermalink "width" $t.Width "height" $t.Height }}
+  {{- $f := $img }}
+  {{- if gt $img.Width 2400 }}{{ $f = $img.Resize "2400x webp q85" }}{{ end }}
+  {{- $full = $f.RelPermalink }}
+{{- end }}
+<figure class="figure"{{ if .hidden }} hidden{{ end }}>
+  <a class="figure__link" href="{{ $full }}" data-lightbox="{{ .group | default "" }}"{{ with .caption }} data-caption="{{ . | plainify }}"{{ end }}>
+    <img src="{{ $thumb.src }}" alt="{{ .alt }}"{{ with $thumb.width }} width="{{ . }}"{{ end }}{{ with $thumb.height }} height="{{ . }}"{{ end }} loading="lazy" decoding="async" />
+    {{- with .more }}
+    <span class="figure__more" aria-hidden="true">+{{ . }}</span>
+    {{- end }}
+  </a>
+  {{- with .caption }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

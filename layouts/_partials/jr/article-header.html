@@ -1,5 +1,5 @@
 {{- /* Header of an article page, the same for posts, projects and pages: back link, title,
-  description and per-variant details, then the cover when the page has an `image`.
+  description and per-variant details, then the cover when the page has one (`cover.*` in its bundle or an `image`).
   Context: dict
     "page"
     "variant"  "post" (date, byline, tags) | "project" (tags, external link) | "page" (title only)
@@ -43,6 +43,6 @@
   </header>
 </div>
 
-{{- if $p.Params.image }}
+{{- if or ($p.Resources.GetMatch "cover.*") $p.Params.image }}
 <div class="container post__cover enter" style="--enter-step: 1">{{ partial "jr/cover.html" $p }}</div>
 {{- end }}

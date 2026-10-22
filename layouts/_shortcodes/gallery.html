@@ -1,0 +1,24 @@
+{{- /* Usage: {{< gallery caption="Legenda opcional" >}}
+  ![Alt](/images/blog/post/a.jpg "Legenda da foto")
+  ![Alt](/images/blog/post/b.jpg)
+  {{< /gallery >}}
+  One Markdown image per line. Shows a mosaic of up to 5 tiles, the first one large; with more images
+  the last tile reads "+N". Every image opens in the lightbox, browsable with the arrows. */ -}}
+{{- $group := printf "gallery-%d" .Ordinal }}
+{{- $images := findRESubmatch `!\[([^\]]*)\]\(\s*(\S+?)(?:\s+"([^"]*)")?\s*\)` .Inner }}
+{{- $max := 5 }}
+{{- $shown := cond (gt (len $images) $max) $max (len $images) }}
+{{- $more := sub (len $images) $shown }}
+<figure class="gallery gallery--{{ $shown }}">
+  <div class="gallery__grid">
+    {{- range $i, $m := $images }}
+    {{- $p := dict "page" $.Page "src" (index $m 2) "alt" (index $m 1) "caption" (index $m 3) "group" $group "width" (cond (eq $i 0) 1200 700) }}
+    {{- if ge $i $max }}{{ $p = merge $p (dict "hidden" true) }}{{ end }}
+    {{- if and $more (eq $i (sub $max 1)) }}{{ $p = merge $p (dict "more" $more) }}{{ end }}
+    {{- partial "jr/figure.html" $p }}
+    {{- end }}
+  </div>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

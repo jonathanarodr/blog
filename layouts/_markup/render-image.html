@@ -1,0 +1,7 @@
+{{- /* Image on its own line → figure with optional caption (the Markdown title) and lightbox.
+  Usage: ![Texto alternativo](/images/blog/post/imagem.jpg "Legenda opcional"). Inline images stay plain <img>. */ -}}
+{{- if .IsBlock -}}
+  {{- partial "jr/figure.html" (dict "page" .Page "src" .Destination "alt" .PlainText "caption" .Title) -}}
+{{- else -}}
+  <img src="{{ .Destination | relURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async" />
+{{- end -}}

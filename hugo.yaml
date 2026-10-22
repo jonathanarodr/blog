@@ -86,6 +86,9 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+    # Standalone images render as <figure> (layouts/_markup/render-image.html), not inside a <p>
+    parser:
+      wrapStandAloneImageWithinParagraph: false
 
   # Table of contents on blog posts: h2 and h3 only
   tableOfContents:

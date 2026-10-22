@@ -1,0 +1,332 @@
+/* Images in posts: figure with caption, gallery grid and lightbox */
+
+/* Figure ----------------------------------------------------------------- */
+
+/* Rounder than cards: photos read as softer, framed objects. Gallery tiles keep a smaller radius inside. */
+.figure,
+.gallery {
+  --figure-radius: 28px;
+  --tile-radius: var(--radius-sm);
+}
+
+.prose .figure {
+  margin: 2em 0;
+}
+
+.figure__link {
+  display: block;
+  border-radius: var(--figure-radius);
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.prose .figure img {
+  display: block;
+  border-radius: var(--figure-radius);
+  width: 100%;
+  height: auto;
+  margin: 0;
+  transition: transform 0.5s var(--ease), filter 0.3s var(--ease);
+}
+
+.figure__link:hover img {
+  transform: scale(1.015);
+}
+
+.figure__link:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.prose figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-subtle);
+  text-align: center;
+}
+
+/* Gallery ---------------------------------------------------------------- */
+
+/* Mosaic of up to 5 tiles: the first one large on the left, the others stacked on the right,
+   the last two side by side. Tiles crop their image to fill the slot. */
+.prose .gallery {
+  margin: 2em 0;
+}
+
+/* The grid clips its tiles to the larger outer radius; between tiles the corners stay small */
+.gallery__grid {
+  display: grid;
+  gap: 8px;
+  border-radius: var(--figure-radius);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.prose .gallery .figure {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+}
+
+.gallery .figure__link,
+.prose .gallery .figure img {
+  width: 100%;
+  height: 100%;
+}
+
+.prose .gallery .figure img {
+  object-fit: cover;
+  border-radius: var(--tile-radius);
+  border: 0;
+}
+
+.gallery .figure:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / -1;
+}
+
+.gallery .figure:nth-child(2) {
+  grid-column: 2 / -1;
+  grid-row: 1;
+}
+
+.gallery .figure:nth-child(3) {
+  grid-column: 2 / -1;
+  grid-row: 2;
+}
+
+.gallery .figure:nth-child(4) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.gallery .figure:nth-child(5) {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+/* Fewer images: 4 → large + wide + two small; 3 → large + two stacked; 2 → side by side; 1 → single */
+.gallery--4 .gallery__grid {
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.gallery--4 .figure:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.gallery--4 .figure:nth-child(4) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.gallery--3 .gallery__grid {
+  aspect-ratio: 3 / 2;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.gallery--3 .figure:nth-child(n + 2) {
+  grid-column: 2;
+  grid-row: auto;
+}
+
+.gallery--2 .gallery__grid {
+  aspect-ratio: 2 / 1;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.gallery--2 .figure:nth-child(n) {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.gallery--1 .gallery__grid {
+  aspect-ratio: 16 / 9;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.gallery .figure__more {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font: 500 clamp(20px, 4vw, 28px) var(--font-sans);
+  transition: background-color 0.2s var(--ease);
+}
+
+.gallery .figure__link {
+  position: relative;
+  border-radius: var(--tile-radius);
+}
+
+/* The grid clips outlines drawn outside the tile */
+.gallery .figure__link:focus-visible {
+  outline-offset: -3px;
+}
+
+.gallery .figure__link:hover .figure__more {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Captions of single photos show only in the lightbox */
+.gallery .figure figcaption {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .gallery__grid {
+    gap: 6px;
+    aspect-ratio: 1;
+  }
+
+  .gallery--2 .gallery__grid {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* Lightbox --------------------------------------------------------------- */
+
+.lightbox {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #f5f5f7;
+}
+
+.lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox[open] {
+  display: grid;
+  place-items: center;
+  animation: lightbox-in 0.25s var(--ease);
+}
+
+.lightbox__figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 64px 72px 48px;
+}
+
+.lightbox__figure img {
+  max-width: 100%;
+  max-height: calc(100dvh - 160px);
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.lightbox__figure figcaption {
+  max-width: 640px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: rgba(245, 245, 247, 0.75);
+}
+
+.lightbox__button {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease);
+}
+
+.lightbox__button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.lightbox__close {
+  top: 16px;
+  right: 16px;
+}
+
+.lightbox__prev,
+.lightbox__next {
+  top: 50%;
+  translate: 0 -50%;
+}
+
+.lightbox__prev {
+  left: 16px;
+}
+
+.lightbox__next {
+  right: 16px;
+}
+
+.lightbox.is-single :is(.lightbox__prev, .lightbox__next) {
+  display: none;
+}
+
+.lightbox__counter {
+  position: fixed;
+  top: 28px;
+  left: 50%;
+  translate: -50% 0;
+  font: 500 13px var(--font-mono);
+  color: rgba(245, 245, 247, 0.6);
+}
+
+@media (max-width: 560px) {
+  .lightbox__figure {
+    padding: 64px 12px 88px;
+  }
+
+  .lightbox__prev,
+  .lightbox__next {
+    top: auto;
+    bottom: 20px;
+    translate: none;
+  }
+
+  .lightbox__prev {
+    left: calc(50% - 52px);
+  }
+
+  .lightbox__next {
+    right: calc(50% - 52px);
+  }
+}
+
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox[open] {
+    animation: none;
+  }
+
+  .figure__link:hover img {
+    transform: none;
+  }
+}

@@ -12,15 +12,15 @@ Todo o conteúdo fica no diretório `content/`, organizado por seções:
 
 ## Versão em Markdown
 
-Toda página (posts, Sobre, Showcase) também é publicada em Markdown ao lado do HTML, trocando a barra final por `.md`: `/about.md`, `/blog/meu-post.md`, `/en/about.md`. Nessas páginas, o menu de compartilhar (acima do sumário no desktop; botão flutuante com painel no mobile) permite copiar o link da página, copiar o Markdown, copiar o link do Markdown ou abri-lo em nova aba. Os templates ficam em `layouts/single.md` e `layouts/blog/single.md`; shortcodes usados nas páginas precisam de uma versão `.md` em `layouts/_shortcodes/` (ex.: `callout.md`).
+Toda página (posts, Sobre, Showcase) também é publicada em Markdown ao lado do HTML, trocando a barra final por `.md`: `/about.md`, `/blog/meu-post.md`, `/en/about.md`. Imagens com caminho relativo ao post viram URLs absolutas no Markdown. Nessas páginas, o menu de compartilhar (acima do sumário no desktop; botão flutuante com painel no mobile) permite copiar o link da página, copiar o Markdown, copiar o link do Markdown ou abri-lo em nova aba. Os templates ficam em `layouts/single.md` e `layouts/blog/single.md`; shortcodes usados nas páginas precisam de uma versão `.md` em `layouts/_shortcodes/` (ex.: `callout.md`).
 
 ## Idiomas
 
-O site é bilíngue: português na raiz (`/`) e inglês em `/en/`. A tradução de uma página fica no mesmo diretório com o sufixo `.en.md`:
+O site é bilíngue: português na raiz (`/`) e inglês em `/en/`. A tradução de uma página fica no mesmo diretório com o sufixo `.en.md`; em posts e projetos, dentro da pasta do conteúdo (veja [Gestão de Imagens](#gestão-de-imagens)):
 
 ```
-content/blog/meu-post.md      # português
-content/blog/meu-post.en.md   # inglês
+content/blog/meu-post/index.md      # português
+content/blog/meu-post/index.en.md   # inglês (usa as mesmas imagens da pasta)
 ```
 
 O menu de idioma leva para a tradução da página quando ela existe, senão para a home do idioma. Textos da interface ficam em `i18n/pt.yaml` e `i18n/en.yaml`.
@@ -29,12 +29,12 @@ O menu de idioma leva para a tradução da página quando ela existe, senão par
 
 ### Localização
 
-`content/blog/`
+`content/blog/nome-do-post/` (uma pasta por post, com o texto e as imagens)
 
 ### Criar Novo Post
 
 ```bash
-hugo new content/blog/nome-do-post.md
+hugo new content/blog/nome-do-post/index.md
 ```
 
 ### Template de Front Matter
@@ -45,7 +45,6 @@ title: "Título do Post"
 date: 2026-01-21
 draft: false  # true para rascunho, false para publicar
 description: "Resumo curto exibido abaixo do título"
-image: /images/blog/nome-post/capa.jpg  # opcional: thumbnail (2:1 nos cards); sem ela, a capa é gerada pelo título
 tags: ["categoria", "tecnologia", "tópico"]
 toc: false  # opcional: esconde o sumário lateral (desktop, aparece com 2+ títulos h2/h3)
 authors:
@@ -85,25 +84,19 @@ Resumo e call-to-action.
 1. **Título**: Claro, descritivo e amigável para SEO
 2. **Tags**: 3-5 tags relevantes para categorização
 3. **Draft**: Use `draft: true` enquanto escreve
-4. **Imagens**: Coloque em `static/images/blog/nome-post/`
+4. **Imagens**: Na pasta do post, veja [Gestão de Imagens](#gestão-de-imagens)
 5. **Código**: Use blocos de código com identificador de linguagem
-
-### Exemplo de Uso de Imagem
-
-```markdown
-![Texto alternativo](/images/blog/meu-post/imagem.jpg)
-```
 
 ## Projetos
 
 ### Localização
 
-`content/showcase/`
+`content/showcase/nome-projeto/` (uma pasta por projeto, como nos posts)
 
 ### Criar Novo Projeto
 
 ```bash
-hugo new content/showcase/nome-projeto.md
+hugo new content/showcase/nome-projeto/index.md
 ```
 
 ### Template de Front Matter
@@ -252,21 +245,47 @@ experience:
 
 ## Gestão de Imagens
 
-### Blog
+Posts e projetos são *page bundles*: cada um é uma pasta com o texto, as traduções e as imagens juntos. O Hugo reduz as imagens e converte para WebP no build, então pode usar a foto original.
 
-Coloque em: `static/images/blog/nome-post/`
-
-```markdown
-![Alt text](/images/blog/nome-post/imagem.jpg)
+```
+content/blog/nome-do-post/
+  index.md          # português
+  index.en.md       # inglês
+  cover.jpg         # capa (opcional)
+  images/
+    castelo.jpg
+    dragoes.jpg
 ```
 
-### Projetos
+Regras:
 
-Coloque em: `static/images/showcase/nome-projeto/`
+1. **Uma pasta por post ou projeto**, com o slug como nome; ele vira a URL (`/blog/nome-do-post/`).
+2. **Capa**: um arquivo `cover.*` (jpg, png, webp) na raiz da pasta. Aparece no card (2:1) e no topo do post (16:9), e é usada no compartilhamento (Open Graph). Sem ela, o card ganha uma capa padrão: um dos gradientes de `assets/images/covers/`, escolhido pelo título, com o título por cima.
+3. **Demais imagens em `images/`**, referenciadas por caminho relativo.
+4. **Nomes de arquivo** em minúsculas, com hífen e sem acento (`tela-inicial.png`).
+5. **Fora da pasta** só o que é compartilhado: capas padrão em `assets/images/covers/` e logos SVG em `static/images/brands/`.
+
+### Imagem única
+
+Uma imagem sozinha numa linha vira uma figura que abre ampliada ao clicar. O título (entre aspas) vira a legenda:
 
 ```markdown
-![Alt text](/images/showcase/nome-projeto/screenshot.png)
+![Texto alternativo](images/castelo.jpg "Legenda opcional")
 ```
+
+### Galeria
+
+Fotos declaradas juntas formam um mosaico: a primeira grande à esquerda e até mais quatro à direita. A partir da sexta, o último bloco mostra `+N`. Todas abrem no lightbox, navegável com as setas:
+
+```markdown
+{{</* gallery caption="Legenda opcional da galeria" */>}}
+![Castelo](images/castelo.jpg "Legenda da foto")
+![Dragões](images/dragoes.jpg)
+![Montanha-russa](images/montanha-russa.jpg)
+{{</* /gallery */>}}
+```
+
+Uma imagem por linha. Com 2 a 4 fotos o mosaico se adapta.
 
 ## Checklist de Publicação
 
@@ -276,7 +295,7 @@ Antes de publicar um post:
 - [ ] Front matter completo
 - [ ] `draft: false`
 - [ ] Tags apropriadas
-- [ ] Imagens otimizadas
+- [ ] Imagens com texto alternativo
 - [ ] Links funcionando
 - [ ] Código com identificador de linguagem
 - [ ] Ortografia e gramática revisadas
