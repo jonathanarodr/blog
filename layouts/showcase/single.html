@@ -13,7 +13,9 @@
       {{- end }}
       {{- with .Params.link }}
       <div class="hero__actions hero__actions--center">
-        <a class="button button--primary" href="{{ . }}" target="_blank" rel="noopener">{{ T "visitProject" }}</a>
+        <a class="button button--primary button--external" href="{{ . }}" target="_blank" rel="noopener">
+          {{- T "visitProject" }}{{ partial "jr/icon.html" "arrow-up-right" -}}
+        </a>
       </div>
       {{- end }}
     </header>
