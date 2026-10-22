@@ -22,7 +22,7 @@
   <section class="home__section">
     <div class="section-heading">
       <h2 class="hub__section-title">{{ T "latestPosts" }}</h2>
-      {{- with $blog }}<a class="section-heading__link" href="{{ .RelPermalink }}">{{ T "seeAll" }}</a>{{ end }}
+      {{- with $blog }}<a class="section-heading__link" href="{{ .RelPermalink }}">{{ T "seeAll" }}{{ partial "jr/icon.html" "chevron-right" }}</a>{{ end }}
     </div>
     <div class="hub__grid">
       {{- range . }}{{ partial "jr/post-card.html" (dict "page" .) }}{{ end }}
@@ -35,7 +35,7 @@
     <div class="section-heading">
       {{- with site.GetPage "/showcase" }}
       <h2 class="hub__section-title">{{ .Title }}</h2>
-      <a class="section-heading__link" href="{{ .RelPermalink }}">{{ T "seeAll" }}</a>
+      <a class="section-heading__link" href="{{ .RelPermalink }}">{{ T "seeAll" }}{{ partial "jr/icon.html" "chevron-right" }}</a>
       {{- end }}
     </div>
     <div class="hub__grid">

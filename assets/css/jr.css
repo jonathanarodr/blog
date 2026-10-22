@@ -1153,20 +1153,38 @@ img {
 
 .section-heading {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-heading .hub__section-title {
+  margin: 0;
 }
 
 .section-heading__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 34px;
+  padding: 0 8px 0 12px;
+  border-radius: 999px;
   color: var(--text-muted);
   font-size: 14px;
+  font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s var(--ease);
+  transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+.section-heading__link .icon {
+  width: 16px;
+  height: 16px;
 }
 
 .section-heading__link:hover {
   color: var(--text);
+  background: var(--surface-hover);
 }
 
 .post-card__description {
@@ -1465,11 +1483,11 @@ img {
   opacity: 1;
 }
 
-.has-cursor-chip :is(.site-header__icon, .site-header__link) {
+.has-cursor-chip :is(.site-header__icon, .site-header__link, .section-heading__link) {
   transition: color 0.2s var(--ease), background-color 0.2s var(--ease), border-color 0.2s var(--ease), transform 0.35s var(--ease);
 }
 
-.has-cursor-chip :is(.site-header__icon, .site-header__link):hover {
+.has-cursor-chip :is(.site-header__icon, .site-header__link, .section-heading__link):hover {
   background: none;
 }
 
