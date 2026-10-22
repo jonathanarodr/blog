@@ -423,7 +423,8 @@ img {
 
 .hub__featured {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  /* auto-fill keeps a lone featured post at half width instead of stretching */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
   gap: clamp(24px, 3vw, 40px);
   margin-bottom: 80px;
 }
@@ -474,6 +475,57 @@ img {
 
 .post-card .cover--generated {
   padding: 6% 10%;
+}
+
+/* Hover: light sweeping around the cover border, like Uber's search input */
+@property --sweep {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.post-card .cover {
+  --sweep-color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="light"] .post-card .cover {
+  --sweep-color: rgba(0, 0, 0, 0.45);
+}
+
+.post-card .cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--sweep),
+    transparent 0deg,
+    var(--sweep-color) 40deg,
+    transparent 90deg,
+    transparent 180deg,
+    var(--sweep-color) 220deg,
+    transparent 270deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+  animation: sweep 3s linear infinite paused;
+}
+
+.post-card__link:is(:hover, :focus-visible) .cover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes sweep {
+  to {
+    --sweep: 360deg;
+  }
 }
 
 .post-card__link:hover .cover {
