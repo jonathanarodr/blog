@@ -1227,12 +1227,9 @@ img {
 
 .not-found__code {
   margin: 0 0 16px;
-  font-family: var(--font-display);
-  font-size: clamp(96px, 22vw, 200px);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  color: var(--text);
-  opacity: 0.35;
+  font: 500 clamp(40px, 8vw, 64px) / 1 var(--font-mono);
+  letter-spacing: 0.05em;
+  color: var(--text-subtle);
 }
 
 .not-found__title {
