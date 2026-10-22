@@ -722,16 +722,24 @@ img {
   opacity: 1;
 }
 
-.prose a {
+/* Underline draws left to right on hover and retracts on leave, like developer.android.com/blog */
+.prose a:not(.link-card, .heading-anchor) {
   color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--border-strong);
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.2s var(--ease);
+  text-decoration: none;
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(var(--border-strong), var(--border-strong));
+  background-position: 0 100%, 0 100%;
+  background-size: 0 1px, 100% 1px;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 0.3s cubic-bezier(0.34, 0.88, 0.34, 1);
 }
 
-.prose a:hover {
-  text-decoration-color: var(--text);
+.prose a:not(.link-card, .heading-anchor):is(:hover, :focus-visible) {
+  background-size: 100% 1px, 100% 1px;
 }
 
 .prose ul,
