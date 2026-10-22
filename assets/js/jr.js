@@ -1,5 +1,12 @@
 // Theme toggle, persisted under "color-theme".
+const labelThemeToggle = (button) => {
+  const label = document.documentElement.dataset.theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro";
+  button.setAttribute("aria-label", label);
+  button.title = label;
+};
+
 document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+  labelThemeToggle(button);
   button.addEventListener("click", () => {
     const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     const apply = () => {
@@ -7,6 +14,7 @@ document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
       try {
         localStorage.setItem("color-theme", next);
       } catch (e) {}
+      labelThemeToggle(button);
     };
     if (document.startViewTransition) document.startViewTransition(apply);
     else apply();

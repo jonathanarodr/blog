@@ -180,9 +180,45 @@ img {
   background: var(--surface-hover);
 }
 
-[data-theme="dark"] .icon-moon,
-[data-theme="light"] .icon--sun {
-  display: none;
+/* Theme toggle shows the theme it switches to, like firebase.blog */
+[data-theme-toggle] {
+  position: relative;
+  view-transition-name: theme-toggle;
+}
+
+::view-transition-old(theme-toggle) {
+  animation: icon-out 0.4s var(--ease) both;
+}
+
+::view-transition-new(theme-toggle) {
+  animation: icon-in 0.5s var(--ease) both;
+}
+
+@keyframes icon-out {
+  to {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+}
+
+@keyframes icon-in {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+}
+
+[data-theme-toggle] .icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.3s var(--ease), transform 0.5s var(--ease);
+}
+
+[data-theme="light"] [data-theme-toggle] .icon--sun,
+[data-theme="dark"] [data-theme-toggle] .icon--moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
 }
 
 @media (max-width: 560px) {
