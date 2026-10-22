@@ -217,6 +217,24 @@ Conteúdo oculto aqui.
 {{< /details >}}
 ```
 
+## Experiência (página Sobre)
+
+A timeline de experiências do `content/about.md` (e `about.en.md`) vem do front matter e aparece onde estiver o shortcode `{{< experience >}}`. Liste as empresas e os cargos do mais recente para o mais antigo; `end` vazio marca o cargo atual:
+
+```yaml
+experience:
+  - company: Empresa
+    url: https://empresa.com   # opcional
+    roles:
+      - title: Cargo atual
+        start: 2024-02
+        highlights:
+          - Conquista ou responsabilidade.
+      - title: Cargo anterior
+        start: 2021-06
+        end: 2024-01
+```
+
 ## Gestão de Imagens
 
 ### Blog

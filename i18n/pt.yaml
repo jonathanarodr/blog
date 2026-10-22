@@ -40,6 +40,9 @@ copy: "Copiar"
 copied: "Copiado!"
 backToTop: "Voltar ao topo"
 
+# About
+present: "Atual"
+
 # Projects
 allProjects: "Todos os projetos"
 technologies: "Tecnologias"

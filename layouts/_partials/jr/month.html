@@ -1,0 +1,6 @@
+{{- /* Formats "YYYY-MM" as a localized short month and year; empty means the current role. Context: string. */ -}}
+{{- with . -}}
+  {{- time.AsTime (printf "%s-01" .) | time.Format "Jan 2006" -}}
+{{- else -}}
+  {{- T "present" -}}
+{{- end -}}
