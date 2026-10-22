@@ -1,0 +1,153 @@
+/* Page share menu: inline above the TOC, floating button and bottom sheet */
+
+/* Page share menu ----------------------------------------------------------
+   Inline: header-style dropdown above the sidebar table of contents.
+   Floating: round button at the bottom corner; on phones it opens a bottom
+   sheet with a backdrop, on larger screens a popover above the button. */
+
+.page-menu--inline {
+  margin-bottom: 16px;
+  margin-left: -8px;
+}
+
+/* Opens like the header dropdowns, anchored to the sidebar's right edge */
+.page-menu--inline {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-menu--floating {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 40;
+}
+
+.page-menu__fab {
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+  color: var(--text);
+  transition: background-color 0.2s var(--ease), transform 0.25s var(--ease);
+}
+
+.page-menu__fab:hover {
+  background: var(--surface-hover);
+}
+
+.page-menu__fab .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.page-menu__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s var(--ease), visibility 0s linear 0.25s;
+}
+
+.page-menu--floating.is-open .page-menu__backdrop {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s var(--ease), visibility 0s;
+}
+
+/* Bottom sheet on phones */
+.page-menu--floating .dropdown__list {
+  position: fixed;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  max-width: none;
+  padding: 20px 12px calc(16px + env(safe-area-inset-bottom));
+  border-radius: 20px 20px 0 0;
+  border-bottom: 0;
+  transform: translateY(100%);
+  transform-origin: bottom center;
+  transition: transform 0.35s var(--ease), opacity 0.2s var(--ease), visibility 0s linear 0.35s;
+}
+
+.page-menu--floating .dropdown__list::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 36px;
+  height: 4px;
+  margin-left: -18px;
+  border-radius: 999px;
+  background: var(--border-strong);
+}
+
+.page-menu--floating.is-open .dropdown__list {
+  transform: none;
+  transition: transform 0.35s var(--ease), opacity 0.2s var(--ease), visibility 0s;
+}
+
+.page-menu--floating .dropdown__item {
+  padding: 14px 12px;
+  font-size: 15px;
+}
+
+/* Popover above the button on larger screens */
+@media (min-width: 768px) {
+  .page-menu--floating {
+    right: 32px;
+    bottom: 32px;
+  }
+
+  .page-menu__backdrop {
+    display: none;
+  }
+
+  .page-menu--floating .dropdown__list {
+    position: absolute;
+    top: auto;
+    right: 0;
+    bottom: calc(100% + 12px);
+    left: auto;
+    width: max-content;
+    max-width: 320px;
+    padding: 8px;
+    border-radius: 16px;
+    border-bottom: 1px solid var(--border);
+    transform: translateY(6px) scale(0.97);
+    transform-origin: bottom right;
+  }
+
+  .page-menu--floating .dropdown__list::before {
+    display: none;
+  }
+
+  .page-menu--floating .dropdown__item {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .page-menu--hide-desktop {
+    display: none;
+  }
+}
+
+/* Back-to-top stacks above the floating share button */
+body:has(.page-menu--floating) .back-to-top {
+  bottom: calc(max(16px, env(safe-area-inset-bottom)) + 56px);
+}
+
+@media (min-width: 768px) {
+  body:has(.page-menu--floating) .back-to-top {
+    bottom: 88px;
+  }
+}
+
+@media (min-width: 1180px) {
+  body:has(.page-menu--hide-desktop) .back-to-top {
+    bottom: 32px;
+  }
+}

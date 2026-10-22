@@ -1,0 +1,13 @@
+{{- /* Tags as outlined chips; linked to the blog filter when "href" is given. Context: dict "tags" "label" "href". */ -}}
+{{- $href := .href }}
+{{- with .tags }}
+<ul class="post__tags" aria-label="{{ $.label }}">
+  {{- range . }}
+    {{- if $href }}
+      <li><a class="pill pill--small" href="{{ $href }}?tag={{ urlize . }}">{{ . }}</a></li>
+    {{- else }}
+      <li><span class="pill pill--small">{{ . }}</span></li>
+    {{- end }}
+  {{- end }}
+</ul>
+{{- end }}

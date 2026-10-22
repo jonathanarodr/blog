@@ -1,0 +1,30 @@
+{{- /* Older posts as a timeline grouped by year: year on a sticky rail, compact rows with
+  date and title. Rows carry the hub filter data, so tags and search apply here too.
+  Context: dict "pages" (posts, newest first). */ -}}
+{{- with .pages }}
+<section class="archive enter" style="--enter-step: 3" data-group>
+  <h2 class="hub__section-title">{{ T "archive" }}</h2>
+  <ol class="archive__years">
+    {{- range .GroupByDate "2006" }}
+    <li class="archive__year" data-group>
+      <div class="archive__rail">
+        <h3 class="archive__label">{{ .Key }}</h3>
+        <p class="archive__count">{{ T "postsCount" (len .Pages) }}</p>
+      </div>
+      <ul class="archive__posts">
+        {{- range .Pages }}
+        {{- $filter := partial "jr/filter-data.html" . }}
+        <li class="archive__post" data-post data-tags="{{ $filter.tags }}" data-search="{{ $filter.search }}">
+          <a class="archive__link" href="{{ .RelPermalink }}">
+            <time class="archive__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 Jan" }}</time>
+            <span class="archive__title" style="view-transition-name: {{ partial "jr/vt-name.html" (dict "page" . "part" "title") }}">{{ .Title }}</span>
+            {{- partial "jr/icon.html" "chevron-right" -}}
+          </a>
+        </li>
+        {{- end }}
+      </ul>
+    </li>
+    {{- end }}
+  </ol>
+</section>
+{{- end }}

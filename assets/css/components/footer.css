@@ -1,0 +1,46 @@
+/* Site footer and the bottom fade */
+
+/* Footer ------------------------------------------------------------------ */
+
+.site-footer {
+  margin-top: 96px;
+  border-top: 1px solid var(--border);
+  color: var(--text-subtle);
+  font-size: 14px;
+}
+
+.site-footer__inner {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: 28px var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.site-footer a {
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--text);
+}
+
+/* Bottom fade: content dissolves into the background near the bottom edge
+   of the screen (like Claude's chat above the input); hidden at page end */
+body::after {
+  content: "";
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 14;
+  height: calc(72px + env(safe-area-inset-bottom));
+  background: linear-gradient(to bottom, transparent, var(--bg) 85%);
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+html.is-at-bottom body::after {
+  opacity: 0;
+}

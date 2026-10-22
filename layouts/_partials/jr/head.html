@@ -17,7 +17,7 @@
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml" />
 <meta name="color-scheme" content="dark light" />
 
-{{- /* Apply the saved theme before first paint. */}}
+{{- /* Before first paint: apply the saved theme and detect view-transition arrivals. */}}
 <script>
   (function () {
     var saved = null;
@@ -25,6 +25,12 @@
     var theme = saved === "light" || saved === "dark" ? saved
       : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
     document.documentElement.dataset.theme = theme;
+
+    // Arriving through a cross-page view transition: cards and titles morph into place,
+    // so skip the entrance animations (see .enter in motion.css).
+    window.addEventListener("pagereveal", function (e) {
+      if (e.viewTransition) document.documentElement.classList.add("is-transitioning");
+    });
   })();
 </script>
 
@@ -32,7 +38,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-{{- $css := slice (resources.Get "css/jr.css") (resources.Get "css/jr-chroma.css") | resources.Concat "css/jr.bundle.css" }}
+{{- /* Component stylesheets, bundled in cascade order */}}
+{{- $components := slice "base" "motion" "avatar" "header" "footer" "controls" "hub" "cards" "archive" "article" "prose" "home" "not-found" "toc" "cursor-chip" "dropdown" "fab" "back-to-top" "resume" "page-menu" "chroma" }}
+{{- $styles := slice }}
+{{- range $components }}{{ $styles = $styles | append (resources.Get (printf "css/components/%s.css" .)) }}{{ end }}
+{{- $css := $styles | resources.Concat "css/jr.bundle.css" }}
 {{- if hugo.IsProduction }}{{ $css = $css | minify }}{{ end }}
 {{- $css = $css | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />

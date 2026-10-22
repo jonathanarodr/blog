@@ -1,32 +1,6 @@
 {{ define "main" }}
 <article class="post">
-  <div class="container container--narrow">
-    <a class="back-link" href="{{ .Parent.RelPermalink }}">{{ partial "jr/icon.html" "arrow-left" }} {{ T "allProjects" }}</a>
-
-    <header class="post__header">
-      <h1 class="display post__title" style="view-transition-name: title-{{ .File.ContentBaseName | anchorize }}">{{ .Title }}</h1>
-      {{- with .Description }}<p class="post__lead">{{ . }}</p>{{ end }}
-      {{- with .Params.tags }}
-      <ul class="post__tags" aria-label="{{ T "technologies" }}">
-        {{- range . }}<li><span class="pill pill--small">{{ . }}</span></li>{{ end }}
-      </ul>
-      {{- end }}
-      {{- with .Params.link }}
-      <div class="hero__actions hero__actions--center">
-        <a class="button button--primary button--external" href="{{ . }}" target="_blank" rel="noopener">
-          {{- T "visitProject" }}{{ partial "jr/icon.html" "arrow-up-right" -}}
-        </a>
-      </div>
-      {{- end }}
-    </header>
-  </div>
-
-  <div class="container post__cover">{{ partial "jr/cover.html" . }}</div>
-
-  <div class="container container--narrow">
-    <div class="prose">
-      {{ .Content }}
-    </div>
-  </div>
+  {{- partial "jr/article-header.html" (dict "page" . "variant" "project") }}
+  {{- partial "jr/article-body.html" (dict "page" .) }}
 </article>
 {{ end }}

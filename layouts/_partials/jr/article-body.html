@@ -1,0 +1,22 @@
+{{- /* Body of an article page: content (+ optional post footer), sidebar table of contents,
+  back-to-top and the floating page share menu.
+  Context: dict "page" "footer" (bool: share links and author card after the content). */ -}}
+{{- $p := .page }}
+{{- $toc := partial "jr/show-toc.html" $p }}
+<div class="post__layout{{ if $toc }} has-toc{{ end }}">
+  <div class="post__body enter" style="--enter-step: 1">
+    <div class="prose">
+      {{ $p.Content }}
+    </div>
+    {{- if .footer }}
+    <footer class="post__footer">
+      {{- partial "jr/share-links.html" $p }}
+      {{- partial "jr/author-card.html" }}
+    </footer>
+    {{- end }}
+  </div>
+  {{- if $toc }}{{ partial "jr/toc.html" $p }}{{ end }}
+</div>
+
+{{- partial "jr/back-to-top.html" $p }}
+{{- partial "jr/page-menu.html" (dict "page" $p "variant" "floating" "hideDesktop" $toc) }}

@@ -9,7 +9,7 @@
       {{- block "main" . }}{{ end }}
     </main>
     {{- partial "jr/footer.html" . }}
-    {{- $js := resources.Get "js/jr.js" | js.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+    {{- $js := resources.Get "js/main.js" | js.Build (dict "minify" hugo.IsProduction "targetPath" "js/jr.js") | fingerprint }}
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
   </body>
 </html>

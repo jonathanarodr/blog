@@ -1,4 +1,5 @@
 ---
+avatar: true
 title: About me
 ---
 
@@ -41,5 +42,3 @@ Projects I build outside of work live in the [Showcase](/en/showcase/), such as 
 Feel free to reach out:
 
 {{< contact >}}
-
-This résumé is also available as [Markdown](/en/about.md).

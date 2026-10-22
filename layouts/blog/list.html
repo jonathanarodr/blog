@@ -1,28 +1,23 @@
 {{ define "main" }}
 {{- $posts := .RegularPagesRecursive.ByDate.Reverse }}
+{{- /* Current year's posts on top (2 featured, the rest in a grid), older years in the archive.
+     Keeps at least blog.minRecentPosts on top so January isn't empty. */}}
+{{- $minTop := site.Params.blog.minRecentPosts | default 3 }}
+{{- $topCount := 0 }}
+{{- range $posts }}{{ if eq .Date.Year now.Year }}{{ $topCount = add $topCount 1 }}{{ end }}{{ end }}
+{{- $topCount = math.Max $topCount $minTop | int }}
 {{- $featured := first 2 $posts }}
-{{- $rest := after 2 $posts }}
+{{- $recent := first (sub $topCount 2) (after 2 $posts) }}
+{{- $archive := after $topCount $posts }}
 {{- $tags := slice }}
 {{- range $posts }}{{ range .Params.tags }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
 {{- $tags = $tags | uniq | sort }}
 
 <div class="container hub" data-hub>
-  <header class="hub__header">
-    <div>
-      <h1 class="display">{{ .Title }}</h1>
-      {{- with .Description }}<p class="hub__lead">{{ . }}</p>{{ end }}
-    </div>
-    <div class="hub__actions">
-      <label class="search">
-        {{- partial "jr/icon.html" "search" }}
-        <input type="search" placeholder="{{ T "searchPlaceholder" }}" aria-label="{{ T "searchPosts" }}" data-search-input />
-        <kbd>/</kbd>
-      </label>
-    </div>
-  </header>
+  {{- partial "jr/hub-header.html" (dict "page" . "search" true) }}
 
   {{- if $tags }}
-  <div class="pills" role="toolbar" aria-label="{{ T "filterByTag" }}">
+  <div class="pills enter" style="--enter-step: 1" role="toolbar" aria-label="{{ T "filterByTag" }}">
     <button class="pill is-active" type="button" data-tag="">{{ T "all" }}</button>
     {{- range $tags }}
       <button class="pill" type="button" data-tag="{{ urlize . }}">{{ . }}</button>
@@ -30,22 +25,24 @@
   </div>
   {{- end }}
 
-  <section class="hub__featured" data-group>
+  <section class="hub__featured enter" style="--enter-step: 2" data-group>
     {{- range $featured }}
-      {{- partial "jr/post-card.html" (dict "page" . "featured" true) }}
+      {{- partial "jr/card.html" (dict "page" . "featured" true) }}
     {{- end }}
   </section>
 
-  {{- with $rest }}
-  <section data-group>
+  {{- with $recent }}
+  <section class="enter" style="--enter-step: 2" data-group>
     <h2 class="hub__section-title">{{ T "recentPosts" }}</h2>
     <div class="hub__grid">
       {{- range . }}
-        {{- partial "jr/post-card.html" (dict "page" .) }}
+        {{- partial "jr/card.html" (dict "page" .) }}
       {{- end }}
     </div>
   </section>
   {{- end }}
+
+  {{- partial "jr/archive.html" (dict "pages" $archive) }}
 
   <p class="hub__empty" data-empty hidden>{{ T "noPosts" }}</p>
 </div>

@@ -4,10 +4,8 @@
 {{- $projects := (where site.RegularPages "Section" "showcase").ByWeight }}
 
 <div class="container home">
-  <section class="hero">
-    {{- with site.Params.author.image }}
-      <img class="hero__avatar" src="{{ . | relURL }}" alt="" width="72" height="72" />
-    {{- end }}
+  <section class="hero enter">
+    {{- partial "jr/avatar.html" (dict) }}
     <h1 class="display hero__title">{{ .Params.heading | default .Title }}</h1>
     <div class="prose hero__intro">
       {{ .Content }}
@@ -18,20 +16,8 @@
     </div>
   </section>
 
-  {{- with $posts }}
-  <section class="home__section">
-    <div class="section-heading">
-      <h2 class="hub__section-title">{{ T "latestPosts" }}</h2>
-      {{- with $blog }}<a class="section-heading__link" href="{{ .RelPermalink }}">{{ T "seeAll" }}{{ partial "jr/icon.html" "chevron-right" }}</a>{{ end }}
-    </div>
-    <div class="hub__grid">
-      {{- range . }}{{ partial "jr/post-card.html" (dict "page" .) }}{{ end }}
-    </div>
-  </section>
-  {{- end }}
-
   {{- with $projects }}
-  <section class="home__section">
+  <section class="home__section enter" style="--enter-step: 1">
     <div class="section-heading">
       {{- with site.GetPage "/showcase" }}
       <h2 class="hub__section-title">{{ .Title }}</h2>
@@ -39,7 +25,19 @@
       {{- end }}
     </div>
     <div class="hub__grid">
-      {{- range . }}{{ partial "jr/project-card.html" . }}{{ end }}
+      {{- range . }}{{ partial "jr/card.html" (dict "page" .) }}{{ end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- with $posts }}
+  <section class="home__section enter" style="--enter-step: 2">
+    <div class="section-heading">
+      <h2 class="hub__section-title">{{ T "latestPosts" }}</h2>
+      {{- with $blog }}<a class="section-heading__link" href="{{ .RelPermalink }}">{{ T "seeAll" }}{{ partial "jr/icon.html" "chevron-right" }}</a>{{ end }}
+    </div>
+    <div class="hub__grid">
+      {{- range . }}{{ partial "jr/card.html" (dict "page" .) }}{{ end }}
     </div>
   </section>
   {{- end }}

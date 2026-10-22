@@ -1,0 +1,234 @@
+/* Post/project cards, covers and bylines */
+
+/* Cover --------------------------------------------------------------- */
+
+.cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  /* Flat neutral edge drawn on top, so the cover colors never tint it
+     and the hover sweep runs exactly along it */
+  outline: 1px solid var(--border);
+  outline-offset: -1px;
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover--generated {
+  display: grid;
+  place-items: center;
+  padding: 8%;
+  background:
+    radial-gradient(120% 90% at 85% 0%, hsl(var(--hue) 70% 55% / 0.35), transparent 60%),
+    radial-gradient(90% 80% at 0% 100%, hsl(calc(var(--hue) + 60) 70% 50% / 0.25), transparent 55%),
+    hsl(var(--hue) 12% var(--cover-l));
+}
+
+.cover--generated::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(color-mix(in srgb, var(--text) 14%, transparent) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(to bottom, #000, transparent 70%);
+  pointer-events: none;
+}
+
+.cover__title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis-weight: none;
+  font-size: clamp(26px, 4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--text);
+  transition: transform 0.5s var(--ease);
+}
+
+.post-card:not(.post-card--featured) .cover__title {
+  font-size: clamp(24px, 2.6vw, 32px);
+}
+
+/* Post card --------------------------------------------------------------- */
+
+/* The link stretches over the whole card so byline and description are clickable too */
+.post-card {
+  position: relative;
+}
+
+.post-card__link {
+  display: block;
+  text-decoration: none;
+}
+
+.post-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+.post-card__link:focus-visible {
+  outline: none;
+}
+
+.post-card:has(.post-card__link:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+  border-radius: var(--radius);
+}
+
+.post-card__title {
+  font: 400 19px/1.35 var(--font-display);
+  font-synthesis-weight: none;
+  letter-spacing: -0.015em;
+  margin: 18px 0 10px;
+  text-wrap: balance;
+  width: fit-content;
+}
+
+.post-card--featured .post-card__title {
+  font-size: clamp(22px, 2.6vw, 30px);
+  line-height: 1.25;
+}
+
+/* Card thumbnails are shorter (2:1), like developer.android.com/blog; the post page keeps 16:9 */
+.post-card .cover {
+  aspect-ratio: 2 / 1;
+  transition: transform 0.5s var(--ease);
+}
+
+.post-card .cover--generated {
+  padding: 6% 10%;
+}
+
+/* Hover: light sweeping around the cover border, like Uber's search input */
+@property --sweep {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.post-card .cover {
+  --sweep-color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="light"] .post-card .cover {
+  --sweep-color: rgba(0, 0, 0, 0.45);
+}
+
+.post-card .cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--sweep),
+    transparent 0deg,
+    var(--sweep-color) 40deg,
+    transparent 90deg,
+    transparent 180deg,
+    var(--sweep-color) 220deg,
+    transparent 270deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Two laps per hover, then fade out; restarts on the next hover */
+.post-card:is(:hover, :focus-within) .cover::before {
+  animation: sweep 5s linear both;
+}
+
+@keyframes sweep {
+  0% {
+    --sweep: 0deg;
+    opacity: 0;
+  }
+  8%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    --sweep: 720deg;
+    opacity: 0;
+  }
+}
+
+.post-card:hover .cover {
+  transform: translateY(-4px);
+}
+
+.post-card:hover .cover--generated .cover__title {
+  transform: scale(1.03);
+}
+
+.post-card__description {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* Byline ------------------------------------------------------------- */
+
+.byline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.byline__avatars {
+  display: flex;
+}
+
+.byline__avatars img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+}
+
+.byline__avatars img + img {
+  margin-left: -6px;
+}
+
+.byline__names {
+  color: var(--text);
+}
+
+.byline__group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.byline__sep {
+  color: var(--text-subtle);
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.byline time,
+.byline__names {
+  white-space: nowrap;
+}

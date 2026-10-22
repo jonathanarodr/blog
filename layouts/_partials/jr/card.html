@@ -1,0 +1,22 @@
+{{- /* Card for a post or project: cover, title and a footer (byline for posts, description otherwise).
+  The whole card is clickable and carries the data used by the blog hub filters.
+  Context: dict "page" "featured" (bool). */ -}}
+{{- $p := .page }}
+{{- $isPost := eq $p.Section "blog" }}
+<article class="post-card{{ if .featured }} post-card--featured{{ end }}"
+  {{- if $isPost }}
+  {{- $filter := partial "jr/filter-data.html" $p }}
+  data-post
+  data-tags="{{ $filter.tags }}"
+  data-search="{{ $filter.search }}"
+  {{- end }}>
+  <a class="post-card__link" href="{{ $p.RelPermalink }}">
+    {{- partial "jr/cover.html" $p }}
+    <h3 class="post-card__title" style="view-transition-name: {{ partial "jr/vt-name.html" (dict "page" $p "part" "title") }}">{{ $p.Title }}</h3>
+  </a>
+  {{- if $isPost }}
+    {{- partial "jr/byline.html" (dict "page" $p) }}
+  {{- else }}
+    {{- with $p.Description }}<p class="post-card__description">{{ . }}</p>{{ end }}
+  {{- end }}
+</article>

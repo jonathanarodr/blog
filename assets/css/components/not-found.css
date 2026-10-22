@@ -1,0 +1,24 @@
+/* 404 page */
+
+/* 404 -------------------------------------------------------------------- */
+
+.not-found {
+  text-align: center;
+  padding: clamp(80px, 16vw, 160px) var(--gutter);
+}
+
+.not-found__code {
+  margin: 0 0 16px;
+  font: 500 clamp(40px, 8vw, 64px) / 1 var(--font-mono);
+  letter-spacing: 0.05em;
+  color: var(--text-subtle);
+}
+
+.not-found__title {
+  font-size: clamp(40px, 7vw, 72px);
+  text-wrap: balance;
+}
+
+.not-found .hub__lead {
+  margin-inline: auto;
+}
